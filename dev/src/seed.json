@@ -1,5 +1,5 @@
 {
-  "seedVersion": 12,
+  "seedVersion": 13,
   "birthdays": [
     {
       "id": "birthday-roshini",
@@ -828,13 +828,14 @@
       "type": "anniversary",
       "people": [
         "Linganna",
-        "Saritha"
+        "Srilatha"
       ],
       "month": 11,
       "day": 19,
-      "aliases": [],
-      "verified": false,
-      "note": "One message explicitly names Saritha and Linganna, but it is unclear whether this Saritha is the same person as Santosh's wife."
+      "aliases": [
+        "Linganna & Sri Latha"
+      ],
+      "verified": true
     },
     {
       "id": "anniversary-satish-reddy-harika",
