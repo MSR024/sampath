@@ -117,7 +117,7 @@ test("family name shows once: a person's own, or for a couple the first partner'
 test("kids linked to their parents take the father's family name", () => {
   const g = R.familyGrid(all());
   const kids = (a, b) => g.families.find((f) => [...f.people].sort().join("|") === [a, b].sort().join("|")).kids.map((k) => k.name);
-  assert.deepEqual(kids("Santosh", "Saritha"), ["Lucky"]);
+  assert.deepEqual(kids("Santosh", "Saritha"), ["Lucky", "Mikky"]);
   assert.deepEqual(kids("Srikanth", "Kavitha"), ["Cherry", "Trishool"]);
   assert.deepEqual(kids("Sravan", "Ashwini"), ["Mintu"]);
   assert.deepEqual(kids("Sathyam", "Sarita"), ["Hasini", "Honey"]);

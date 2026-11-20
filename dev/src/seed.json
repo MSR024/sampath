@@ -1,5 +1,5 @@
 {
-  "seedVersion": 13,
+  "seedVersion": 14,
   "birthdays": [
     {
       "id": "birthday-roshini",
@@ -62,7 +62,7 @@
         "Santhu"
       ],
       "community": "telugu",
-      "relationship": "Husband of Saritha; father of Lucky",
+      "relationship": "Husband of Saritha; father of Lucky and Mikky",
       "verified": true,
       "familyName": "Mula"
     },
@@ -415,7 +415,12 @@
       ],
       "community": "telugu",
       "verified": true,
-      "note": "Greetings occur on August 7 and 8; August 8 is the stronger recent date."
+      "note": "Greetings occur on August 7 and 8; August 8 is the stronger recent date.",
+      "parents": [
+        "Santosh",
+        "Saritha"
+      ],
+      "relationship": "Child of Santosh and Saritha"
     },
     {
       "id": "birthday-bindu",
@@ -559,7 +564,7 @@
         "Sarita Chellalu"
       ],
       "community": "telugu",
-      "relationship": "Wife of Santosh; mother of Lucky",
+      "relationship": "Wife of Santosh; mother of Lucky and Mikky",
       "verified": false,
       "note": "Greetings occur on October 25 and 26; October 25 is used provisionally."
     },
