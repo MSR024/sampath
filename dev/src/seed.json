@@ -1,5 +1,5 @@
 {
-  "seedVersion": 8,
+  "seedVersion": 9,
   "birthdays": [
     {
       "id": "birthday-roshini",
@@ -203,7 +203,12 @@
         "Varnika Reddy"
       ],
       "community": "telugu",
-      "verified": true
+      "verified": true,
+      "parents": [
+        "Shyam",
+        "Sowjanya"
+      ],
+      "relationship": "Child of Shyam and Sowjanya"
     },
     {
       "id": "birthday-hasini",
@@ -400,7 +405,7 @@
       "day": 25,
       "aliases": [],
       "community": "telugu",
-      "relationship": "Husband of Sowjanya",
+      "relationship": "Husband of Sowjanya; father of Varnika",
       "verified": true,
       "note": "Greetings occur on August 24 and 25; August 25 is the stronger date.",
       "familyName": "Appidi"
@@ -417,7 +422,7 @@
         "Chinnu"
       ],
       "community": "telugu",
-      "relationship": "Wife of Shyam",
+      "relationship": "Wife of Shyam; mother of Varnika",
       "verified": true,
       "note": "Greetings occur on August 28 and 29; August 29 is the stronger recent date."
     },
