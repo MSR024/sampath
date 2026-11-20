@@ -73,7 +73,14 @@
     const person = (name) => { const c = canonicalPerson(name, idx); return events.find((e) => e.type === "birthday" && norm(e.name) === c); };
     const own = (name) => { const p = person(name); return (p && p.familyName) || ""; };
     if (ev.type === "anniversary") return own(ev.people[0]) || own(ev.people[1]);
-    if (Array.isArray(ev.parents) && ev.parents.length) { const f = own(ev.parents[0]); if (f) return f; }
+    if (Array.isArray(ev.parents) && ev.parents.length) {
+      const f = own(ev.parents[0]);
+      if (f) return f;
+      // father without a birthday record: use the couple's anniversary
+      const key = ev.parents.map((n) => canonicalPerson(n, idx)).sort().join("|");
+      const ann = events.find((a) => a.type === "anniversary" && a.people.map((n) => canonicalPerson(n, idx)).sort().join("|") === key);
+      if (ann && ann.familyName) return ann.familyName;
+    }
     const me = canonicalPerson(ev.name, idx);
     for (const a of events) {
       if (a.type !== "anniversary" || canonicalPerson(a.people[1], idx) !== me) continue;

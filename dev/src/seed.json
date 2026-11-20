@@ -1,5 +1,5 @@
 {
-  "seedVersion": 5,
+  "seedVersion": 6,
   "birthdays": [
     {
       "id": "birthday-roshini",
@@ -104,7 +104,12 @@
       "aliases": [],
       "community": "telugu",
       "verified": true,
-      "note": "Greetings occur on March 4 and 5; March 5 is the stronger recent date."
+      "note": "Greetings occur on March 4 and 5; March 5 is the stronger recent date.",
+      "parents": [
+        "Sathyam",
+        "Sarita"
+      ],
+      "relationship": "Child of Sathyam and Sarita"
     },
     {
       "id": "birthday-praveen",
@@ -680,9 +685,14 @@
       ],
       "month": 3,
       "day": 10,
-      "aliases": [],
+      "aliases": [
+        "Satyam & Sarita",
+        "Sathyam & Saritha",
+        "Satyam & Saritha"
+      ],
       "verified": false,
-      "note": "The couple was confirmed directly, but March 10 was not independently repeated with both names across two years."
+      "note": "The couple was confirmed directly, but March 10 was not independently repeated with both names across two years.",
+      "familyName": "Manda"
     },
     {
       "id": "anniversary-santosh-saritha",
