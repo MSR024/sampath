@@ -1,5 +1,5 @@
 {
-  "seedVersion": 3,
+  "seedVersion": 4,
   "birthdays": [
     {
       "id": "birthday-roshini",
@@ -62,7 +62,7 @@
         "Santhu"
       ],
       "community": "telugu",
-      "relationship": "Husband of Saritha",
+      "relationship": "Husband of Saritha; father of Lucky",
       "verified": true,
       "familyName": "Mula"
     },
@@ -76,7 +76,7 @@
         "Srikanth Anna"
       ],
       "community": "telugu",
-      "relationship": "Husband of Kavitha",
+      "relationship": "Husband of Kavitha; father of Cherry and Trishool",
       "verified": true
     },
     {
@@ -135,7 +135,12 @@
         "Cheery"
       ],
       "community": "telugu",
-      "verified": true
+      "verified": true,
+      "parents": [
+        "Srikanth",
+        "Kavitha"
+      ],
+      "relationship": "Child of Srikanth and Kavitha"
     },
     {
       "id": "birthday-lucky",
@@ -148,7 +153,12 @@
         "Luckey"
       ],
       "community": "telugu",
-      "verified": true
+      "verified": true,
+      "parents": [
+        "Santosh",
+        "Saritha"
+      ],
+      "relationship": "Child of Santosh and Saritha"
     },
     {
       "id": "birthday-sresta",
@@ -267,7 +277,12 @@
         "Thrishool"
       ],
       "community": "telugu",
-      "verified": true
+      "verified": true,
+      "parents": [
+        "Srikanth",
+        "Kavitha"
+      ],
+      "relationship": "Child of Srikanth and Kavitha"
     },
     {
       "id": "birthday-chikki",
@@ -479,7 +494,7 @@
         "Sarita Chellalu"
       ],
       "community": "telugu",
-      "relationship": "Wife of Santosh",
+      "relationship": "Wife of Santosh; mother of Lucky",
       "verified": false,
       "note": "Greetings occur on October 25 and 26; October 25 is used provisionally."
     },
@@ -493,7 +508,7 @@
         "Kavita"
       ],
       "community": "telugu",
-      "relationship": "Wife of Srikanth",
+      "relationship": "Wife of Srikanth; mother of Cherry and Trishool",
       "verified": true
     },
     {

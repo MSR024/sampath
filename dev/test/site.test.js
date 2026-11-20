@@ -114,6 +114,16 @@ test("family name shows once: a person's own, or for a couple the first partner'
   assert.equal(R.validateEvent(Object.assign({}, get("birthday-sateesh"), { familyName: "  " })).event.familyName, undefined);
 });
 
+test("kids linked to their parents take the father's family name", () => {
+  const g = R.familyGrid(all());
+  const kids = (a, b) => g.families.find((f) => [...f.people].sort().join("|") === [a, b].sort().join("|")).kids.map((k) => k.name);
+  assert.deepEqual(kids("Santosh", "Saritha"), ["Lucky"]);
+  assert.deepEqual(kids("Srikanth", "Kavitha"), ["Cherry", "Trishool"]);
+  const ev = all();
+  assert.equal(R.familyNameOf(ev.find((e) => e.id === "birthday-lucky"), ev), "Mula");
+  assert.equal(R.familyNameOf(ev.find((e) => e.id === "birthday-cherry"), ev), "", "Srikanth's family name not given yet");
+});
+
 /* ---------- Founder's birthday ---------- */
 test("Sampath Anna's birthday is featured: own title, Telugu greeting, no age", () => {
   const s = byName("Sampath");
