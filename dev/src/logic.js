@@ -63,6 +63,19 @@
     const m = featuredFor(ev);
     return (m && m.displayName) || ev.name;
   }
+  // Family name (surname) shown once after the name: a birthday's own, or for a couple the
+  // anniversary's own, else the first partner's, else the second's.
+  function familyNameOf(ev, events) {
+    if (ev.familyName) return ev.familyName;
+    if (ev.type !== "anniversary" || !events) return "";
+    const idx = buildAliasIndex(events);
+    for (const p of ev.people) {
+      const canon = canonicalPerson(p, idx);
+      const person = events.find((e) => e.type === "birthday" && norm(e.name) === canon);
+      if (person && person.familyName) return person.familyName;
+    }
+    return "";
+  }
   function formatDayMonth(month, day) {
     return MONTHS[month - 1] + " " + day;
   }
@@ -200,6 +213,8 @@
 
   function searchTerms(ev, aliasIndex) {
     const terms = [norm(displayName(ev)), ...(ev.aliases || []).map(norm)];
+    if (ev.familyName) terms.push(norm(ev.familyName));
+    if (ev._familyName) terms.push(norm(ev._familyName));
     for (const key of ev._communities || (ev.community ? [ev.community] : [])) {
       const c = COMMUNITIES[key];
       if (c) terms.push(norm(c.label), norm(c.region));
@@ -236,7 +251,7 @@
     return sortEvents(events.filter((ev) =>
       matchesType(ev, o.filter || "all") &&
       (o.month == null || ev.month === o.month) &&
-      (!q || matchesQuery(ev.type === "anniversary" ? Object.assign({}, ev, { _communities: communitiesOf(ev, events) }) : ev, q, aliasIndex))));
+      (!q || matchesQuery(ev.type === "anniversary" ? Object.assign({}, ev, { _communities: communitiesOf(ev, events), _familyName: familyNameOf(ev, events) }) : ev, q, aliasIndex))));
   }
   // Which alias matched (to show "matched Buddy"), or null when the canonical name matched.
   function matchedAlias(ev, query, events) {
@@ -297,7 +312,7 @@
     else if (!Number.isInteger(ev.day) || ev.day < 1 || ev.day > DAYS_IN_MONTH[ev.month - 1])
       errors.push("Day must be between 1 and " + DAYS_IN_MONTH[ev.month - 1] + " for " + MONTHS[ev.month - 1] + ".");
     if (ev.community != null && !COMMUNITIES[ev.community]) delete ev.community;
-    for (const k of ["relationship", "note"]) {
+    for (const k of ["relationship", "note", "familyName"]) {
       if (ev[k] == null || String(ev[k]).trim() === "") delete ev[k];
       else ev[k] = String(ev[k]).trim();
     }
@@ -569,7 +584,7 @@
     SITE, setPersonMetadata, personMeta, featuredFor, isFeatured,
     phon, COMMUNITIES, communitiesOf, greetingsFor, wishText,
     STORAGE_KEY, SCHEMA_VERSION, MONTHS, DAYS_IN_MONTH, norm,
-    displayName, formatDayMonth, compareEvents, sortEvents, groupByDate, eventsInMonth, monthSummary,
+    displayName, familyNameOf, formatDayMonth, compareEvents, sortEvents, groupByDate, eventsInMonth, monthSummary,
     BASE_TIME_ZONE, todayIn, currentMonth, daysUntil, relativeLabel, nextCelebration, nextAfterToday, upcoming,
     buildAliasIndex, matchesQuery, filterEvents, matchedAlias,
     validateEvent, makeId, isDuplicate, findDuplicate, mergeEvents,

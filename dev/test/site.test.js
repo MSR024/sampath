@@ -96,6 +96,19 @@ test("Sampath Anna's family: Sridevi and their daughter Roshini", () => {
   assert.deepEqual(fam.partners.map((p) => p.birthday && p.birthday.id).sort(), ["birthday-sampath", "birthday-sridevi"]);
 });
 
+test("family name shows once: a person's own, or for a couple the first partner's", () => {
+  const ev = all().map((e) => e.id === "birthday-sateesh" ? Object.assign({}, e, { familyName: "Moola" })
+    : e.id === "birthday-thara" ? Object.assign({}, e, { familyName: "Other" }) : e);
+  const get = (id) => ev.find((e) => e.id === id);
+  assert.equal(R.familyNameOf(get("birthday-sateesh"), ev), "Moola");
+  assert.equal(R.familyNameOf(get("anniversary-sateesh-thara"), ev), "Moola", "first partner wins, not repeated");
+  assert.equal(R.familyNameOf(Object.assign({}, get("anniversary-sateesh-thara"), { familyName: "Set" }), ev), "Set");
+  assert.equal(R.familyNameOf(get("birthday-vihaan"), ev), "", "nothing invented when not given");
+  const found = R.filterEvents(ev, { query: "moola" }).map(R.displayName);
+  assert.ok(found.includes("Sateesh") && found.includes("Sateesh & Thara"));
+  assert.equal(R.validateEvent(Object.assign({}, get("birthday-sateesh"), { familyName: "  " })).event.familyName, undefined);
+});
+
 /* ---------- Founder's birthday ---------- */
 test("Sampath Anna's birthday is featured: own title, Telugu greeting, no age", () => {
   const s = byName("Sampath");
