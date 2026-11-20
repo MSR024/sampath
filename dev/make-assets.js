@@ -39,9 +39,16 @@ function kolam(W, H, step = 30) {
 }
 
 // The flame "dot" of the Sampath.Family logo (a small deepam), drawn in a 10×14 box.
-const flame = (x, y, w) => `<g transform="translate(${x} ${y}) scale(${w / 10})">
-  <path d="M5 0C8 4 9 7.5 9 9.6A4 4 0 0 1 1 9.6C1 7.5 2 4 5 0Z" fill="#d9480f"/>
-  <path d="M5 5.6C6.4 7.4 6.6 8.7 6.6 9.7A1.6 1.6 0 0 1 3.4 9.7C3.4 8.7 3.6 7.4 5 5.6Z" fill="#ffd27a"/></g>`;
+let flameN = 0;
+const flame = (x, y, w) => { const n = ++flameN; return `<g transform="translate(${x} ${y}) scale(${w / 10})">
+  <defs><radialGradient id="g${n}" cx="5" cy="7.5" r="10" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#ffd27a" stop-opacity=".9"/><stop offset=".45" stop-color="#ffb02e" stop-opacity=".35"/><stop offset="1" stop-color="#ff9a1f" stop-opacity="0"/></radialGradient>
+  <linearGradient id="o${n}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff4d0a"/><stop offset=".45" stop-color="#ff7a12"/><stop offset="1" stop-color="#ffb52e"/></linearGradient>
+  <radialGradient id="i${n}" cx=".5" cy=".75" r=".7"><stop offset="0" stop-color="#fffbe8"/><stop offset=".5" stop-color="#ffe680"/><stop offset="1" stop-color="#ffc233"/></radialGradient></defs>
+  <circle cx="5" cy="7.5" r="10" fill="url(#g${n})"/>
+  <path d="M5 .2C6.3 2.7 9.3 5.2 9.3 9.1A4.3 4.3 0 0 1 .7 9.1C.7 6.6 2.3 5 3.2 3.5 3.4 5 4 5.8 4.6 6.1 4.3 4.1 4.4 2 5 .2Z" fill="url(#o${n})"/>
+  <path d="M5 4.6C6.5 6.6 7.1 7.9 7.1 9.5A2.1 2.1 0 0 1 2.9 9.5C2.9 8 3.8 6.6 5 4.6Z" fill="url(#i${n})"/>
+  <ellipse cx="5" cy="10.4" rx=".9" ry="1.5" fill="#fff" opacity=".85"/><ellipse cx="5" cy="12.6" rx="1.4" ry=".5" fill="#6aa8ff" opacity=".45"/>
+  <path d="M5 12.9v1.3" stroke="#3b2a1a" stroke-width=".7" stroke-linecap="round"/></g>`; };
 
 // Bathukamma: flower tiers on a brass plate, Gauramma on top (same drawing as the site's celebration day).
 function bathukamma() {
@@ -63,7 +70,7 @@ const paddy = (W, y) => { let s = "";
   return s; };
 
 // Wordmark widths in Gelasio Bold at 112px, measured in Chrome (Sampath 514, Family 397).
-const WM = 104, k = WM / 112, wA = 514.2 * k, fl = 30, gap = 6;
+const WM = 104, k = WM / 112, wA = 514.2 * k, fl = 36, gap = 4;
 const xFam = 80 + wA + gap + fl + gap;
 
 // 1200×630 Open Graph / WhatsApp preview
@@ -87,7 +94,7 @@ const icon = (size, rounded) => `<svg xmlns="http://www.w3.org/2000/svg" width="
   <rect x="-100" y="-100" width="200" height="200" rx="${rounded ? 44 : 0}" fill="${GREEN}"/>
   <circle r="86" fill="none" stroke="${TURMERIC}" stroke-opacity=".7" stroke-width="3" stroke-dasharray="2 9" stroke-linecap="round"/>
   <text x="-64" y="54" font-family="Gelasio, Georgia, serif" font-weight="700" font-size="152" fill="${CREAM}">S</text>
-  ${flame(38, 54 - 34 + 3, 24)}
+  ${flame(34, 54 - 42 + 4, 30)}
 </svg>`;
 
 (async () => {

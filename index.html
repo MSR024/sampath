@@ -70,7 +70,12 @@ svg.i{width:1.15em;height:1.15em;flex:none;vertical-align:-.2em;fill:none;stroke
 .top .wrap{display:flex;flex-wrap:wrap;align-items:center;gap:8px 20px;padding-block:14px}
 .brand{font:700 clamp(22px,3vw,28px)/1.1 var(--serif);letter-spacing:-.01em;margin-right:auto}
 /* Logo: Sampath·Family, the dot a small deepam flame */
-.brand .bdot{display:inline-block;width:.3em;height:.42em;margin:0 .05em 0 .04em;vertical-align:-.02em}
+.brand .bdot{display:inline-block;width:.86em;height:.86em;margin:0 -.22em 0 -.22em;vertical-align:-.2em;overflow:visible}
+/* a living deepam: gentle flicker and a breathing glow (off for reduced motion) */
+.bdot .fl{transform-origin:5px 13px;animation:flick 2.6s ease-in-out infinite}
+.bdot .glow{transform-origin:5px 7.5px;animation:glow 1.9s ease-in-out infinite alternate}
+@keyframes flick{0%,100%{transform:scale(1,1) skewX(0)}20%{transform:scale(.95,1.06) skewX(-2.5deg)}45%{transform:scale(1.03,.96) skewX(1.5deg)}70%{transform:scale(.97,1.05) skewX(-1deg)}85%{transform:scale(1.02,.99) skewX(2deg)}}
+@keyframes glow{from{opacity:.5;transform:scale(.9)}to{opacity:1;transform:scale(1.08)}}
 .brand .logo-b{color:var(--logo-accent)}
 .today-date{font-weight:500;opacity:.85}
 nav.tabs{display:flex;gap:4px;background:rgb(255 255 255/.35);padding:4px;border-radius:999px}
@@ -441,7 +446,7 @@ body{-webkit-tap-highlight-color:transparent;-webkit-text-size-adjust:100%}
 
 <header class="top">
   <div class="wrap">
-    <h1 class="brand" aria-label="Sampath.Family"><span aria-hidden="true">Sampath<svg class="bdot" viewBox="0 0 10 14"><path d="M5 0C8 4 9 7.5 9 9.6A4 4 0 0 1 1 9.6C1 7.5 2 4 5 0Z" fill="#d9480f"/><path d="M5 5.6C6.4 7.4 6.6 8.7 6.6 9.7A1.6 1.6 0 0 1 3.4 9.7C3.4 8.7 3.6 7.4 5 5.6Z" fill="#ffd27a"/></svg><span class="logo-b">Family</span></span></h1>
+    <h1 class="brand" aria-label="Sampath.Family"><span aria-hidden="true">Sampath<svg class="bdot" viewBox="-6 -5 22 22"><defs><radialGradient id="lgGlow" cx="5" cy="7.5" r="10" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#ffd27a" stop-opacity=".9"/><stop offset=".45" stop-color="#ffb02e" stop-opacity=".35"/><stop offset="1" stop-color="#ff9a1f" stop-opacity="0"/></radialGradient><linearGradient id="lgOuter" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff4d0a"/><stop offset=".45" stop-color="#ff7a12"/><stop offset="1" stop-color="#ffb52e"/></linearGradient><radialGradient id="lgInner" cx=".5" cy=".75" r=".7"><stop offset="0" stop-color="#fffbe8"/><stop offset=".5" stop-color="#ffe680"/><stop offset="1" stop-color="#ffc233"/></radialGradient></defs><circle class="glow" cx="5" cy="7.5" r="10" fill="url(#lgGlow)"/><g class="fl"><path d="M5 .2C6.3 2.7 9.3 5.2 9.3 9.1A4.3 4.3 0 0 1 .7 9.1C.7 6.6 2.3 5 3.2 3.5 3.4 5 4 5.8 4.6 6.1 4.3 4.1 4.4 2 5 .2Z" fill="url(#lgOuter)"/><path d="M5 4.6C6.5 6.6 7.1 7.9 7.1 9.5A2.1 2.1 0 0 1 2.9 9.5C2.9 8 3.8 6.6 5 4.6Z" fill="url(#lgInner)"/><ellipse cx="5" cy="10.4" rx=".9" ry="1.5" fill="#fff" opacity=".85"/><ellipse cx="5" cy="12.6" rx="1.4" ry=".5" fill="#6aa8ff" opacity=".45"/></g><path d="M5 12.9v1.3" stroke="#3b2a1a" stroke-width=".7" stroke-linecap="round"/></svg><span class="logo-b">Family</span></span></h1>
     <p class="today-date" id="todayDate"></p>
     <nav class="tabs" aria-label="Sections">
       <a href="#" id="tabCal">Calendar</a>
