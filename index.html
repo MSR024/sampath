@@ -335,6 +335,9 @@ body{-webkit-tap-highlight-color:transparent;-webkit-text-size-adjust:100%}
 @keyframes rise{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 [hidden]{display:none!important}
+.readonly nav.tabs,.readonly .editbtn,.readonly #manageView{display:none!important}
+@media (max-width:600px){.readonly .today-date{display:block;font-size:13px;white-space:nowrap}}
+.readonly .card{grid-template-columns:auto minmax(0,1fr) auto}
 
 @media (max-width:600px){
   /* iPhone: fit today's celebration and the month's first dates on one screen */
@@ -551,7 +554,7 @@ body{-webkit-tap-highlight-color:transparent;-webkit-text-size-adjust:100%}
 <dialog id="dlg" aria-labelledby="dlgTitle"></dialog>
 <div class="toasts" id="toasts" role="status" aria-live="polite"></div>
 
-<script>window.RGC_SITE = {"name":"Sampath.Family","shortName":"Sampath.Family","brand":"Sampath.Family","domain":"www.sampath.family","description":"Sampath.Family — birthdays and wedding anniversaries of our family, near and far. See who's celebrating today and this month.","ogDescription":"Who's celebrating today and this month — birthdays and anniversaries of the Sampath family.","ogLine":"Our family, near and far","fromUs":"From all of us in the family","timeZone":"Asia/Kolkata","timeZoneLabel":"India time (IST)","storageKey":"family-celebrations:v1","themeColor":"#24502c","brandA":"Sampath","brandB":"Family","ogDomain":"Sampath.Family","launchDate":"2026-12-19","launchNote":"Sampath Anna’s birthday"};</script>
+<script>window.RGC_SITE = {"name":"Sampath.Family","shortName":"Sampath.Family","brand":"Sampath.Family","domain":"www.sampath.family","description":"Sampath.Family — birthdays and wedding anniversaries of our family, near and far. See who's celebrating today and this month.","ogDescription":"Who's celebrating today and this month — birthdays and anniversaries of the Sampath family.","ogLine":"Our family, near and far","fromUs":"From all of us in the family","timeZone":"Asia/Kolkata","timeZoneLabel":"India time (IST)","storageKey":"family-celebrations:v1","themeColor":"#24502c","brandA":"Sampath","brandB":"Family","ogDomain":"Sampath.Family","launchDate":"2026-12-19","launchNote":"Sampath Anna’s birthday","publicEditing":false};</script>
 <script>/* Family celebrations site — pure logic (no DOM). Works in the browser (window.RGC) and in Node (module.exports). */
 (function (root) {
   "use strict";
@@ -1178,12 +1181,16 @@ const WD = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturda
 let store = null;
 try { store = window.localStorage; store.getItem("probe"); } catch (e) { store = null; }
 
+// Public editing off (site.json "publicEditing": false): everyone sees exactly the published list.
+// No Manage page, no edit buttons, and any edits an old visit saved in this browser are ignored.
+const EDITABLE = R.SITE.publicEditing !== false;
+if (!EDITABLE) { store = null; document.documentElement.classList.add("readonly"); }
 const loaded = R.loadEvents(store, SEED);
 const S = {
   events: loaded.events, source: loaded.source, savedAt: loaded.savedAt, loadError: loaded.error,
   deletedSeedIds: loaded.deletedSeedIds || [], editedIds: loaded.editedIds || [], migrated: loaded.migrated || null,
   today: R.todayIn(R.BASE_TIME_ZONE), month: 0, filter: "all", view: "month", query: "", mfilter: "all", mq: "",
-  storageOk: !!store, dl: null, undo: null, look: "",
+  storageOk: !!store || !EDITABLE, dl: null, undo: null, look: "",
 };
 S.month = R.currentMonth(S.today);
 const SEED_IDS = new Set(R.seedEvents(SEED).map((e) => e.id));
@@ -1336,7 +1343,8 @@ garlandRO.observe($("#garland"));
 
 /* ---------- header + hero ---------- */
 function renderHero() {
-  $("#todayDate").textContent = S.today.toLocaleDateString(undefined, { weekday: "long", month: "long", day: "numeric", year: "numeric" });
+  const narrow = matchMedia("(max-width:600px)").matches;
+  $("#todayDate").textContent = S.today.toLocaleDateString(undefined, narrow ? { weekday: "short", month: "short", day: "numeric" } : { weekday: "long", month: "long", day: "numeric", year: "numeric" });
   $("#todayDate").title = `Celebrations follow ${R.SITE.timeZoneLabel || R.BASE_TIME_ZONE}, wherever you are.`;
   const next = R.nextCelebration(S.events, S.today);
   const box = $("#heroInner");
@@ -1581,7 +1589,7 @@ function renderFamilies() {
 /* ---------- routing ---------- */
 function route() {
   const h = location.hash.replace("#", "");
-  const manage = h === "manage", cal = !manage;
+  const manage = h === "manage" && EDITABLE, cal = !manage;
   if (cal) S.view = h === "year" ? "year" : "month";
   $("#calendarView").hidden = !cal;
   $("#manageView").hidden = !manage;
@@ -1854,7 +1862,7 @@ document.addEventListener("visibilitychange", () => { if (!document.hidden) refr
 window.addEventListener("pageshow", refreshToday);
 window.addEventListener("focus", refreshToday);
 
-if (S.migrated) persist();
+if (S.migrated && EDITABLE) persist();
 route();
 
 // Optional: a hosted download capability when running inside Claude.

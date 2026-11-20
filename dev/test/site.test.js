@@ -168,6 +168,10 @@ test("the feature survives an edit (metadata is keyed by id) and export keeps th
   assert.ok(R.exportData(all()).birthdays.some((b) => b.id === "birthday-sampath"));
 });
 
+test("public editing is off: the family sees only the published list", () => {
+  assert.equal(site.publicEditing, false);
+});
+
 test("launch is set for Sampath Anna's birthday, Dec 19 2026", () => {
   assert.equal(site.launchDate, "2026-12-19");
 });

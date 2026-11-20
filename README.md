@@ -63,6 +63,10 @@ Telangana throughout: paddy-field green and cotton cream with a Pochampally ikat
 
 `personMetadata` in `seed.json` marks Sampath Anna, the founder, as featured (keyed by `birthday-sampath`). On Dec 19 the top reads "Sampath Anna's Birthday" with its own line, and his card is highlighted with a Founder badge all year. No age is ever shown. The site launches on his birthday: `launchDate` in `dev/site.json` drives the footer line ("Sampath.Family, Launched on 19 December 2026, on Sampath Anna’s birthday").
 
+## Who can edit
+
+Public editing is **off** (`"publicEditing": false` in `dev/site.json`): there is no Manage page or edit button on the site, and anything an older visit saved in a browser is ignored, so everyone sees exactly the published list. Sateesh updates the data through Claude (seed.json → build → push). Set it to `true` to bring the Manage page back.
+
 ## How the data works
 
 - `dev/src/seed.json` is the shared list everyone sees. It has a `seedVersion` number.
