@@ -1,5 +1,5 @@
 {
-  "seedVersion": 6,
+  "seedVersion": 7,
   "birthdays": [
     {
       "id": "birthday-roshini",
@@ -133,7 +133,12 @@
       ],
       "community": "telugu",
       "verified": true,
-      "note": "Greetings occur on March 24 and 25; March 25 is the stronger recent date."
+      "note": "Greetings occur on March 24 and 25; March 25 is the stronger recent date.",
+      "parents": [
+        "Ramana",
+        "Sandhya"
+      ],
+      "relationship": "Child of Ramana and Sandhya"
     },
     {
       "id": "birthday-cherry",
@@ -273,7 +278,7 @@
         "Sandya"
       ],
       "community": "telugu",
-      "relationship": "Wife of Ramana",
+      "relationship": "Wife of Ramana; mother of Samanvith",
       "verified": true
     },
     {
@@ -532,7 +537,7 @@
         "Satya Kiran"
       ],
       "community": "telugu",
-      "relationship": "Husband of Sandhya",
+      "relationship": "Husband of Sandhya; father of Samanvith",
       "verified": true,
       "familyName": "Kosana"
     },
