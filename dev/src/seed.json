@@ -550,8 +550,10 @@
       "month": 12,
       "day": 19,
       "aliases": [
-        "Raju"
+        "Raju",
+        "Sampath Anna"
       ],
+      "community": "telugu",
       "relationship": "Founder of the family WhatsApp group",
       "verified": true
     },
@@ -752,16 +754,15 @@
   "personMetadata": [
     {
       "personId": "birthday-sampath",
-      "displayName": "Sampath (Raju)",
+      "displayName": "Sampath Anna (Raju)",
+      "featured": true,
       "isGroupFounder": true,
-      "isMemorial": true,
       "deceased": true,
       "ageAtPassing": 48,
-      "label": "Remembering our founder",
+      "dayTitle": "Sampath Anna’s Birthday",
+      "badge": "Founder",
       "subtitle": "Founder of our family group",
-      "tribute": "In loving memory of Sampath (Raju), who founded this family group and helped bring everyone together.",
-      "dedication": "In loving memory of Sampath (Raju), who brought this family together.",
-      "photoUrl": null
+      "daySlogan": "Founder of our family group — celebrated with love, every December 19."
     }
   ]
 }

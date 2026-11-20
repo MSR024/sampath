@@ -1,10 +1,10 @@
 {
-  "name": "Family Celebrations",
-  "short_name": "Family",
+  "name": "Sampath.Family",
+  "short_name": "Sampath.Family",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#f7b52c",
+  "theme_color": "#24502c",
   "icons": [
     {
       "src": "apple-touch-icon.png",

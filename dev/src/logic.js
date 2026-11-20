@@ -29,9 +29,9 @@
       anniversary: ["شادی کی سالگرہ مبارک", "Shaadi ki Saalgirah Mubarak"] },
   };
 
-  /* ---------- Person metadata (remembrance) ---------- */
+  /* ---------- Person metadata (featured people) ---------- */
   // Extra facts about a person that aren't part of the event itself, keyed by the birthday's id,
-  // e.g. a founder who has passed away: { personId, isMemorial, isGroupFounder, ageAtPassing, tribute, ... }.
+  // e.g. the group's founder: { personId, featured, displayName, dayTitle, badge, subtitle, daySlogan }.
   let PERSON_META = new Map();
   function setPersonMetadata(list) {
     PERSON_META = new Map((Array.isArray(list) ? list : []).filter((m) => m && m.personId).map((m) => [String(m.personId), m]));
@@ -39,12 +39,12 @@
   function personMeta(ev) {
     return (ev && ev.type === "birthday" && PERSON_META.get(ev.id)) || null;
   }
-  // A remembrance day: the birthday of someone the family remembers. Never "Happy Birthday", never an age.
-  function memorialFor(ev) {
+  // A featured birthday (the founder's) is highlighted all year and gets its own title on the day.
+  function featuredFor(ev) {
     const m = personMeta(ev);
-    return m && m.isMemorial ? m : null;
+    return m && m.featured ? m : null;
   }
-  const isMemorial = (ev) => !!memorialFor(ev);
+  const isFeatured = (ev) => !!featuredFor(ev);
 
   const norm = (s) => String(s || "").toLowerCase().normalize("NFKD").replace(/[̀-ͯ]/g, "").replace(/\s+/g, " ").trim();
 
@@ -60,7 +60,7 @@
   /* ---------- Naming ---------- */
   function displayName(ev) {
     if (ev.type === "anniversary") return ev.people.join(" & ");
-    const m = memorialFor(ev);
+    const m = featuredFor(ev);
     return (m && m.displayName) || ev.name;
   }
   function formatDayMonth(month, day) {
@@ -171,7 +171,6 @@
   }
   // Community keys for an event: a birthday's own tag; an anniversary takes each partner's tag.
   function communitiesOf(ev, events) {
-    if (isMemorial(ev)) return [];
     if (ev.type === "birthday") return COMMUNITIES[ev.community] ? [ev.community] : [];
     if (ev.community && COMMUNITIES[ev.community]) return [ev.community];
     const idx = buildAliasIndex(events || []);
@@ -225,9 +224,7 @@
     return searchTerms(ev, aliasIndex).some((t) => termMatches(t, q));
   }
   function matchesType(ev, filter) {
-    // A remembrance day comes from a birthday record, so it stays visible under Birthdays too.
     if (filter === "birthday") return ev.type === "birthday";
-    if (filter === "remembrance") return isMemorial(ev);
     if (filter === "anniversary") return ev.type === "anniversary";
     if (filter === "unverified") return !ev.verified;
     return true;
@@ -569,7 +566,7 @@
   }
 
   const api = {
-    SITE, setPersonMetadata, personMeta, memorialFor, isMemorial,
+    SITE, setPersonMetadata, personMeta, featuredFor, isFeatured,
     phon, COMMUNITIES, communitiesOf, greetingsFor, wishText,
     STORAGE_KEY, SCHEMA_VERSION, MONTHS, DAYS_IN_MONTH, norm,
     displayName, formatDayMonth, compareEvents, sortEvents, groupByDate, eventsInMonth, monthSummary,

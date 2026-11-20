@@ -1,14 +1,19 @@
 {
-  "name": "Family Celebrations",
-  "shortName": "Family",
-  "brand": "Family",
+  "name": "Sampath.Family",
+  "shortName": "Sampath.Family",
+  "brand": "Sampath.Family",
   "domain": "msr024.github.io/sampath",
-  "description": "Birthdays and wedding anniversaries of our family. See who's celebrating today and this month.",
-  "ogDescription": "Who's celebrating today and this month \u2014 birthdays and anniversaries of our family.",
+  "description": "Sampath.Family — birthdays and wedding anniversaries of our family, near and far. See who's celebrating today and this month.",
+  "ogDescription": "Who's celebrating today and this month — birthdays and anniversaries of the Sampath family.",
   "ogLine": "Our family, near and far",
   "fromUs": "From all of us in the family",
   "timeZone": "Asia/Kolkata",
   "timeZoneLabel": "India time (IST)",
   "storageKey": "family-celebrations:v1",
-  "themeColor": "#f7b52c"
+  "themeColor": "#24502c",
+  "brandA": "Sampath",
+  "brandB": "Family",
+  "ogDomain": "",
+  "launchDate": "2026-12-19",
+  "launchNote": "Sampath Anna’s birthday"
 }

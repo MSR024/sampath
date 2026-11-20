@@ -1,4 +1,4 @@
-// Tests for this group's own data (src/seed.json) and the founder remembrance.
+// Tests for this group's own data (src/seed.json) and the founder's featured birthday.
 // The shared logic is covered by logic.test.js against the Royal Dr template fixture.
 const test = require("node:test");
 const assert = require("node:assert/strict");
@@ -35,8 +35,8 @@ test("all 12 monthly totals match the seed", () => {
   }
 });
 
-test("every living person has a community, so their greeting and theme work", () => {
-  for (const b of all().filter((e) => e.type === "birthday" && !R.isMemorial(e))) {
+test("every person has a community, so their greeting and theme work", () => {
+  for (const b of all().filter((e) => e.type === "birthday")) {
     assert.ok(R.COMMUNITIES[b.community], b.name + " has no community");
   }
 });
@@ -44,10 +44,10 @@ test("every living person has a community, so their greeting and theme work", ()
 test("calendar day follows India time for every viewer", () => {
   assert.equal(R.BASE_TIME_ZONE, site.timeZone);
   assert.equal(site.timeZone, "Asia/Kolkata");
-  // 11:00 AM Dec 18 in California is already 12:30 AM Dec 19 in India: Sampath's day has begun.
+  // 11:00 AM Dec 18 in California is already 12:30 AM Dec 19 in India: Sampath Anna's day has begun.
   const t = R.todayIn(R.BASE_TIME_ZONE, new Date("2026-12-18T19:00:00Z"));
   assert.deepEqual([t.getMonth() + 1, t.getDate()], [12, 19]);
-  assert.deepEqual(R.nextCelebration(all(), t).events.map(R.displayName), ["Sampath (Raju)"]);
+  assert.deepEqual(R.nextCelebration(all(), t).events.map(R.displayName), ["Sampath Anna (Raju)"]);
   // 11:59 PM Dec 19 in India rolls to Dec 20 one minute later (6:30 PM UTC)
   assert.equal(R.todayIn(R.BASE_TIME_ZONE, new Date("2026-12-19T18:29:00Z")).getDate(), 19);
   assert.equal(R.todayIn(R.BASE_TIME_ZONE, new Date("2026-12-19T18:31:00Z")).getDate(), 20);
@@ -88,35 +88,30 @@ test("Sateesh & Thara: kids linked, greeting in both Telugu and Malayalam", () =
   assert.deepEqual(R.greetingsFor(ann, all()).map((x) => x.lang), ["te", "ml"]);
 });
 
-/* ---------- Founder remembrance ---------- */
-test("Sampath is remembered, not wished a happy birthday", () => {
+/* ---------- Founder's birthday ---------- */
+test("Sampath Anna's birthday is featured: own title, Telugu greeting, no age", () => {
   const s = byName("Sampath");
-  const m = R.memorialFor(s);
-  assert.ok(m && m.isMemorial && m.isGroupFounder);
-  assert.equal(R.displayName(s), "Sampath (Raju)");
-  assert.deepEqual(R.greetingsFor(s, all()), [], "no birthday greeting");
-  assert.deepEqual(R.communitiesOf(s, all()), [], "no festive regional theme");
-  assert.equal(m.ageAtPassing, 48);
+  const m = R.featuredFor(s);
+  assert.ok(m && m.featured && m.isGroupFounder);
+  assert.equal(R.displayName(s), "Sampath Anna (Raju)");
+  assert.equal(m.dayTitle, "Sampath Anna\u2019s Birthday");
+  assert.deepEqual(R.greetingsFor(s, all()).map((g) => g.lang), ["te"]);
   assert.ok(!("birthYear" in s), "no year, so no age can be calculated");
-  assert.equal(R.isMemorial(byName("Sateesh")), false);
+  assert.equal(R.isFeatured(byName("Sateesh")), false);
 });
 
-test("Sampath stays on Dec 19 and is found by Sampath or Raju", () => {
-  const dec = names(R.filterEvents(all(), { month: 12 }));
-  assert.ok(dec.includes("Sampath (Raju)"));
-  assert.ok(q("Raju").includes("Sampath (Raju)"));
-  assert.ok(q("sampath").includes("Sampath (Raju)"));
+test("Dec 19 shows Sampath Anna, found by Sampath, Raju or Anna", () => {
+  assert.deepEqual(names(R.filterEvents(all(), { month: 12 })).filter((n) => n.startsWith("Sampath")), ["Sampath Anna (Raju)"]);
+  for (const t of ["Raju", "sampath", "Sampath Anna"]) assert.ok(q(t).includes("Sampath Anna (Raju)"), t);
+  assert.ok(names(R.filterEvents(all(), { filter: "birthday" })).includes("Sampath Anna (Raju)"));
 });
 
-test("Remembrance filter shows only Sampath; Birthdays still includes him", () => {
-  assert.deepEqual(names(R.filterEvents(all(), { filter: "remembrance" })), ["Sampath (Raju)"]);
-  assert.ok(names(R.filterEvents(all(), { filter: "birthday" })).includes("Sampath (Raju)"));
-  assert.ok(!names(R.filterEvents(all(), { filter: "anniversary" })).includes("Sampath (Raju)"));
-});
-
-test("remembrance survives an edit (metadata is keyed by id) and export keeps the record", () => {
+test("the feature survives an edit (metadata is keyed by id) and export keeps the record", () => {
   const edited = Object.assign({}, byName("Sampath"), { note: "edited" });
-  assert.ok(R.isMemorial(R.validateEvent(edited).event));
-  const out = R.exportData(all());
-  assert.ok(out.birthdays.some((b) => b.id === "birthday-sampath"));
+  assert.ok(R.isFeatured(R.validateEvent(edited).event));
+  assert.ok(R.exportData(all()).birthdays.some((b) => b.id === "birthday-sampath"));
+});
+
+test("launch is set for Sampath Anna's birthday, Dec 19 2026", () => {
+  assert.equal(site.launchDate, "2026-12-19");
 });

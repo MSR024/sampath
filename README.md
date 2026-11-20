@@ -1,6 +1,6 @@
-# {{name}}
+# Sampath.Family
 
-{{intro}}
+Birthdays and wedding anniversaries for the family group Sampath Anna (Raju) founded. Launching 19 December 2026, on his birthday.
 
 The site is one self-contained page served by GitHub Pages from the top of this repository. No server and no database. Built from the [Royal Dr Gang](https://github.com/MSR024/RoyalDrGang) template.
 
@@ -55,9 +55,13 @@ GitHub Pages republishes about a minute after the push.
 
 The calendar day follows **India time (IST)** for every visitor, because most of the family is in India: a birthday on the 19th shows as "today" in California from 10:30 AM PST on the 18th. Change `timeZone` in `dev/site.json` and rebuild.
 
-## Remembrance
+## Look
 
-`personMetadata` in `seed.json` marks someone the family remembers (keyed by their birthday id). On that date the site shows a calm "Remembering our founder" look instead of "Happy Birthday", with no greeting, no festive motifs and no age. The **Our Founder** page (`#founder`) and the footer dedication come from the same entry. To add a photo, put the image in `dev/src/public/` and set `"photoUrl": "founder.jpg"`.
+Telangana throughout: paddy-field green and cotton cream with a Pochampally ikat strip, the Kakatiya Kala Thoranam and a mango-leaf, banti and tangedu thoranam. On a Telugu celebrant's day the band turns turmeric with a Bathukamma. Other communities keep their own looks (for example Kerala kasavu on Thara's birthday). The logo is **Sampath.Family**, its dot a small deepam flame.
+
+## Sampath Anna's birthday (Dec 19) and the launch
+
+`personMetadata` in `seed.json` marks Sampath Anna, the founder, as featured (keyed by `birthday-sampath`). On Dec 19 the top reads "Sampath Anna's Birthday" with its own line, and his card is highlighted with a Founder badge all year. No age is ever shown. The site launches on his birthday: `launchDate` in `dev/site.json` drives the footer line ("Launching…" before, "Launched…" after).
 
 ## How the data works
 
@@ -82,4 +86,4 @@ type Anniversary = { id; type: "anniversary"; people: [string, string]; month; d
 ## Tests
 
 - `test/logic.test.js` checks the shared logic against the Royal Dr template data (`test/fixture-seed.json`): search, loose spelling, duplicate rules, import/export, seed migration.
-- `test/site.test.js` checks this group's data: counts per month, pet-name search, families, every person has a community, and the founder remembrance (no greeting, Remembrance filter, still under Birthdays, found by Sampath or Raju).
+- `test/site.test.js` checks this group's data: counts per month, pet-name search, families, every person has a community, and Sampath Anna's featured birthday (own title, Telugu greeting, found by Sampath, Raju or Anna).
