@@ -1,5 +1,5 @@
 {
-  "seedVersion": 7,
+  "seedVersion": 8,
   "birthdays": [
     {
       "id": "birthday-roshini",
@@ -186,7 +186,12 @@
         "Sreshta"
       ],
       "community": "telugu",
-      "verified": true
+      "verified": true,
+      "parents": [
+        "Karthik",
+        "Bindu"
+      ],
+      "relationship": "Child of Karthik and Bindu"
     },
     {
       "id": "birthday-varnika",
@@ -384,7 +389,7 @@
         "Himabindu"
       ],
       "community": "telugu",
-      "relationship": "Wife of Karthik",
+      "relationship": "Wife of Karthik; mother of Sresta",
       "verified": true
     },
     {
@@ -495,7 +500,7 @@
         "Kartik"
       ],
       "community": "telugu",
-      "relationship": "Husband of Bindu",
+      "relationship": "Husband of Bindu; father of Sresta",
       "verified": true,
       "note": "Greetings occur on October 13 and 14; October 14 is the stronger date."
     },
