@@ -12,7 +12,7 @@ index.html, og.png, favicon*, apple-touch-icon.png, icon-512.png, site.webmanife
 CNAME                The custom domain for GitHub Pages (written by build.js from site.json)
 .nojekyll            Tells Pages to serve files as-is
 dev/site.json        Group name, domain, base time zone, link-preview text
-dev/src/seed.json    THE DATA: everyone's birthdays, anniversaries, nicknames, families, founder remembrance
+dev/src/seed.json    THE DATA: everyone's birthdays, anniversaries, nicknames, families, founder (Sampath Anna) highlight
 dev/src/logic.js     Sorting, dates, search, filters, families, import/export, storage
 dev/src/index.html   The page: layout, styles, behaviour
 dev/test/            Unit tests (Node's built-in runner, no install needed)
