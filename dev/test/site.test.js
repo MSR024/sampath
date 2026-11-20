@@ -122,12 +122,17 @@ test("kids linked to their parents take the father's family name", () => {
   assert.deepEqual(kids("Sravan", "Ashwini"), ["Mintu"]);
   assert.deepEqual(kids("Sathyam", "Sarita"), ["Hasini", "Honey"]);
   assert.deepEqual(kids("Ramana", "Sandhya"), ["Samanvith"]);
-  assert.deepEqual(kids("Karthik", "Bindu"), ["Sresta"]);
-  assert.deepEqual(kids("Shyam", "Sowjanya"), ["Varnika"]);
+  assert.deepEqual(kids("Karthik", "Bindu"), ["Minshu", "Sresta"]);
+  assert.deepEqual(kids("Shyam", "Sowjanya"), ["Charvi", "Varnika"]);
+  assert.deepEqual(kids("Satish", "Harika"), ["Ananya", "Likila"]);
+  assert.deepEqual(kids("Venkanna", "Sunitha"), ["Vaishnavi", "Vardhan"]);
+  assert.deepEqual(kids("Sandeep", "Swetha"), ["Roshan"]);
   const ev = all();
   assert.equal(R.familyNameOf(ev.find((e) => e.id === "birthday-lucky"), ev), "Mula");
   assert.equal(R.familyNameOf(ev.find((e) => e.id === "birthday-samanvith"), ev), "Kosana");
-  assert.equal(R.familyNameOf(ev.find((e) => e.id === "birthday-varnika"), ev), "Appidi");
+  for (const id of ["birthday-varnika", "birthday-charvi", "birthday-chikki", "birthday-likky", "birthday-vardhan", "birthday-vaishnavi", "birthday-roshan"])
+    assert.equal(R.familyNameOf(ev.find((e) => e.id === id), ev), "Appidi", id);
+  assert.ok(q("Chikki").includes("Ananya") && q("Likky").includes("Likila"), "pet names still find the twins");
   assert.equal(R.familyNameOf(ev.find((e) => e.id === "birthday-honey"), ev), "Manda", "father has no birthday record: couple's name");
   assert.equal(R.familyNameOf(ev.find((e) => e.id === "anniversary-sathyam-sarita"), ev), "Manda");
   assert.ok(R.filterEvents(ev, { query: "Satyam" }).map(R.displayName).includes("Sathyam & Sarita"));

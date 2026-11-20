@@ -1,5 +1,5 @@
 {
-  "seedVersion": 10,
+  "seedVersion": 11,
   "birthdays": [
     {
       "id": "birthday-roshini",
@@ -251,7 +251,12 @@
       "day": 29,
       "aliases": [],
       "community": "telugu",
-      "verified": true
+      "verified": true,
+      "parents": [
+        "Karthik",
+        "Bindu"
+      ],
+      "relationship": "Child of Karthik and Bindu"
     },
     {
       "id": "birthday-sateesh",
@@ -281,7 +286,12 @@
       ],
       "community": "telugu",
       "verified": true,
-      "note": "Older greetings occur July 10; July 11 repeats in more recent years."
+      "note": "Older greetings occur July 10; July 11 repeats in more recent years.",
+      "parents": [
+        "Shyam",
+        "Sowjanya"
+      ],
+      "relationship": "Child of Shyam and Sowjanya"
     },
     {
       "id": "birthday-sandhya",
@@ -317,26 +327,40 @@
     {
       "id": "birthday-chikki",
       "type": "birthday",
-      "name": "Chikki",
+      "name": "Ananya",
       "month": 7,
       "day": 23,
       "aliases": [
+        "Chikki",
         "Chikky"
       ],
       "community": "telugu",
-      "verified": true
+      "verified": true,
+      "parents": [
+        "Satish",
+        "Harika"
+      ],
+      "relationship": "Child of Satish and Harika",
+      "note": "Twin of Likila (Likky)."
     },
     {
       "id": "birthday-likky",
       "type": "birthday",
-      "name": "Likky",
+      "name": "Likila",
       "month": 7,
       "day": 23,
       "aliases": [
+        "Likky",
         "Likki"
       ],
       "community": "telugu",
-      "verified": true
+      "verified": true,
+      "parents": [
+        "Satish",
+        "Harika"
+      ],
+      "relationship": "Child of Satish and Harika",
+      "note": "Twin of Ananya (Chikki)."
     },
     {
       "id": "birthday-harika",
@@ -361,7 +385,12 @@
       ],
       "community": "telugu",
       "verified": false,
-      "note": "Greetings occur on August 1 and 2; August 1 is used provisionally."
+      "note": "Greetings occur on August 1 and 2; August 1 is used provisionally.",
+      "parents": [
+        "Venkanna",
+        "Sunitha"
+      ],
+      "relationship": "Child of Venkanna and Sunitha"
     },
     {
       "id": "birthday-ashwini",
@@ -399,7 +428,7 @@
         "Himabindu"
       ],
       "community": "telugu",
-      "relationship": "Wife of Karthik; mother of Sresta",
+      "relationship": "Wife of Karthik; mother of Sresta and Minshu",
       "verified": true
     },
     {
@@ -410,7 +439,7 @@
       "day": 25,
       "aliases": [],
       "community": "telugu",
-      "relationship": "Husband of Sowjanya; father of Varnika",
+      "relationship": "Husband of Sowjanya; father of Varnika and Charvi",
       "verified": true,
       "note": "Greetings occur on August 24 and 25; August 25 is the stronger date.",
       "familyName": "Appidi"
@@ -427,7 +456,7 @@
         "Chinnu"
       ],
       "community": "telugu",
-      "relationship": "Wife of Shyam; mother of Varnika",
+      "relationship": "Wife of Shyam; mother of Varnika and Charvi",
       "verified": true,
       "note": "Greetings occur on August 28 and 29; August 29 is the stronger recent date."
     },
@@ -471,7 +500,12 @@
         "Roshan Reddy"
       ],
       "community": "telugu",
-      "verified": true
+      "verified": true,
+      "parents": [
+        "Sandeep",
+        "Swetha"
+      ],
+      "relationship": "Child of Sandeep and Swetha"
     },
     {
       "id": "birthday-srilatha",
@@ -510,7 +544,7 @@
         "Kartik"
       ],
       "community": "telugu",
-      "relationship": "Husband of Bindu; father of Sresta",
+      "relationship": "Husband of Bindu; father of Sresta and Minshu",
       "verified": true,
       "note": "Greetings occur on October 13 and 14; October 14 is the stronger date."
     },
@@ -586,7 +620,12 @@
         "Vaishu"
       ],
       "community": "telugu",
-      "verified": true
+      "verified": true,
+      "parents": [
+        "Venkanna",
+        "Sunitha"
+      ],
+      "relationship": "Child of Venkanna and Sunitha"
     },
     {
       "id": "birthday-sandeep",
@@ -598,7 +637,7 @@
         "Sandeep Reddy"
       ],
       "community": "telugu",
-      "relationship": "Husband of Swetha",
+      "relationship": "Husband of Swetha; father of Roshan",
       "verified": true,
       "familyName": "Appidi"
     },
