@@ -41,11 +41,16 @@ test("every living person has a community, so their greeting and theme work", ()
   }
 });
 
-test("calendar day follows the site's base time zone", () => {
+test("calendar day follows India time for every viewer", () => {
   assert.equal(R.BASE_TIME_ZONE, site.timeZone);
-  // 11:30 PM on Dec 18 in the base zone is still Dec 18 there, whatever the viewer's clock says.
-  const t = R.todayIn(site.timeZone, new Date("2026-12-19T12:00:00Z"));
-  assert.ok(t.getMonth() === 11 && [18, 19, 20].includes(t.getDate()));
+  assert.equal(site.timeZone, "Asia/Kolkata");
+  // 11:00 AM Dec 18 in California is already 12:30 AM Dec 19 in India: Sampath's day has begun.
+  const t = R.todayIn(R.BASE_TIME_ZONE, new Date("2026-12-18T19:00:00Z"));
+  assert.deepEqual([t.getMonth() + 1, t.getDate()], [12, 19]);
+  assert.deepEqual(R.nextCelebration(all(), t).events.map(R.displayName), ["Sampath (Raju)"]);
+  // 11:59 PM Dec 19 in India rolls to Dec 20 one minute later (6:30 PM UTC)
+  assert.equal(R.todayIn(R.BASE_TIME_ZONE, new Date("2026-12-19T18:29:00Z")).getDate(), 19);
+  assert.equal(R.todayIn(R.BASE_TIME_ZONE, new Date("2026-12-19T18:31:00Z")).getDate(), 20);
 });
 
 test("pet names and loose spellings find the right people", () => {

@@ -53,7 +53,7 @@ GitHub Pages republishes about a minute after the push.
 
 ## Whose "today"?
 
-The calendar day follows one time zone for every visitor: `timeZone` in `dev/site.json`. Change it there and rebuild.
+The calendar day follows **India time (IST)** for every visitor, because most of the family is in India: a birthday on the 19th shows as "today" in California from 10:30 AM PST on the 18th. Change `timeZone` in `dev/site.json` and rebuild.
 
 ## Remembrance
 

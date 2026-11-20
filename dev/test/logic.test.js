@@ -498,19 +498,20 @@ test("changedIds spots additions and edits", () => {
 });
 
 /* ---------- One calendar day for everyone (US Pacific) ---------- */
-test("today follows US Pacific time for every viewer", () => {
+test("todayIn follows a fixed zone (US Pacific here) for every viewer", () => {
+  const PT = "America/Los_Angeles";
   // 10:30 AM Nov 20 in India = 9:00 PM Nov 19 in California
   const india = new Date("2026-11-20T05:00:00Z");
-  const t = R.todayIn(R.BASE_TIME_ZONE, india);
+  const t = R.todayIn(PT, india);
   assert.deepEqual([t.getFullYear(), t.getMonth() + 1, t.getDate()], [2026, 11, 19]);
   assert.deepEqual(R.names ? [] : R.nextCelebration(all(), t).events.map(R.displayName), ["Kanthi"]);
   // just after midnight in California, Nov 20 begins
-  const t2 = R.todayIn(R.BASE_TIME_ZONE, new Date("2026-11-20T08:01:00Z"));
+  const t2 = R.todayIn(PT, new Date("2026-11-20T08:01:00Z"));
   assert.equal(t2.getDate(), 20);
   // daylight saving: 11 PM PDT on July 4 is still July 4
-  const t3 = R.todayIn(R.BASE_TIME_ZONE, new Date("2026-07-05T06:00:00Z"));
+  const t3 = R.todayIn(PT, new Date("2026-07-05T06:00:00Z"));
   assert.deepEqual([t3.getMonth() + 1, t3.getDate()], [7, 4]);
   // New Year's Eve in California while it's already Jan 1 in India
-  const t4 = R.todayIn(R.BASE_TIME_ZONE, new Date("2027-01-01T05:00:00Z"));
+  const t4 = R.todayIn(PT, new Date("2027-01-01T05:00:00Z"));
   assert.deepEqual([t4.getFullYear(), t4.getMonth() + 1, t4.getDate()], [2026, 12, 31]);
 });
