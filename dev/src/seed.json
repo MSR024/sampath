@@ -1,5 +1,5 @@
 {
-  "seedVersion": 14,
+  "seedVersion": 15,
   "birthdays": [
     {
       "id": "birthday-roshini",
@@ -552,7 +552,8 @@
       "community": "telugu",
       "relationship": "Husband of Bindu; father of Sresta and Minshu",
       "verified": true,
-      "note": "Greetings occur on October 13 and 14; October 14 is the stronger date."
+      "note": "Greetings occur on October 13 and 14; October 14 is the stronger date.",
+      "familyName": "Muppidi"
     },
     {
       "id": "birthday-saritha",

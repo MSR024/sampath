@@ -103,7 +103,9 @@ test("family name shows once: a person's own, or for a couple the first partner'
   assert.equal(R.familyNameOf(get("birthday-sampath"), ev), "Mula");
   assert.equal(R.familyNameOf(get("anniversary-sateesh-thara"), ev), "Moola", "taken once from the husband");
   assert.equal(R.familyNameOf(get("anniversary-venkanna-sunitha"), ev), "Appidi", "couple without birthdays");
-  assert.equal(R.familyNameOf(get("anniversary-karthik-bindu"), ev), "", "nothing invented when not given");
+  assert.equal(R.familyNameOf(get("anniversary-karthik-bindu"), ev), "Muppidi");
+  for (const id of ["birthday-bindu", "birthday-sresta", "birthday-minshu"]) assert.equal(R.familyNameOf(get(id), ev), "Muppidi", id);
+  assert.equal(R.familyNameOf(get("anniversary-srikanth-kavitha"), ev), "", "nothing invented when not given");
   // wives take the husband's, kids the father's
   for (const [id, f] of [["birthday-thara", "Moola"], ["birthday-harika", "Appidi"], ["birthday-sowjanya", "Appidi"], ["birthday-sandhya", "Kosana"],
     ["birthday-saritha", "Mula"], ["birthday-apurva", "Moola"], ["birthday-vihaan", "Moola"], ["birthday-roshini", "Mula"], ["birthday-sridevi", "Mula"]])
