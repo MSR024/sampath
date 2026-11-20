@@ -1,5 +1,5 @@
 {
-  "seedVersion": 11,
+  "seedVersion": 12,
   "birthdays": [
     {
       "id": "birthday-roshini",
@@ -518,7 +518,8 @@
       ],
       "community": "telugu",
       "verified": true,
-      "note": "Greetings occur on October 2 and 3; October 3 is the stronger recent date."
+      "note": "Greetings occur on October 2 and 3; October 3 is the stronger recent date.",
+      "relationship": "Wife of Linganna; mother of Anu and Ashu"
     },
     {
       "id": "birthday-sridevi",
@@ -664,7 +665,12 @@
       "day": 31,
       "aliases": [],
       "community": "telugu",
-      "verified": true
+      "verified": true,
+      "parents": [
+        "Linganna",
+        "Srilatha"
+      ],
+      "relationship": "Child of Linganna and Srilatha"
     },
     {
       "id": "birthday-ashu",
@@ -674,7 +680,12 @@
       "day": 31,
       "aliases": [],
       "community": "telugu",
-      "verified": true
+      "verified": true,
+      "parents": [
+        "Linganna",
+        "Srilatha"
+      ],
+      "relationship": "Child of Linganna and Srilatha"
     }
   ],
   "anniversaries": [

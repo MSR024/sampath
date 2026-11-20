@@ -127,6 +127,7 @@ test("kids linked to their parents take the father's family name", () => {
   assert.deepEqual(kids("Satish", "Harika"), ["Ananya", "Likila"]);
   assert.deepEqual(kids("Venkanna", "Sunitha"), ["Vaishnavi", "Vardhan"]);
   assert.deepEqual(kids("Sandeep", "Swetha"), ["Roshan"]);
+  assert.deepEqual(kids("Linganna", "Srilatha"), ["Anu", "Ashu"]);
   const ev = all();
   assert.equal(R.familyNameOf(ev.find((e) => e.id === "birthday-lucky"), ev), "Mula");
   assert.equal(R.familyNameOf(ev.find((e) => e.id === "birthday-samanvith"), ev), "Kosana");
