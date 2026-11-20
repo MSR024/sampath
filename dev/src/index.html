@@ -112,6 +112,11 @@ nav.tabs a[aria-current=page]{background:var(--page);color:var(--ink);box-shadow
   padding:8px max(4vw,16px);padding-top:max(8px,env(safe-area-inset-top));background:var(--band);color:var(--band-ink);font:inherit;
   box-shadow:0 2px 0 var(--cal,#c76f00),0 8px 24px rgb(40 10 30/.22);transform:translateY(-110%);transition:transform .25s ease;visibility:hidden}
 .minibar.show{transform:none;visibility:visible}
+.minibar{display:grid;grid-template-columns:auto minmax(0,1fr) auto}
+.minibar .mb-logo{font:700 15px/1 var(--serif);white-space:nowrap;letter-spacing:-.01em}
+.minibar .mb-logo .bdot{display:inline-block;width:.86em;height:.86em;margin:0 -.22em;vertical-align:-.2em;overflow:visible}
+.minibar .mb-logo .logo-b{color:var(--logo-accent)}
+.minibar .mb-text{justify-content:center;text-align:center}
 .minibar .mb-date{flex:none;width:46px;border-radius:8px;overflow:hidden;background:var(--page);color:var(--ink);text-align:center;box-shadow:0 1px 3px rgb(0 0 0/.2)}
 .minibar .mb-date i{display:block;font:600 10px/1.5 var(--sans);font-style:normal;background:var(--cal,var(--an-mark));color:#fff;letter-spacing:.02em}
 .minibar .mb-date b{display:block;font:700 22px/1.15 var(--serif)}
@@ -409,6 +414,7 @@ body{-webkit-tap-highlight-color:transparent;-webkit-text-size-adjust:100%}
   .minibar .mb-date{width:40px}.minibar .mb-date b{font-size:19px}.minibar .mb-date i{font-size:9px}
   .minibar .mb-hb,.minibar .mb-who{font-size:16px}
   .minibar .mb-greet{font-size:13.5px;flex-basis:100%}
+  .minibar .mb-logo{font-size:13px}
   .two{grid-template-columns:1fr}
   .launch{font-size:13px;margin-top:18px}
   table{font-size:14px}.stack thead{display:none}.stack tr{display:grid;padding-block:10px;border-bottom:1px solid var(--line)}
@@ -754,7 +760,7 @@ function renderHero() {
     </div>`;
   const g = events.flatMap((e) => R.greetingsFor(e, S.events))[0];
   $("#minibar").innerHTML = `
-    <span class="mb-date" aria-hidden="true"><i>${MON3[first.month - 1]}</i><b>${first.day}</b></span>
+    <span class="mb-logo" aria-hidden="true">${$(".brand > span").innerHTML}</span>
     <span class="mb-text">
       <span class="mb-hb">${next.days === 0 ? esc(feat ? feat.dayTitle : happyTitle(events)) : esc(R.relativeLabel(next.days))}</span>
       ${feat && next.days === 0 ? "" : `<span class="mb-who">${who}</span>`}
