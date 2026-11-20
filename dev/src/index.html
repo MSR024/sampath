@@ -1,0 +1,1315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{{name}}</title>
+<meta name="description" content="{{description}}">
+<link rel="canonical" href="{{url}}">
+<!-- Link preview (WhatsApp, iMessage, Facebook, Slack, X) -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="{{shortName}}">
+<meta property="og:title" content="{{name}}">
+<meta property="og:description" content="{{ogDescription}}">
+<meta property="og:url" content="{{url}}">
+<meta property="og:image" content="{{url}}og.png">
+<meta property="og:image:secure_url" content="{{url}}og.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="{{name}} — birthdays and wedding anniversaries">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{name}}">
+<meta name="twitter:description" content="{{ogDescription}}">
+<meta name="twitter:image" content="{{url}}og.png">
+<!-- Icons -->
+<meta name="theme-color" content="{{themeColor}}">
+<meta name="apple-mobile-web-app-title" content="{{shortName}}">
+<meta name="application-name" content="{{shortName}}">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Outfit:wght@400;500;600&family=Noto+Sans+Telugu:wght@500&family=Noto+Sans+Tamil:wght@500&family=Noto+Sans+Malayalam:wght@500&family=Noto+Nastaliq+Urdu:wght@500&display=swap" rel="stylesheet">
+<style>
+/* VOICE: warm, affectionate, tidy — an Indian family's festive wall calendar, not a party flyer.
+   IDEA: a tear-off calendar page under a marigold-and-mango-leaf thoranam, on a kolam dot grid; wishes in each friend's own language.
+   PICTURE: the next celebration as a big calendar page in a saffron band; the month list is the working thing.
+   COLOUR+TYPE: white / deep plum ink, saffron-marigold for birthdays, rani pink for anniversaries; Fraunces numerals, Outfit text.
+   LAYOUT: band hero, sticky-free toolbar, date groups as hanging pages; year view as 12 compact tiles; stacks under 600px. */
+:root{color-scheme:light dark;
+  --bg:light-dark(#ffffff,#160c19);--surface:light-dark(#fbf6f9,#21142a);--line:light-dark(#ecdfe8,#3a2944);
+  --ink:light-dark(#2b1430,#f6eef6);--muted:light-dark(#6c5671,#bfadc4);
+  --band:light-dark(#f7b52c,#3a1838);--band-ink:light-dark(#2b1430,#fde8c4);--page:light-dark(#ffffff,#24142b);
+  --bd:light-dark(#8a4a00,#ffc96b);--bd-bg:light-dark(#fff1d4,#3b2a13);--bd-mark:#f2a20c;
+  --an:light-dark(#a1124e,#ff93c0);--an-bg:light-dark(#fde4ee,#3e1428);--an-mark:#d6246e;
+  --warn:light-dark(#8b3b00,#ffb37a);--warn-bg:light-dark(#fff0e2,#3a2212);
+  --ok:light-dark(#2f6b3a,#9fd8a8);--focus:light-dark(#6b1fa8,#e0b3ff);
+  --shadow:0 1px 2px rgb(43 20 48/.06),0 6px 18px rgb(43 20 48/.07);
+  --serif:"Fraunces",Georgia,serif;--sans:"Outfit",system-ui,-apple-system,"Segoe UI",sans-serif}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 var(--sans);overflow-x:clip}
+h1,h2,h3,p{margin:0}button,input,select,textarea{font:inherit;color:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:max(4vw,16px)}
+svg.i{width:1.15em;height:1.15em;flex:none;vertical-align:-.2em;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:8px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* header */
+.top{background:var(--band);color:var(--band-ink)}
+.top .wrap{display:flex;flex-wrap:wrap;align-items:center;gap:8px 20px;padding-block:14px}
+.brand{font:700 clamp(22px,3vw,28px)/1.1 var(--serif);letter-spacing:-.01em;margin-right:auto}
+.today-date{font-weight:500;opacity:.85}
+nav.tabs{display:flex;gap:4px;background:rgb(255 255 255/.35);padding:4px;border-radius:999px}
+:root:not([data-theme=light]) nav.tabs{background:light-dark(rgb(255 255 255/.35),rgb(0 0 0/.25))}
+nav.tabs a{padding:8px 16px;border-radius:999px;text-decoration:none;color:inherit;font-weight:600;min-height:40px;display:inline-flex;align-items:center}
+nav.tabs a[aria-current=page]{background:var(--page);color:var(--ink);box-shadow:var(--shadow)}
+
+/* hero */
+.hero{background:var(--band);color:var(--band-ink);padding-bottom:40px;position:relative;overflow:hidden;
+  background-image:radial-gradient(circle,light-dark(rgb(255 255 255/.45),rgb(255 255 255/.08)) 1.4px,transparent 1.9px);background-size:24px 24px}
+.hero .wrap{position:relative;z-index:1}
+.rangoli{position:absolute;right:max(3vw,10px);top:50%;width:min(230px,26vw);height:auto;transform:translateY(-50%);opacity:.9;pointer-events:none}
+.garland-wrap{position:relative;height:0}
+.garland{display:block;width:100%;height:34px;position:absolute;left:0;top:-14px;z-index:2;pointer-events:none}
+.wish{margin:2px 0 12px;font-size:clamp(19px,2.4vw,24px);font-weight:500;line-height:1.5}
+.wish small{display:block;font:500 14px/1.3 var(--sans);opacity:.75}
+.wish [lang]{display:block;width:fit-content}
+.wish [dir=rtl],.greet [dir=rtl]{unicode-bidi:isolate}
+[lang=te]{font-family:"Noto Sans Telugu",var(--sans)}[lang=ta]{font-family:"Noto Sans Tamil",var(--sans)}
+[lang=ml]{font-family:"Noto Sans Malayalam",var(--sans)}[lang=ur]{font-family:"Noto Nastaliq Urdu",serif;line-height:2}
+.hero .wrap{display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(18px,4vw,44px);align-items:center;padding-top:8px}
+.calpage{width:clamp(132px,22vw,188px);background:var(--page);color:var(--ink);border-radius:14px;box-shadow:0 2px 0 rgb(0 0 0/.08),0 14px 30px rgb(60 20 40/.18);overflow:hidden;text-align:center;transform:rotate(-2deg)}
+.calpage .mo{background:var(--an-mark);color:#fff;font-weight:600;letter-spacing:.02em;padding:8px 0;position:relative}
+.calpage .mo::before,.calpage .mo::after{content:"";position:absolute;top:-6px;width:10px;height:18px;border-radius:6px;background:var(--band);left:28%}
+.calpage .mo::after{left:auto;right:28%}
+.calpage.bd .mo{background:#c76f00}
+.calpage.mem .mo{background:#9a7b55}
+.hero.mem .rangoli{display:none}
+.calpage .dn{font:700 clamp(64px,11vw,96px)/1 var(--serif);padding:10px 0 2px}
+.calpage .wd{color:var(--muted);padding-bottom:12px;font-weight:500}
+.hero-text .eyebrow{font-weight:600;opacity:.8}
+/* Slim banner that keeps the celebration in view while scrolling */
+.minibar{position:fixed;left:0;right:0;top:0;z-index:40;display:flex;align-items:center;gap:12px;width:100%;border:0;cursor:pointer;text-align:left;
+  padding:8px max(4vw,16px);padding-top:max(8px,env(safe-area-inset-top));background:var(--band);color:var(--band-ink);font:inherit;
+  box-shadow:0 2px 0 var(--cal,#c76f00),0 8px 24px rgb(40 10 30/.22);transform:translateY(-110%);transition:transform .25s ease;visibility:hidden}
+.minibar.show{transform:none;visibility:visible}
+.minibar .mb-date{flex:none;width:46px;border-radius:8px;overflow:hidden;background:var(--page);color:var(--ink);text-align:center;box-shadow:0 1px 3px rgb(0 0 0/.2)}
+.minibar .mb-date i{display:block;font:600 10px/1.5 var(--sans);font-style:normal;background:var(--cal,var(--an-mark));color:#fff;letter-spacing:.02em}
+.minibar .mb-date b{display:block;font:700 22px/1.15 var(--serif)}
+.minibar .mb-text{min-width:0;display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 10px;flex:1}
+.minibar .mb-hb{font:700 18px/1.2 var(--serif);color:var(--hb,light-dark(#a1124e,#ff9ec6))}
+.minibar .mb-who{font:700 18px/1.2 var(--serif)}
+.minibar .mb-greet{font-size:15px;opacity:.92;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+.minibar .mb-up{flex:none;opacity:.7;width:22px;height:22px}
+@media (prefers-reduced-motion:reduce){.minibar{transition:none}}
+/* Regional looks for the day itself */
+body[data-look]{--hb:light-dark(#a1124e,#ff9ec6);--cal:var(--an-mark)}
+body[data-look=telugu]{--band:#f5b81c;--band-ink:#2b1430;--hb:#b3122e;--cal:#c0392b}
+body[data-look=tamil]{--band:#7a1230;--band-ink:#fff1d6;--hb:#ffcf66;--cal:#c8961c}
+body[data-look=tamil] .hero,body[data-look=tamil] .minibar{background-image:radial-gradient(circle,rgb(255 248 234/.32) 1.5px,transparent 2px);background-size:26px 26px}
+body[data-look=sourashtra]{--band:#b0153a;--band-ink:#fff4e0;--hb:#ffe08a;--cal:#c8961c}
+body[data-look=sourashtra] .hero,body[data-look=sourashtra] .minibar{background-image:radial-gradient(circle at 50% 50%,rgb(255 255 255/.55) 1.6px,transparent 2.2px),radial-gradient(circle at 50% 50%,rgb(255 255 255/.4) 1.3px,transparent 1.8px);
+  background-size:30px 30px,30px 30px;background-position:0 0,15px 15px}
+body[data-look=kerala]{--band:#f6efdc;--band-ink:#2b1a0a;--hb:#8a5a00;--cal:#b8902a}
+body[data-look=kerala] .hero{background-image:linear-gradient(#d4a72c,#d4a72c),linear-gradient(#d4a72c,#d4a72c);background-size:100% 4px,100% 2px;background-position:0 calc(100% - 22px),0 calc(100% - 14px);background-repeat:no-repeat}
+body[data-look=muslim]{--band:#0f5d43;--band-ink:#f6edd0;--hb:#f0cf6a;--cal:#b8902a}
+body[data-look=muslim] .hero,body[data-look=muslim] .minibar{background-image:radial-gradient(circle,rgb(212 175 55/.25) 1.4px,transparent 1.9px);background-size:24px 24px}
+body[data-look=tamil] .hero::after,body[data-look=sourashtra] .hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:12px;
+  background:linear-gradient(135deg,transparent 50%,#d4a017 50%) 0 0/12px 12px repeat-x,linear-gradient(225deg,transparent 50%,#d4a017 50%) 0 0/12px 12px repeat-x}
+/* Remembrance day: calm sandalwood and a lit diya — no party motifs */
+body[data-look=remembrance]{--band:#efe5d6;--band-ink:#3d2b1f;--hb:#8a5524;--cal:#9a7b55}
+body[data-look=remembrance] .hero,body[data-look=remembrance] .minibar{background-image:none}
+body[data-look] .hb{color:var(--hb)}
+body[data-look] .calpage .mo{background:var(--cal)}
+body[data-look] .calpage .mo::before,body[data-look] .calpage .mo::after{background:var(--band)}
+.hb svg{width:1em;height:1em;vertical-align:-.12em;margin-right:6px}
+.memline{font-size:15px;margin:2px 0 0;opacity:.9}
+.memline a,.minfo a{color:inherit;font-weight:600;text-underline-offset:3px}
+.hb{font:700 clamp(20px,2.6vw,26px)/1.15 var(--serif);color:light-dark(#a1124e,#ff9ec6);margin-bottom:2px}
+.slogan{font-size:clamp(16px,1.8vw,18px);font-weight:500;margin:0 0 10px;max-width:46ch}
+.hero-text h2{font:700 clamp(30px,4.6vw,48px)/1.05 var(--serif);text-wrap:balance;margin:4px 0 6px;letter-spacing:-.01em}
+.hero-text{max-width:640px}
+.hero-text .meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.pill{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:999px;font-weight:600;font-size:15px;white-space:nowrap}
+.pill.solid{background:var(--ink);color:var(--bg)}
+.pill.soft{background:rgb(255 255 255/.5);color:var(--band-ink)}
+:root:not([data-theme=light]) .pill.soft{background:light-dark(rgb(255 255 255/.5),rgb(255 255 255/.1))}
+.then{margin-top:12px;font-size:15px;opacity:.9}
+
+/* toolbar */
+.toolbar{display:grid;gap:12px;padding:30px 0 8px}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.search{position:relative;flex:1 1 260px}
+.search svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--muted)}
+.search input{width:100%;padding:11px 14px 11px 42px;border:1.5px solid var(--line);border-radius:12px;background:var(--bg);min-height:46px;font-size:16px}
+.search input:focus{border-color:var(--focus);outline:none;box-shadow:0 0 0 3px light-dark(rgb(107 31 168/.15),rgb(224 179 255/.2))}
+.monthnav{display:flex;gap:6px;align-items:center}
+select,.field input,.field textarea{border:1.5px solid var(--line);border-radius:12px;background:var(--bg);padding:10px 12px;min-height:46px;font-size:16px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:9px 16px;border-radius:12px;border:1.5px solid var(--line);background:var(--bg);font-weight:600;cursor:pointer;white-space:nowrap;transition:background .15s,border-color .15s}
+.btn:hover{border-color:var(--muted)}
+.btn.icon{width:44px;padding:0}
+.btn.primary{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.btn.bdb{background:var(--bd-bg);color:var(--bd);border-color:transparent}
+.btn.anb{background:var(--an-bg);color:var(--an);border-color:transparent}
+.btn.danger{background:light-dark(#b3133f,#ff7a9c);color:light-dark(#fff,#2a0812);border-color:transparent}
+.btn.ghost{border-color:transparent;background:transparent}
+.btn.ghost:hover{background:var(--surface)}
+.btn.sm{min-height:38px;padding:6px 12px;font-size:15px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{min-height:40px;padding:6px 14px;border-radius:999px;border:1.5px solid var(--line);background:var(--bg);font-weight:500;cursor:pointer;display:inline-flex;gap:6px;align-items:center}
+.chip[aria-pressed=true]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.seg{display:inline-flex;border:1.5px solid var(--line);border-radius:12px;padding:3px;margin-left:auto}
+.seg button{border:0;background:none;padding:7px 14px;border-radius:9px;font-weight:600;cursor:pointer;min-height:38px}
+.seg button[aria-pressed=true]{background:var(--surface);box-shadow:var(--shadow)}
+
+/* month list */
+.section-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px;margin:18px 0 6px}
+.section-head h2{font:700 clamp(26px,3.4vw,34px)/1.1 var(--serif)}
+.section-head h2.mhead{font-size:clamp(21px,2.6vw,26px)}
+.section-head p{color:var(--muted)}
+.day{display:grid;grid-template-columns:96px minmax(0,1fr);gap:18px;padding:18px 0;border-top:1px solid var(--line);animation:rise .35s ease both}
+.dh{display:flex;flex-direction:column;align-items:flex-start}
+.dh .dnum{font:700 54px/1 var(--serif)}
+.dh b{font-weight:600}
+.dh span{color:var(--muted);font-size:14px;line-height:1.35}
+.day.is-today .dnum{color:var(--an)}
+.cards{display:grid;gap:10px}
+.card{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:14px;align-items:start;padding:14px 16px;border-radius:16px;background:var(--surface);border:1.5px solid transparent}
+.card .ico{width:44px;height:44px;border-radius:12px;display:grid;place-items:center}
+.card.bd .ico{background:var(--bd-bg);color:var(--bd)}
+.card.an .ico{background:var(--an-bg);color:var(--an)}
+.card .ico svg{width:24px;height:24px}
+.card.is-today{border-color:var(--bd-mark);background:light-dark(#fffaf0,#2a1b20)}
+.card.an.is-today{border-color:var(--an-mark)}
+.kind{font-size:14px;font-weight:600}
+.card.bd .kind{color:var(--bd)}.card.an .kind{color:var(--an)}
+.card h3{font:600 20px/1.25 var(--sans);margin:2px 0}
+.aka,.rel,.note{font-size:14px;color:var(--muted)}
+.note{margin-top:6px;padding-left:10px;border-left:2px solid var(--line)}
+.badge{display:inline-flex;align-items:center;gap:5px;font-size:13px;font-weight:600;padding:3px 10px;border-radius:999px;white-space:nowrap}
+.badge.warn{background:var(--warn-bg);color:var(--warn)}
+.badge.ok{color:var(--ok);padding-inline:0}
+.side{display:flex;flex-direction:column;align-items:flex-end;gap:6px}
+.when{font-size:14px;font-weight:600;white-space:nowrap}
+.when.hot{background:var(--ink);color:var(--bg);padding:2px 10px;border-radius:999px}
+.greet{font-size:15px;margin-top:6px;color:var(--ink)}
+.greet span{margin-right:12px;display:inline-block}
+.greet i{font-style:normal;color:var(--muted);font-size:13px;font-family:var(--sans)}
+.comm{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--muted)}
+.comm::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--c,#999)}
+.c-telugu{--c:#e0a100}.c-tamil,.c-tamil-sourashtra{--c:#c2185b}.c-malayali{--c:#b8912f}.c-muslim{--c:#1f7a4d}
+/* remembrance card */
+.card.mem .ico{background:light-dark(#f3ebde,#3a2d22);color:light-dark(#8a5524,#e8c08a)}
+.card.mem .kind{color:light-dark(#7a5230,#e8c08a)}
+.card.mem.is-today{border-color:#b89668;background:light-dark(#fbf7f0,#2a2119)}
+.card.mem .minfo{font-size:14px;color:var(--muted);margin-top:2px}
+.mtile li.mem svg{color:light-dark(#8a5524,#e8c08a)}
+.badge.mem{background:light-dark(#f3ebde,#3a2d22);color:light-dark(#7a5230,#e8c08a)}
+/* dedication footer */
+.dedication{border-top:1px solid var(--line);margin-top:28px;padding:18px 0 max(28px,env(safe-area-inset-bottom));text-align:center;color:var(--muted);font-size:14.5px}
+.dedication svg{width:18px;height:18px;vertical-align:-.25em;margin-right:4px;color:light-dark(#9a6b3a,#e8c08a)}
+.dedication a{color:var(--ink);font-weight:600;white-space:nowrap;text-underline-offset:3px;margin-left:4px}
+/* Our Founder */
+#founderView{max-width:720px;padding-block:18px 40px}
+.back{display:inline-flex;align-items:center;gap:4px;color:var(--muted);text-decoration:none;font-weight:600;min-height:40px}
+.fcard{background:light-dark(#faf5ee,#241b16);border:1.5px solid light-dark(#eadfce,#3a2d22);border-radius:22px;padding:26px 24px 24px;text-align:center;display:grid;justify-items:center;gap:6px}
+.fphoto{width:148px;height:148px;border-radius:50%;background:light-dark(#efe5d6,#33271f);border:3px solid light-dark(#fff,#4a3a2d);box-shadow:0 0 0 1.5px light-dark(#dccbb2,#5a4836);display:grid;place-items:center;overflow:hidden;margin-bottom:10px}
+.fphoto img{width:100%;height:100%;object-fit:cover}
+.fphoto svg{width:72px;height:72px}
+.fcard .eyebrow{font-weight:600;color:light-dark(#8a5524,#e8c08a);letter-spacing:.02em}
+.fcard h2{font:700 clamp(34px,6vw,46px)/1.05 var(--serif)}
+.fcard .called{color:var(--muted);font-size:16px}
+.fcard .ftrib{font:500 clamp(18px,2.4vw,21px)/1.5 var(--serif);max-width:34ch;margin:12px 0 8px;text-wrap:balance}
+.ffacts{list-style:none;padding:0;margin:6px auto 0;display:grid;gap:6px;font-size:15.5px;text-align:left;width:fit-content}
+.ffacts li{display:flex;align-items:center;gap:8px}
+.ffacts svg{width:18px;height:18px;color:light-dark(#9a6b3a,#e8c08a)}
+.fmore{margin-top:16px;border:1.5px dashed light-dark(#e2d5c2,#3a2d22);border-radius:18px;padding:16px 18px;color:var(--muted)}
+.fmore h3{font:600 17px/1.3 var(--sans);color:var(--ink);margin-bottom:4px}
+.tags{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;margin-top:4px}
+mark{background:light-dark(#ffe58a,#6b5310);color:inherit;border-radius:3px}
+
+/* empty / banners */
+.empty{text-align:center;padding:40px 16px 56px;border-top:1px solid var(--line)}
+.empty svg{width:150px;height:110px;margin-bottom:10px}
+.empty h3{font:700 24px/1.2 var(--serif);margin-bottom:6px}
+.empty p{color:var(--muted);margin-bottom:16px}
+.fstatus{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:4px 0 12px;padding:8px 12px;border-radius:12px;background:var(--warn-bg);color:var(--warn);font-weight:600;font-size:15px}
+.fpill{display:inline-flex;align-items:center;gap:4px;background:var(--bg);color:var(--ink);border-radius:999px;padding:2px 4px 2px 12px}
+.fpill button{border:0;background:none;width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:18px;line-height:1;color:inherit}
+.fpill button:hover{background:var(--surface)}
+.fstatus .btn{color:inherit}
+.banner{display:flex;gap:10px;align-items:flex-start;padding:12px 14px;border-radius:12px;background:var(--warn-bg);color:var(--warn);margin-top:16px;font-weight:500}
+
+/* year */
+.year{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px;margin:14px 0 40px}
+.mtile{text-align:left;border:1.5px solid var(--line);background:var(--bg);border-radius:16px;padding:14px 16px;cursor:pointer;display:flex;flex-direction:column;gap:8px;transition:border-color .15s,transform .15s}
+.mtile:hover{border-color:var(--muted);transform:translateY(-2px)}
+.mtile.cur{border-color:var(--bd-mark);box-shadow:0 0 0 3px light-dark(#fde7b7,#4a3412)}
+.mtile header{display:flex;justify-content:space-between;align-items:baseline;width:100%}
+.mtile h3{font:700 22px/1.1 var(--serif)}
+.count{font-size:14px;color:var(--muted);font-weight:500}
+.mtile ul{list-style:none;margin:0;padding:0;display:grid;gap:3px;font-size:15px}
+.mtile li{display:grid;grid-template-columns:26px 20px minmax(0,1fr);gap:4px;align-items:start}
+.mtile li b{font-weight:600;text-align:right;padding-right:4px}
+.mtile li.bd svg{color:var(--bd)}.mtile li.an svg{color:var(--an)}
+.mtile li .q{color:var(--warn);font-weight:700}
+.mtile .none{color:var(--muted);font-size:15px}
+
+/* manage */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:18px 0}
+.stat{background:var(--surface);border-radius:14px;padding:12px 16px}
+.stat b{display:block;font:700 34px/1.1 var(--serif)}
+.stat span{color:var(--muted);font-size:14px}
+.stat.warn b{color:var(--warn)}.stat.ok b{color:var(--ok)}
+.panel{border:1.5px solid var(--line);border-radius:16px;padding:16px;display:grid;gap:12px;margin-bottom:16px}
+.panel h3{font:600 18px/1.2 var(--sans)}
+.panel p{color:var(--muted);font-size:15px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:16px}
+table{width:100%;border-collapse:collapse;font-size:15px}
+th{text-align:left;font-weight:600;color:var(--muted);font-size:14px;padding:8px;border-bottom:1.5px solid var(--line)}
+td{padding:10px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+td.date{white-space:nowrap;font-weight:600}
+td .aka{font-size:13px}
+.acts{display:flex;flex-wrap:wrap;gap:4px;justify-content:flex-end}
+.typetag{font-weight:600;font-size:14px;display:inline-flex;gap:5px;align-items:center}
+.typetag.bd{color:var(--bd)}.typetag.an{color:var(--an)}
+.savedinfo{color:var(--muted);font-size:14px;margin:6px 0 40px}
+
+.famgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin:10px 0 14px}
+.fam{border:1.5px solid var(--line);border-radius:16px;padding:14px 16px;display:grid;gap:8px;align-content:start}
+.fam.gap{border-color:var(--warn)}
+.fam h3{font:700 19px/1.2 var(--serif)}
+.fam .ann{font-size:14px;color:var(--an);font-weight:600}
+.fam ul{list-style:none;margin:0;padding:0;display:grid;gap:4px;font-size:15px}
+.fam li{display:flex;justify-content:space-between;gap:8px;align-items:center}
+.fam li span:last-child{color:var(--muted);white-space:nowrap;font-size:14px}
+.fam .lbl{font-size:13px;font-weight:600;color:var(--muted);margin-top:2px}
+.fam .miss{color:var(--warn);font-weight:600}
+.linkbtn{background:none;border:0;padding:0;color:inherit;font:inherit;cursor:pointer;text-align:left;text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:3px}
+.unl{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 26px}
+.unl .chip{min-height:36px;font-size:15px}
+
+/* dialog */
+dialog{border:0;border-radius:20px;padding:0;width:min(560px,calc(100vw - 24px));max-height:calc(100dvh - 24px);background:var(--bg);color:var(--ink);box-shadow:0 20px 60px rgb(0 0 0/.3)}
+dialog::backdrop{background:rgb(30 10 35/.45)}
+.dlg{padding:22px;display:grid;gap:14px}
+.dlg h2{font:700 24px/1.2 var(--serif)}
+.dlg .foot{display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-end;margin-top:6px}
+.field{display:grid;gap:5px}
+.field label,.field legend{font-weight:600;font-size:15px}
+.field small{color:var(--muted);font-size:13px}
+.field textarea{min-height:90px;resize:vertical}
+.field.err input,.field.err select{border-color:light-dark(#b3133f,#ff7a9c)}
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px}
+.check{display:flex;gap:10px;align-items:center;font-weight:500;min-height:44px}
+.check input{width:20px;height:20px;accent-color:var(--an-mark)}
+.errors{background:var(--warn-bg);color:var(--warn);border-radius:12px;padding:10px 14px;font-size:15px}
+.errors ul{margin:4px 0 0;padding-left:18px}
+.dupe{border:1.5px solid var(--line);border-radius:12px;padding:12px;display:grid;gap:8px}
+.dupe .opts{display:flex;flex-wrap:wrap;gap:6px 16px}
+.dupe label{display:flex;gap:6px;align-items:center;min-height:36px}
+.mono{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px}
+
+/* toast */
+.toasts{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);display:grid;gap:8px;z-index:50;width:min(480px,calc(100vw - 24px))}
+.toast{background:var(--ink);color:var(--bg);padding:12px 16px;border-radius:14px;display:flex;gap:12px;align-items:center;justify-content:space-between;box-shadow:0 10px 30px rgb(0 0 0/.25);animation:rise .25s ease both}
+.toast button{background:none;border:1.5px solid currentColor;color:inherit;border-radius:10px;padding:4px 12px;font-weight:600;cursor:pointer;min-height:36px}
+.short{display:none}
+.editbtn{width:40px;min-height:40px;color:var(--muted)}
+.editbtn svg{width:18px;height:18px}
+details.earlier{border-top:1px solid var(--line)}
+#content>.day:first-of-type,#content>details:first-child{margin-top:8px}
+details.earlier>summary{cursor:pointer;list-style:none;padding:14px 0;color:var(--muted);font-weight:600;display:flex;align-items:center;gap:8px;min-height:48px}
+details.earlier>summary::-webkit-details-marker{display:none}
+details.earlier>summary::before{content:"";width:8px;height:8px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(-45deg);transition:transform .15s}
+details.earlier[open]>summary::before{transform:rotate(45deg)}
+details.earlier .day{opacity:.85}
+body{-webkit-tap-highlight-color:transparent;-webkit-text-size-adjust:100%}
+@keyframes rise{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+[hidden]{display:none!important}
+
+@media (max-width:600px){
+  /* iPhone: fit today's celebration and the month's first dates on one screen */
+  .wrap{padding-inline:max(14px,env(safe-area-inset-left)) max(14px,env(safe-area-inset-right))}
+  .long{display:none}.short{display:inline}
+  .top .wrap{flex-wrap:nowrap;gap:8px;padding-block:10px;padding-top:max(10px,env(safe-area-inset-top))}
+  .brand{font-size:19px;white-space:nowrap}
+  .today-date{display:none}
+  nav.tabs{padding:3px}nav.tabs a{padding:6px 11px;min-height:36px;font-size:14px}
+  .hero{padding-bottom:22px;background-size:20px 20px}
+  .hero .wrap{grid-template-columns:76px minmax(0,1fr);gap:14px;align-items:start;padding-top:2px}
+  .calpage{width:76px;border-radius:10px;transform:rotate(-2deg)}
+  .calpage .mo{font-size:11px;padding:5px 0}
+  .calpage .mo::before,.calpage .mo::after{top:-4px;width:6px;height:11px}
+  .calpage .dn{font-size:40px;padding:6px 0 0}
+  .calpage .wd{font-size:11px;padding-bottom:6px}
+  .hero-text .eyebrow{font-size:13px}
+  .hb{font-size:18px}
+  .slogan{font-size:14px;line-height:1.4;margin:0 0 6px}
+  .hero-text h2{font-size:26px;margin:0 0 6px}
+  .hero-text .meta{gap:5px}.pill{font-size:12.5px;padding:2px 9px}
+  .wish{font-size:16px;margin:6px 0 0;line-height:1.45}.wish small{font-size:12px}
+  .rangoli{display:block;width:170px;right:-46px;top:auto;bottom:6px;transform:none;opacity:.22}
+  body[data-look] .rangoli{opacity:.3}
+  body[data-look=kerala] .rangoli,body[data-look=telugu] .rangoli{opacity:.16}
+  body[data-look=kerala] .hero{padding-bottom:38px} /* keep the kasavu border clear of the greeting */
+  .garland{height:26px;top:-11px}
+  #calendarView .toolbar{display:flex;flex-wrap:wrap;gap:8px;padding:18px 0 2px}
+  #calendarView .toolbar .row{display:contents}
+  #calendarView .search{order:1;flex:1 1 0}
+  #calendarView .seg{order:2;margin:0}
+  #calendarView .monthnav{order:3;flex:1 1 100%}
+  #calendarView .chips{order:4;flex:1 1 100%}
+  #manageView .toolbar .row{flex-wrap:wrap}
+  #manageView .search{flex-basis:100%}
+  .search input{min-height:42px;padding-block:8px}
+  .monthnav{flex:1;gap:5px}
+  .monthnav select{flex:1;min-height:40px;padding-block:6px}
+  .monthnav .btn{min-height:40px}.monthnav .btn.icon{width:40px}
+  .chips{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;flex:1}
+  .chips::-webkit-scrollbar{display:none}
+  .chip{flex:none;min-height:36px;padding:4px 12px;font-size:14px}
+  .seg{flex:none}.seg button{min-height:32px;padding:4px 10px;font-size:14px}
+  .section-head{margin:10px 0 2px}.section-head h2{font-size:24px}.section-head h2.mhead{font-size:20px}.section-head p{font-size:14px}
+  .fstatus{font-size:14px;padding:6px 10px;margin-bottom:6px}
+  .day{grid-template-columns:44px minmax(0,1fr);gap:10px;padding:10px 0;animation:none}
+  .dh{flex-direction:column;align-items:center;gap:0;padding-top:4px}
+  .dh .dnum{font-size:30px}
+  .dh b{font-size:12px;font-weight:600}.dh span{font-size:11px;text-align:center}
+  .cards{gap:8px}
+  .card{grid-template-columns:34px minmax(0,1fr) auto;gap:10px;padding:10px 6px 10px 10px;border-radius:14px}
+  .card .ico{width:34px;height:34px;border-radius:10px}.card .ico svg{width:19px;height:19px}
+  .kind{font-size:12.5px}
+  .card h3{font-size:17px;margin:1px 0 0}
+  .greet{font-size:14px;margin-top:3px;line-height:1.4}.greet i{display:block;font-size:12px}
+  .side{grid-column:auto;flex-direction:column;align-items:flex-end;justify-content:flex-start;gap:2px}
+  .when{font-size:12px}.when.hot{padding:1px 8px}
+  .editbtn{width:36px;min-height:36px}
+  details.earlier>summary{padding:10px 0;min-height:44px;font-size:14.5px}
+  .year{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:8px}
+  .mtile{padding:10px;border-radius:12px;gap:5px}
+  .mtile h3{font-size:17px}.count{font-size:12px}
+  .mtile ul{font-size:13px;gap:2px}
+  .mtile li{grid-template-columns:18px 14px minmax(0,1fr);gap:3px}
+  .mtile li{align-items:center}
+  #calendarView .search input::placeholder{font-size:15px}
+  .mtile li svg{width:13px;height:13px}
+  .empty{padding:24px 10px 32px}.empty svg{width:110px;height:80px}
+  .stats{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin:10px 0}
+  .stat{padding:8px 10px}.stat b{font-size:24px}.stat span{font-size:12px}
+  .famgrid{grid-template-columns:1fr}
+  .toasts{bottom:max(14px,env(safe-area-inset-bottom))}
+  .minibar{gap:10px;padding:7px 12px;padding-top:max(7px,env(safe-area-inset-top))}
+  .minibar .mb-date{width:40px}.minibar .mb-date b{font-size:19px}.minibar .mb-date i{font-size:9px}
+  .minibar .mb-hb,.minibar .mb-who{font-size:16px}
+  .minibar .mb-greet{font-size:13.5px;flex-basis:100%}
+  .two{grid-template-columns:1fr}
+  #founderView{padding-block:8px 28px}
+  .fcard{padding:20px 16px;border-radius:18px}.fphoto{width:112px;height:112px}.fphoto svg{width:56px;height:56px}
+  .memline{font-size:13.5px}
+  .dedication{font-size:13.5px;margin-top:18px}
+  table{font-size:14px}.stack thead{display:none}.stack tr{display:grid;padding-block:10px;border-bottom:1px solid var(--line)}
+  .stack td{display:flow-root;border:0;padding:3px 0;padding-inline-start:6.5em;text-align:start}
+  .stack td::before{content:attr(data-l);float:inline-start;width:6em;margin-inline-start:-6.5em;color:var(--muted);font-weight:500}
+  .acts{justify-content:flex-start}
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-cake" viewBox="0 0 24 24"><path d="M4 21h16M5 21v-7a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v7"/><path d="M5 16c1.2 1 2.3 1 3.5 0s2.3-1 3.5 0 2.3 1 3.5 0 2.3-1 3.5 0"/><path d="M12 12V8M8 12V9M16 12V9"/><path d="M12 5.5c.8-.6.8-1.6 0-2.5-.8.9-.8 1.9 0 2.5Z"/></symbol>
+  <symbol id="i-rings" viewBox="0 0 24 24"><circle cx="9" cy="14" r="5.5"/><circle cx="15" cy="14" r="5.5"/><path d="M7.5 5 9 3h0l1.5 2L9 6.5Z"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></symbol>
+  <symbol id="i-left" viewBox="0 0 24 24"><path d="m15 5-7 7 7 7"/></symbol>
+  <symbol id="i-right" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 3.5 2.5 20h19Z"/><path d="M12 10v4.5M12 17.5v.01"/></symbol>
+  <symbol id="i-pencil" viewBox="0 0 24 24"><path d="M4 20h4L19 9l-4-4L4 16Z"/><path d="m13.5 6.5 4 4"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 4v11M7 10.5l5 5 5-5M5 20h14"/></symbol>
+  <symbol id="i-up" viewBox="0 0 24 24"><path d="M12 16V5M7 9.5l5-5 5 5M5 20h14"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></symbol>
+  <symbol id="i-reset" viewBox="0 0 24 24"><path d="M4 12a8 8 0 1 0 2.4-5.7"/><path d="M4 4v4.5h4.5"/></symbol>
+  <symbol id="i-flower" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" fill="#f2a20c"/><circle cx="10" cy="10" r="5.2" fill="#f7c04a"/><circle cx="10" cy="10" r="2.2" fill="#d9780a"/></symbol>
+  <symbol id="i-leaf" viewBox="0 0 20 20"><path d="M2 10c4-5 12-5 16 0-4 5-12 5-16 0Z" fill="#3f8a4a"/></symbol>
+  <symbol id="i-jasmine" viewBox="0 0 16 10"><ellipse cx="4" cy="5" rx="3.2" ry="2.2" fill="#fffdf5" stroke="#c9b98a" stroke-width=".7" transform="rotate(-25 4 5)"/><ellipse cx="9" cy="4.5" rx="3.2" ry="2.2" fill="#fffaf0" stroke="#c9b98a" stroke-width=".7" transform="rotate(20 9 4.5)"/><ellipse cx="13" cy="5.5" rx="2.6" ry="1.9" fill="#f4f0e2" stroke="#c9b98a" stroke-width=".7" transform="rotate(-10 13 5.5)"/></symbol>
+  <symbol id="i-strand" viewBox="0 0 10 40"><g fill="#fffdf5" stroke="#c9b98a" stroke-width=".7"><ellipse cx="5" cy="5" rx="3" ry="2.2"/><ellipse cx="5" cy="11" rx="3" ry="2.2"/><ellipse cx="5" cy="17" rx="3" ry="2.2"/><ellipse cx="5" cy="23" rx="3" ry="2.2"/></g><circle cx="5" cy="31" r="4" fill="#f27b21"/><circle cx="5" cy="31" r="1.6" fill="#ffd27a"/></symbol>
+  <symbol id="i-lantern" viewBox="0 0 20 40"><path d="M10 0v6" stroke="#d4af37" stroke-width="1.4"/><path d="M6 6h8l2 4H4Z" fill="#d4af37"/><path d="M4 10h12l-1 14H5Z" fill="#f3d27a" stroke="#b8902a" stroke-width="1"/><path d="M8 12h4v10H8Z" fill="#fff4c2"/><path d="M5 24h10l-5 7Z" fill="#d4af37"/><circle cx="10" cy="34" r="1.6" fill="#d4af37"/></symbol>
+  <symbol id="i-star8" viewBox="-10 -10 20 20"><path d="M0-9 2.6-6.3 6.4-6.4 6.3-2.6 9 0 6.3 2.6 6.4 6.4 2.6 6.3 0 9-2.6 6.3-6.4 6.4-6.3 2.6-9 0-6.3-2.6-6.4-6.4-2.6-6.3Z" fill="#d4af37"/></symbol>
+  <symbol id="i-lamp" viewBox="0 0 24 24"><path d="M12 3.2c1.9 2.3 2.1 4.4 0 6.3-2.1-1.9-1.9-4 0-6.3Z"/><path d="M2.8 13h18.4c-.6 3.6-4.4 5.8-9.2 5.8s-8.6-2.2-9.2-5.8Z"/><path d="M21.2 13l1.6-1.6M9 21h6"/></symbol>
+  <symbol id="i-mango" viewBox="0 0 12 26"><path d="M6 0C11 6 11 17 6 26 1 17 1 6 6 0Z" fill="#2f7d3c"/><path d="M6 2v22" stroke="#a6d18f" stroke-width=".8"/></symbol>
+</svg>
+
+<header class="top">
+  <div class="wrap">
+    <h1 class="brand">{{brand}}<span class="long"> Celebrations</span></h1>
+    <p class="today-date" id="todayDate"></p>
+    <nav class="tabs" aria-label="Sections">
+      <a href="#" id="tabCal">Calendar</a>
+      <a href="#manage" id="tabManage">Manage<span class="long">&nbsp;events</span></a>
+    </nav>
+  </div>
+</header>
+
+<button type="button" class="minibar" id="minibar" aria-label="Back to today's celebration" tabindex="-1"></button>
+<section class="hero" id="hero" aria-label="Next celebration">
+  <svg class="rangoli" id="rangoli" viewBox="-100 -100 200 200" aria-hidden="true"></svg>
+  <div class="wrap" id="heroInner"><p>Loading celebrations…</p></div>
+</section>
+<div class="garland-wrap" id="garlandWrap"><svg class="garland" id="garland" aria-hidden="true"></svg></div>
+
+<main id="calendarView" class="wrap">
+  <div class="toolbar" role="search">
+    <div class="row">
+      <label class="search"><span class="sr">Search names and nicknames</span>
+        <svg class="i"><use href="#i-search"/></svg>
+        <input id="q" type="search" placeholder="Search names or pet names" autocomplete="off">
+      </label>
+      <div class="monthnav" id="monthNav">
+        <button class="btn icon" id="prevM" aria-label="Previous month"><svg class="i"><use href="#i-left"/></svg></button>
+        <label class="sr" for="monthSel">Month</label>
+        <select id="monthSel"></select>
+        <button class="btn icon" id="nextM" aria-label="Next month"><svg class="i"><use href="#i-right"/></svg></button>
+        <button class="btn" id="todayBtn">Today</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="chips" id="filters" role="group" aria-label="Filter events">
+        <button class="chip" data-f="all">All<span class="long">&nbsp;events</span></button>
+        <button class="chip" data-f="birthday"><svg class="i"><use href="#i-cake"/></svg>Birthdays</button>
+        <button class="chip" data-f="anniversary"><svg class="i"><use href="#i-rings"/></svg><span class="long">Wedding anniversaries</span><span class="short">Anniversaries</span></button>
+        <button class="chip" data-f="remembrance" id="remChip" hidden><svg class="i"><use href="#i-lamp"/></svg>Remembrance</button>
+      </div>
+      <div class="seg" role="group" aria-label="View">
+        <button data-v="month"><span class="long">Selected </span><span class="short">M</span><span class="long">m</span>onth</button>
+        <button data-v="year"><span class="long">Full </span><span class="short">Y</span><span class="long">y</span>ear</button>
+      </div>
+    </div>
+  </div>
+  <div id="banner"></div>
+  <div id="content" aria-live="polite"></div>
+  <footer class="dedication" id="dedication" hidden></footer>
+</main>
+
+<main id="founderView" class="wrap" hidden></main>
+
+<main id="manageView" class="wrap" hidden>
+  <div class="section-head"><h2>Manage events</h2><p>Add, correct or remove celebrations. Changes are saved in this browser.</p></div>
+  <div class="stats" id="mstats"></div>
+  <div class="grid2">
+    <div class="panel">
+      <h3>Add a celebration</h3>
+      <div class="row">
+        <button class="btn bdb" id="addB"><svg class="i"><use href="#i-cake"/></svg>Add birthday</button>
+        <button class="btn anb" id="addA"><svg class="i"><use href="#i-rings"/></svg>Add wedding anniversary</button>
+      </div>
+    </div>
+    <div class="panel">
+      <h3>Backup and restore</h3>
+      <div class="row">
+        <button class="btn sm" id="expDl"><svg class="i"><use href="#i-down"/></svg>Export JSON</button>
+        <button class="btn sm" id="expCopy"><svg class="i"><use href="#i-copy"/></svg>Copy JSON</button>
+        <button class="btn sm" id="impFile"><svg class="i"><use href="#i-up"/></svg>Import file</button>
+        <button class="btn sm" id="impPaste">Paste JSON</button>
+        <button class="btn sm" id="reloadSeed"><svg class="i"><use href="#i-reset"/></svg>Reload latest seed data</button>
+        <button class="btn sm ghost" id="restore">Restore original list</button>
+      </div>
+      <input type="file" id="fileIn" accept="application/json,.json" hidden>
+    </div>
+  </div>
+  <section class="families" aria-labelledby="famTitle">
+    <div class="section-head"><h2 id="famTitle" style="font-size:26px">Families</h2><p id="famSummary"></p></div>
+    <div class="famgrid" id="famGrid"></div>
+    <div id="famUnlinked"></div>
+  </section>
+  <div class="section-head"><h2 style="font-size:26px">All events</h2></div>
+  <div class="toolbar" style="padding-top:4px">
+    <div class="row">
+      <label class="search"><span class="sr">Search events</span>
+        <svg class="i"><use href="#i-search"/></svg>
+        <input id="mq" type="search" placeholder="Search events" autocomplete="off">
+      </label>
+      <div class="chips" id="mfilters" role="group" aria-label="Filter list">
+        <button class="chip" data-f="all">All</button>
+        <button class="chip" data-f="birthday">Birthdays</button>
+        <button class="chip" data-f="anniversary">Anniversaries</button>
+        <button class="chip" data-f="unverified">Needs confirmation</button>
+      </div>
+    </div>
+  </div>
+  <div id="mlist"></div>
+  <p class="savedinfo" id="savedInfo"></p>
+</main>
+
+<dialog id="dlg" aria-labelledby="dlgTitle"></dialog>
+<div class="toasts" id="toasts" role="status" aria-live="polite"></div>
+
+<script>window.RGC_SITE = /*__SITE__*/;</script>
+<script>/*__LOGIC__*/</script>
+<script>window.RGC_SEED = /*__SEED__*/;</script>
+<script>
+{
+const R = window.RGC, SEED = window.RGC_SEED;
+R.setPersonMetadata(SEED.personMetadata);
+const $ = (s, el = document) => el.querySelector(s);
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const ico = (n, cls = "i") => `<svg class="${cls}" aria-hidden="true"><use href="#i-${n}"/></svg>`;
+const MON3 = R.MONTHS.map((m) => m.slice(0, 3));
+const WD = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+
+let store = null;
+try { store = window.localStorage; store.getItem("probe"); } catch (e) { store = null; }
+
+const loaded = R.loadEvents(store, SEED);
+const S = {
+  events: loaded.events, source: loaded.source, savedAt: loaded.savedAt, loadError: loaded.error,
+  deletedSeedIds: loaded.deletedSeedIds || [], editedIds: loaded.editedIds || [], migrated: loaded.migrated || null,
+  today: R.todayIn(R.BASE_TIME_ZONE), month: 0, filter: "all", view: "month", query: "", mfilter: "all", mq: "",
+  storageOk: !!store, dl: null, undo: null, look: "",
+};
+S.month = R.currentMonth(S.today);
+const SEED_IDS = new Set(R.seedEvents(SEED).map((e) => e.id));
+const SEED_VERSION = R.seedVersionOf(SEED);
+const SEED_BY_ID = new Map(R.seedEvents(SEED).map((e) => [e.id, JSON.stringify(e, Object.keys(e).sort())]));
+const sameAsSeed = (e) => SEED_BY_ID.get(e.id) === JSON.stringify(e, Object.keys(e).sort());
+// Save after a change, remembering which bundled records the user has changed so seed updates never overwrite them.
+function commit(before) {
+  const changed = R.changedIds(before, S.events).filter((id) => SEED_BY_ID.has(id) && !sameAsSeed(S.events.find((e) => e.id === id)));
+  S.editedIds = [...new Set([...S.editedIds, ...changed])];
+  persist();
+}
+
+/* ---------- helpers ---------- */
+function occThisYear(ev) {
+  const y = S.today.getFullYear();
+  const leap = (y % 4 === 0 && y % 100 !== 0) || y % 400 === 0;
+  return new Date(y, ev.month - 1, ev.month === 2 && ev.day === 29 && !leap ? 28 : ev.day);
+}
+function whenLabel(ev) {
+  const days = R.daysUntil(ev, S.today);
+  const t0 = new Date(S.today.getFullYear(), S.today.getMonth(), S.today.getDate());
+  if (days > 0 && occThisYear(ev) < t0) return { text: ev.month === S.today.getMonth() + 1 ? "Earlier this month" : "Earlier this year", days };
+  return { text: R.relativeLabel(days), days };
+}
+function hl(text) {
+  const q = S.query.trim();
+  if (!q) return esc(text);
+  const i = R.norm(text).indexOf(R.norm(q));
+  if (i < 0 || R.norm(text).length !== text.length) return esc(text);
+  return esc(text.slice(0, i)) + "<mark>" + esc(text.slice(i, i + q.length)) + "</mark>" + esc(text.slice(i + q.length));
+}
+function persist() {
+  S.storageOk = R.saveEvents(store, S.events, { seedVersion: SEED_VERSION, deletedSeedIds: S.deletedSeedIds, editedIds: S.editedIds });
+  if (S.storageOk) { S.source = "saved"; S.savedAt = new Date().toISOString(); }
+  else toast("This browser blocked saving. Export your data so you don't lose changes.");
+}
+function toast(msg, action) {
+  const box = $("#toasts");
+  const el = document.createElement("div");
+  el.className = "toast";
+  el.innerHTML = `<span>${esc(msg)}</span>${action ? `<button type="button">${esc(action.label)}</button>` : ""}`;
+  if (action) el.querySelector("button").addEventListener("click", () => { action.run(); el.remove(); });
+  box.append(el);
+  setTimeout(() => el.remove(), action ? 7000 : 4000);
+}
+
+/* ---------- garland ---------- */
+function drawGarland() {
+  const g = $("#garland");
+  const W0 = g.clientWidth || 1000, H0 = g.clientHeight || 34, W = Math.round(W0 * 34 / H0), n = Math.max(8, Math.round(W / 30));
+  const look = S.look || "";
+  let s = "", line = "#2f7d3c";
+  if (look === "tamil" || look === "sourashtra") {
+    // malli poo (jasmine) string with hanging strands tipped with kanakambaram
+    line = "#3f7a3a";
+    for (let x = 0; x < W; x += 14) s += `<use href="#i-jasmine" x="${x}" y="7" width="16" height="10"/>`;
+    for (let x = 30; x < W; x += 64) s += `<use href="#i-strand" x="${x}" y="13" width="7" height="22"/>`;
+  } else if (look === "remembrance") {
+    // a single quiet jasmine string
+    line = "#9a8a66";
+    for (let x = 0; x < W; x += 22) s += `<use href="#i-jasmine" x="${x}" y="7" width="16" height="10"/>`;
+  } else if (look === "kerala") {
+    line = "#b8902a";
+    for (let i = 0; i < n; i++) { const x = (i + 0.5) * (W / n); s += i % 2 ? `<use href="#i-jasmine" x="${x - 8}" y="7" width="16" height="10"/>` : `<use href="#i-flower" x="${x - 9}" y="3" width="18" height="18"/>`; }
+  } else if (look === "muslim") {
+    line = "#d4af37";
+    for (let x = 24, i = 0; x < W; x += 36, i++) s += i % 2 ? `<use href="#i-lantern" x="${x - 7}" y="12" width="14" height="22"/>` : `<use href="#i-star8" x="${x - 6}" y="6" width="12" height="12"/>`;
+  } else {
+    for (let i = 0; i < n; i++) { const x = (i + 0.5) * (W / n); s += i % 2 ? `<use href="#i-mango" x="${x - 6}" y="8" width="12" height="24"/>` : `<use href="#i-flower" x="${x - 9}" y="3" width="18" height="18"/>`; }
+  }
+  g.setAttribute("viewBox", `0 0 ${W} 34`);
+  g.innerHTML = `<line x1="0" y1="12" x2="${W}" y2="12" stroke="${line}" stroke-width="1.6"/>` + s;
+}
+// Regional motif for the top space: kolam (Tamil), sungudi kolam (Sourashtra), pookalam (Kerala),
+// crescent & star lattice (Muslim), rangoli/muggu (Telugu and default).
+function drawMotif(look) {
+  const el = $("#rangoli");
+  if (look === "tamil" || look === "sourashtra") {
+    const ink = look === "tamil" ? "#fff8ea" : "#ffd36b";
+    let k = "";
+    for (let i = -2; i <= 2; i++) for (let j = -2; j <= 2; j++) {
+      if (Math.abs(i) + Math.abs(j) > 2) continue;
+      const x = i * 30, y = j * 30;
+      k += `<rect x="-13" y="-13" width="26" height="26" rx="8" transform="translate(${x} ${y}) rotate(45)" fill="none" stroke="${ink}" stroke-width="3"/>`;
+      k += `<circle cx="${x}" cy="${y}" r="3.2" fill="${ink}"/>`;
+    }
+    for (const [x, y] of [[0, -84], [84, 0], [0, 84], [-84, 0]]) k += `<circle cx="${x}" cy="${y}" r="11" fill="none" stroke="${ink}" stroke-width="3"/><circle cx="${x}" cy="${y}" r="3" fill="${ink}"/>`;
+    k += `<rect x="-56" y="-56" width="112" height="112" rx="26" transform="rotate(45)" fill="none" stroke="${ink}" stroke-width="3" stroke-dasharray="1 7" stroke-linecap="round"/>`;
+    el.innerHTML = k; return;
+  }
+  if (look === "kerala") {
+    const wedge = (r1, r2, a1, a2, fill) => { const p = (r, a) => `${(r * Math.cos(a)).toFixed(1)} ${(r * Math.sin(a)).toFixed(1)}`;
+      return `<path d="M${p(r1, a1)} L${p(r2, a1)} A${r2} ${r2} 0 0 1 ${p(r2, a2)} L${p(r1, a2)} A${r1} ${r1} 0 0 0 ${p(r1, a1)}Z" fill="${fill}"/>`; };
+    const ring = (r1, r2, n, colors, off = 0) => Array.from({ length: n }, (_, i) => wedge(r1, r2, (i + off) * 2 * Math.PI / n, (i + 1 + off) * 2 * Math.PI / n, colors[i % colors.length])).join("");
+    el.innerHTML = ring(78, 94, 32, ["#2f7d3c", "#3f9a4a"]) + ring(60, 78, 24, ["#f27b21", "#f7c04a"], .5) + ring(42, 60, 16, ["#a0175a", "#7b1fa2", "#fff8ea"]) +
+      ring(24, 42, 12, ["#f7c04a", "#fff8ea"], .5) + `<circle r="24" fill="#f27b21"/><circle r="12" fill="#c98a1b"/><path d="M0-14c5 6 5 11 0 14-5-3-5-8 0-14Z" fill="#ffd27a"/>`;
+    return;
+  }
+  if (look === "remembrance") {
+    // a lit diya with a soft glow, ringed by faint lotus petals
+    const petals = Array.from({ length: 12 }, (_, i) => `<path d="M0 0C-7-7-7-18 0-25 7-18 7-7 0 0Z" fill="#c9a77a" opacity=".35" transform="rotate(${i * 30}) translate(0 -58)"/>`).join("");
+    el.innerHTML = `<defs><radialGradient id="glow"><stop offset="0" stop-color="#ffd27a" stop-opacity=".9"/><stop offset="1" stop-color="#ffd27a" stop-opacity="0"/></radialGradient></defs>
+      ${petals}<circle r="92" fill="none" stroke="#b89668" stroke-opacity=".45" stroke-width="1.5"/>
+      <circle cy="-14" r="46" fill="url(#glow)"/>
+      <path d="M0-48C9-36 10-24 0-12-10-24-9-36 0-48Z" fill="#f2a20c"/><path d="M0-38C4-31 4-24 0-17-4-24-4-31 0-38Z" fill="#fff1c2"/>
+      <path d="M-46 0H46C42 24 22 36 0 36S-42 24-46 0Z" fill="#a8683a"/><path d="M-46 0H46" stroke="#7d4a26" stroke-width="4" stroke-linecap="round"/>
+      <path d="M46 0 58-10" stroke="#a8683a" stroke-width="6" stroke-linecap="round"/>
+      <path d="M-30 14H30" stroke="#d9b07a" stroke-width="2.5" stroke-dasharray="1 7" stroke-linecap="round"/>`;
+    return;
+  }
+  if (look === "muslim") {
+    const stars = Array.from({ length: 8 }, (_, i) => { const a = i * Math.PI / 4; return `<use href="#i-star8" x="${(80 * Math.cos(a) - 9).toFixed(1)}" y="${(80 * Math.sin(a) - 9).toFixed(1)}" width="18" height="18"/>`; }).join("");
+    el.innerHTML = `<circle r="92" fill="none" stroke="#d4af37" stroke-opacity=".6" stroke-width="1.5" stroke-dasharray="3 5"/>${stars}
+      <path d="M0-56 14-14 56 0 14 14 0 56-14 14-56 0-14-14Z" fill="none" stroke="#d4af37" stroke-opacity=".45" stroke-width="2"/>
+      <circle cx="-6" cy="0" r="40" fill="#e9c75c"/><circle cx="10" cy="-8" r="34" fill="var(--band)"/>
+      <path d="M30 2l3.5 7.6 8.3.9-6.2 5.6 1.8 8.2-7.4-4.2-7.4 4.2 1.8-8.2-6.2-5.6 8.3-.9Z" fill="#e9c75c"/>`;
+    return;
+  }
+  drawRangoli();
+}
+function drawRangoli() {
+  // A simple 8-fold rangoli: outer petals in rani pink, inner in marigold, kolam dots between.
+  const PETAL = "M0 0C-9-8-9-22 0-30 9-22 9-8 0 0Z";
+  const ring = (n, r, scale, fill, rot = 0) => Array.from({ length: n }, (_, i) =>
+    `<path d="${PETAL}" fill="${fill}" transform="rotate(${(360 / n) * i + rot}) translate(0 ${-r}) scale(${scale})"/>`).join("");
+  const dots = Array.from({ length: 16 }, (_, i) => { const a = (Math.PI * 2 * i) / 16; return `<circle cx="${(86 * Math.cos(a)).toFixed(1)}" cy="${(86 * Math.sin(a)).toFixed(1)}" r="3" fill="#fff" opacity=".8"/>`; }).join("");
+  $("#rangoli").innerHTML = `<circle r="92" fill="none" stroke="#fff" stroke-opacity=".55" stroke-width="1.5" stroke-dasharray="2 6"/>${dots}
+    ${ring(8, 30, 1.6, "#d6246e", 0)}${ring(8, 22, 1.15, "#7b1fa2", 22.5)}${ring(8, 8, .8, "#f2a20c", 0)}
+    <circle r="12" fill="#fff"/><circle r="7" fill="#d6246e"/><circle r="3" fill="#f7c04a"/>`;
+}
+drawMotif("");
+const garlandRO = new ResizeObserver(drawGarland);
+garlandRO.observe($("#garland"));
+
+/* ---------- header + hero ---------- */
+function renderHero() {
+  $("#todayDate").textContent = S.today.toLocaleDateString(undefined, { weekday: "long", month: "long", day: "numeric", year: "numeric" });
+  $("#todayDate").title = `Celebrations follow ${R.SITE.timeZoneLabel || R.BASE_TIME_ZONE}, wherever you are.`;
+  const next = R.nextCelebration(S.events, S.today);
+  const box = $("#heroInner");
+  if (!next) { box.innerHTML = `<div class="hero-text"><p class="eyebrow">No celebrations yet</p><h2>Add the first birthday or anniversary</h2><a class="btn primary" href="#manage">Manage events</a></div>`; return; }
+  // A remembrance day keeps the top space only when no celebration shares the date;
+  // otherwise the celebration leads and the remembrance card stays in the month list.
+  const celebrating = next.events.filter((e) => !R.isMemorial(e));
+  const memorial = celebrating.length ? null : next.events[0];
+  const events = memorial ? [memorial] : celebrating;
+  const first = events[0];
+  const date = new Date(S.today.getFullYear(), S.today.getMonth(), S.today.getDate() + next.days);
+  // On the day, dress the top space in the celebrant's regional theme (or the calm remembrance look).
+  const LOOKS = { telugu: "telugu", tamil: "tamil", "tamil-sourashtra": "sourashtra", malayali: "kerala", muslim: "muslim" };
+  const look = next.days !== 0 ? "" : memorial ? "remembrance" : LOOKS[R.communitiesOf(first, S.events)[0]] || "";
+  if (look !== S.look) { S.look = look; if (look) document.body.dataset.look = look; else delete document.body.dataset.look; drawMotif(look); drawGarland(); }
+  $("#hero").classList.toggle("mem", !!memorial);
+  const calHTML = `<div class="calpage ${memorial ? "mem" : events.every((e) => e.type === "birthday") ? "bd" : ""}" aria-hidden="true">
+      <div class="mo">${R.MONTHS[first.month - 1]}</div>
+      <div class="dn">${first.day}</div>
+      <div class="wd">${WD[date.getDay()]}</div>
+    </div>`;
+  if (memorial) {
+    const m = R.memorialFor(memorial), who = esc(R.displayName(memorial));
+    box.innerHTML = `${calHTML}
+      <div class="hero-text">
+        ${next.days === 0
+          ? `<p class="hb"><svg class="i" role="img" aria-label="Memorial lamp"><use href="#i-lamp"/></svg>${esc(m.label || "In remembrance")}</p>`
+          : `<p class="eyebrow">In remembrance</p>`}
+        <h2>${who}</h2>
+        ${next.days === 0 ? `<p class="slogan">${esc(m.tribute || "")}</p>` : `<div class="meta"><span class="pill solid">${esc(remembranceWhen(memorial, next.days))}</span></div>`}
+        <p class="memline">${esc(m.subtitle || "")}${m.subtitle ? " · " : ""}<a href="#founder">Our Founder</a></p>
+      </div>`;
+    $("#minibar").innerHTML = `
+      <span class="mb-date" aria-hidden="true"><i>${MON3[first.month - 1]}</i><b>${first.day}</b></span>
+      <span class="mb-text"><span class="mb-hb">${esc(remembranceWhen(memorial, next.days))}</span>${next.days === 0 ? "" : `<span class="mb-who">${who}</span>`}</span>
+      <svg class="i mb-up" aria-hidden="true"><use href="#i-up"/></svg>`;
+    return;
+  }
+  const isBd = events.every((e) => e.type === "birthday");
+  const who = events.map((e) => esc(R.displayName(e))).join(" · ");
+  const kinds = [...new Set(events.map((e) => (e.type === "birthday" ? "Birthday" : "Wedding anniversary")))].join(" & ");
+  box.innerHTML = `${calHTML}
+    <div class="hero-text">
+      ${next.days === 0 ? `<p class="hb">${esc(happyTitle(events))}</p>` : `<p class="eyebrow">Next celebration</p>`}
+      <h2>${who}</h2>
+      ${next.days === 0 ? `<p class="slogan">${esc(slogan(events))}</p>` : ""}
+      <div class="meta" ${next.days === 0 ? "hidden" : ""}>
+        <span class="pill solid">${esc(R.relativeLabel(next.days))}</span>
+        <span class="pill soft">${ico(isBd ? "cake" : "rings")}${esc(kinds)}</span>
+        <span class="pill soft">${R.formatDayMonth(first.month, first.day)}</span>
+      </div>
+      ${wishHTML(events)}
+    </div>`;
+  const g = events.flatMap((e) => R.greetingsFor(e, S.events))[0];
+  $("#minibar").innerHTML = `
+    <span class="mb-date" aria-hidden="true"><i>${MON3[first.month - 1]}</i><b>${first.day}</b></span>
+    <span class="mb-text">
+      <span class="mb-hb">${next.days === 0 ? esc(happyTitle(events)) : esc(R.relativeLabel(next.days))}</span>
+      <span class="mb-who">${who}</span>
+      ${g ? `<span class="mb-greet" lang="${g.lang}" dir="${g.dir}">${esc(g.text)}</span>` : ""}
+    </span>
+    <svg class="i mb-up" aria-hidden="true"><use href="#i-up"/></svg>`;
+}
+// "Remembering Sampath today" / "Sampath's remembrance day is tomorrow" / "… is in 12 days"
+function remembranceWhen(ev, days) {
+  const n = ev.name;
+  if (days === 0) return `Remembering ${n} today`;
+  return `${n}’s remembrance day is ${days === 1 ? "tomorrow" : "in " + days + " days"}`;
+}
+
+// English wishes for the day itself; picked per person/couple and year so they vary.
+const SLOGANS = {
+  birthday: [
+    "Wishing you a year full of laughter, love and good health.",
+    "Many happy returns of the day — the whole family is celebrating you!",
+    "May this year bring you joy, success and lots of cake.",
+    "Cheers to another fabulous year. Have a wonderful day!",
+    R.SITE.fromUs + " — have the happiest birthday!",
+  ],
+  anniversary: [
+    "Wishing you both a lifetime of love and happiness.",
+    "Here's to many more years of togetherness!",
+    "May your bond grow stronger with every passing year.",
+    "Cheers to the lovely couple! " + R.SITE.fromUs + ".",
+  ],
+};
+function happyTitle(list) {
+  const b = list.some((e) => e.type === "birthday"), a = list.some((e) => e.type === "anniversary");
+  return b && a ? "Happy Birthday & Anniversary!" : b ? "Happy Birthday!" : "Happy Anniversary!";
+}
+function slogan(list) {
+  const type = list.every((e) => e.type === "anniversary") ? "anniversary" : "birthday";
+  const pool = SLOGANS[type];
+  const seed = list.map((e) => e.id).join("|") + S.today.getFullYear();
+  let h = 0; for (const c of seed) h = (h * 31 + c.charCodeAt(0)) >>> 0;
+  return pool[h % pool.length];
+}
+function wishHTML(list) {
+  const lines = [];
+  const seen = new Set();
+  for (const ev of list) for (const g of R.greetingsFor(ev, S.events)) {
+    if (seen.has(g.text)) continue; seen.add(g.text);
+    lines.push(`<span lang="${g.lang}" dir="${g.dir}">${esc(g.text)}</span><small>${esc(g.roman)}</small>`);
+  }
+  if (!lines.length) return "";
+  return `<p class="wish">${lines.join("")}</p>`;
+}
+
+/* ---------- calendar ---------- */
+function memorialCardHTML(ev, m) {
+  const w = whenLabel(ev), name = R.displayName(ev);
+  return `<article class="card mem ${w.days === 0 ? "is-today" : ""}">
+    <div class="ico"><svg class="i" role="img" aria-label="Memorial lamp"><use href="#i-lamp"/></svg></div>
+    <div>
+      <p class="kind">In remembrance · ${R.formatDayMonth(ev.month, ev.day)}</p>
+      <h3>${hl(name)}</h3>
+      <p class="minfo">${esc(m.subtitle || m.label || "")}${m.subtitle || m.label ? " · " : ""}<a href="#founder">Our Founder</a></p>
+    </div>
+    <div class="side">
+      <span class="when ${w.days <= 1 ? "hot" : ""}">${w.text.startsWith("Earlier") ? `Earlier<span class="long">&nbsp;${esc(w.text.slice(8))}</span>` : esc(w.text)}</span>
+      <button class="btn ghost icon editbtn" data-edit="${esc(ev.id)}" aria-label="Edit ${esc(name)}" title="Edit">${ico("pencil")}</button>
+    </div>
+  </article>`;
+}
+function cardHTML(ev) {
+  const m = R.memorialFor(ev);
+  if (m) return memorialCardHTML(ev, m);
+  const bd = ev.type === "birthday";
+  const w = whenLabel(ev);
+  const name = R.displayName(ev);
+  return `<article class="card ${bd ? "bd" : "an"} ${w.days === 0 ? "is-today" : ""}">
+    <div class="ico" aria-hidden="true">${ico(bd ? "cake" : "rings")}</div>
+    <div>
+      <p class="kind">${bd ? "Birthday" : "Wedding anniversary"} · ${R.formatDayMonth(ev.month, ev.day)}</p>
+      <h3>${hl(name)}</h3>
+      ${(() => { const m = R.matchedAlias(ev, S.query, S.events); return m ? `<p class="aka">Found by “<mark>${esc(m)}</mark>”</p>` : ""; })()}
+      ${greetHTML(ev)}
+    </div>
+    <div class="side">
+      <span class="when ${w.days <= 1 ? "hot" : ""}">${w.text.startsWith("Earlier") ? `Earlier<span class="long">&nbsp;${esc(w.text.slice(8))}</span>` : esc(w.text)}</span>
+      <button class="btn ghost icon editbtn" data-edit="${esc(ev.id)}" aria-label="Edit ${esc(name)}" title="Edit">${ico("pencil")}</button>
+    </div>
+  </article>`;
+}
+function commHTML(ev) {
+  return R.communitiesOf(ev, S.events).map((k) => { const c = R.COMMUNITIES[k]; return `<span class="comm c-${k}" title="${esc(c.region)}">${esc(c.label)}${c.region ? " · " + esc(c.region) : ""}</span>`; }).join("");
+}
+function greetHTML(ev) {
+  const g = R.greetingsFor(ev, S.events);
+  return g.length ? `<p class="greet">${g.map((x) => `<span lang="${x.lang}" dir="${x.dir}">${esc(x.text)}</span>`).join("")}<i>${esc(g.map((x) => x.roman).join(" · "))}</i></p>` : "";
+}
+function emptyHTML(title, msg) {
+  return `<div class="empty">
+    <svg viewBox="0 0 150 110" aria-hidden="true">
+      <rect x="40" y="46" width="70" height="52" rx="6" fill="var(--an-bg)"/><rect x="34" y="34" width="82" height="16" rx="5" fill="var(--an-mark)" opacity=".85"/>
+      <rect x="69" y="34" width="12" height="64" fill="var(--bd-mark)"/><path d="M75 34c-10-16-26-12-20-2 3 4 12 3 20 2Zm0 0c10-16 26-12 20-2-3 4-12 3-20 2Z" fill="var(--bd-mark)"/>
+      <use href="#i-flower" x="10" y="80" width="18" height="18"/><use href="#i-flower" x="122" y="78" width="16" height="16"/><use href="#i-leaf" x="24" y="88" width="14" height="10"/>
+    </svg>
+    <h3>${esc(title)}</h3><p>${esc(msg)}</p>
+    ${S.filter !== "all" || S.query ? `<button class="btn" data-act="clear">Show all events</button>` : ""}
+  </div>`;
+}
+const FILTER_LABEL = { birthday: "Birthdays only", anniversary: "Wedding anniversaries only", remembrance: "Remembrance only", unverified: "Needs confirmation only" };
+// Shows every active filter so nothing narrows the list invisibly.
+function filterStatus() {
+  const parts = [];
+  if (S.filter !== "all") parts.push(`<span class="fpill">${esc(FILTER_LABEL[S.filter])} <button type="button" data-act="clear-filter" aria-label="Remove filter ${esc(FILTER_LABEL[S.filter])}">×</button></span>`);
+  if (S.query.trim()) parts.push(`<span class="fpill">Search: “${esc(S.query.trim())}” <button type="button" data-act="clear-search" aria-label="Clear search">×</button></span>`);
+  if (!parts.length) return "";
+  return `<div class="fstatus" role="status"><span>Filtered:</span>${parts.join("")}<button type="button" class="btn sm ghost" data-act="clear">Show all</button></div>`;
+}
+function countText(list) {
+  const c = R.summarize(list);
+  return `${c.birthdays} birthday${c.birthdays === 1 ? "" : "s"} · ${c.anniversaries} anniversar${c.anniversaries === 1 ? "y" : "ies"}`;
+}
+function renderMonth() {
+  const searching = !!S.query.trim();
+  const list = R.filterEvents(S.events, { filter: S.filter, query: S.query, month: searching ? null : S.month });
+  const summary = countText(list);
+  const head = (searching
+    ? `<div class="section-head"><h2>Matches for “${esc(S.query.trim())}”</h2><p id="countLine">Across all months · ${summary}</p></div>`
+    : `<div class="section-head"><h2 class="mhead">${S.month === S.today.getMonth() + 1 ? "This month’s celebrations" : R.MONTHS[S.month - 1] + " celebrations"}</h2></div><span class="sr" id="countLine" aria-live="polite">${R.MONTHS[S.month - 1]}: ${summary}</span>`) + filterStatus();
+  if (!list.length) {
+    const fname = { birthday: "birthdays", anniversary: "wedding anniversaries", remembrance: "remembrance days", unverified: "events needing confirmation", all: "celebrations" }[S.filter];
+    return head + (searching
+      ? emptyHTML("No one matches that name", "Try a nickname or a shorter spelling — search covers aliases too.")
+      : emptyHTML(`No ${fname} in ${R.MONTHS[S.month - 1]}`, "A quiet month. Use the arrows to see what's coming next."));
+  }
+  const groups = R.groupByDate(list);
+  const groupHTML = (g) => {
+    const w = whenLabel(g.events[0]);
+    const wd = WD[occThisYear(g.events[0]).getDay()];
+    return `<section class="day ${w.days === 0 ? "is-today" : ""}" aria-label="${R.formatDayMonth(g.month, g.day)}">
+      <header class="dh"><span class="dnum">${g.day}</span><b>${R.MONTHS[g.month - 1]}</b><span>${wd}${w.days === 0 ? " · today" : ""}</span></header>
+      <div class="cards">${g.events.map(cardHTML).join("")}</div>
+    </section>`;
+  };
+  return head + groups.map(groupHTML).join("");
+}
+function renderYear() {
+  const list = R.filterEvents(S.events, { filter: S.filter, query: S.query });
+  const cur = R.currentMonth(S.today);
+  const tiles = R.monthSummary(list).map((m) => {
+    const all = [...m.birthdays, ...m.anniversaries].sort(R.compareEvents);
+    return `<button class="mtile ${m.month === cur ? "cur" : ""}" data-month="${m.month}" aria-label="${m.name}: ${m.total} celebration${m.total === 1 ? "" : "s"}. Open month">
+      <header><h3>${m.name}</h3><span class="count">${m.total}<span class="long"> · ${m.birthdays.length} ${ico("cake")} ${m.anniversaries.length} ${ico("rings")}</span></span></header>
+      ${all.length ? `<ul>${all.map((e) => { const k = R.isMemorial(e) ? "mem" : e.type === "birthday" ? "bd" : "an";
+        return `<li class="${k}"><b>${e.day}</b>${k === "mem" ? `<svg class="i" role="img" aria-label="In remembrance"><use href="#i-lamp"/></svg>` : ico(k === "bd" ? "cake" : "rings")}<span>${esc(R.displayName(e))}</span></li>`; }).join("")}</ul>` : `<p class="none">No celebrations</p>`}
+    </button>`;
+  }).join("");
+  const head = `<div class="section-head"><h2>${S.today.getFullYear()} at a glance</h2><p class="long">Tap a month to open it</p></div><span class="sr" id="countLine">${list.length} celebrations · ${countText(list)}</span>` + filterStatus();
+  return head + (list.length ? `<div class="year">${tiles}</div>` : emptyHTML("Nothing matches these filters", "Clear the search or pick another filter."));
+}
+function renderCalendar() {
+  for (const b of document.querySelectorAll("#filters .chip")) b.setAttribute("aria-pressed", b.dataset.f === S.filter);
+  for (const b of document.querySelectorAll(".seg button")) b.setAttribute("aria-pressed", b.dataset.v === S.view);
+  $("#monthSel").value = S.month;
+  $("#monthNav").hidden = S.view !== "month";
+  const bn = [];
+  if (S.loadError) bn.push(S.loadError);
+  if (S.migrated && (S.migrated.added.length || (S.migrated.updated || []).length)) {
+    const a = S.migrated.added.length, u = (S.migrated.updated || []).length;
+    bn.push(`The bundled list was updated: ${[a ? `${a} event${a === 1 ? "" : "s"} added` : "", u ? `${u} corrected` : ""].filter(Boolean).join(", ")}. Your own edits were kept.`);
+  }
+  if (!S.storageOk) bn.push("This browser isn't saving changes (private mode or storage blocked). Export a backup from Manage events.");
+  $("#banner").innerHTML = bn.map((t) => `<div class="banner">${ico("alert")}<span>${esc(t)}</span></div>`).join("");
+  $("#content").innerHTML = S.view === "year" ? renderYear() : renderMonth();
+  const founder = founderEvent();
+  $("#remChip").hidden = !S.events.some(R.isMemorial);
+  const ded = $("#dedication"), m = founder && R.memorialFor(founder);
+  ded.hidden = !(m && m.dedication);
+  if (m && m.dedication) ded.innerHTML = `<p><svg class="i" role="img" aria-label="Memorial lamp"><use href="#i-lamp"/></svg>${esc(m.dedication)} <a href="#founder">Our Founder</a></p>`;
+}
+
+/* ---------- Our Founder ---------- */
+function founderEvent() {
+  return S.events.find((e) => { const m = R.memorialFor(e); return m && m.isGroupFounder; }) || null;
+}
+function renderFounder() {
+  const ev = founderEvent(), m = ev && R.memorialFor(ev);
+  const view = $("#founderView");
+  if (!m) { view.innerHTML = `<a class="back" href="#">${ico("left")} Calendar</a><div class="empty"><h3>Nothing here yet</h3></div>`; return; }
+  const photo = m.photoUrl
+    ? `<img src="${esc(m.photoUrl)}" alt="${esc(ev.name)}">`
+    : `<svg viewBox="-66 -62 132 108" role="img" aria-label="Photo to be added"><circle cy="-14" r="44" fill="#ffd27a" opacity=".35"/>
+        <path d="M0-48C9-36 10-24 0-12-10-24-9-36 0-48Z" fill="#f2a20c"/><path d="M-46 0H46C42 24 22 36 0 36S-42 24-46 0Z" fill="#a8683a"/><path d="M46 0 58-10" stroke="#a8683a" stroke-width="6" stroke-linecap="round"/></svg>`;
+  const called = (ev.aliases || [])[0];
+  view.innerHTML = `<a class="back" href="#">${ico("left")} Calendar</a>
+    <article class="fcard" aria-labelledby="fTitle">
+      <div class="fphoto">${photo}</div>
+      <p class="eyebrow">Remembering Our Founder</p>
+      <h2 id="fTitle">${esc(ev.name)}</h2>
+      ${called ? `<p class="called">Lovingly called ${esc(called)}</p>` : ""}
+      <p class="ftrib">${esc(m.tribute || "")}</p>
+      <ul class="ffacts">
+        ${m.isGroupFounder ? `<li>${ico("lamp")}Founded our family WhatsApp group</li>` : ""}
+        ${m.ageAtPassing ? `<li>${ico("lamp")}Remembered at age ${esc(m.ageAtPassing)}</li>` : ""}
+        <li>${ico("lamp")}Remembered each ${R.formatDayMonth(ev.month, ev.day)}</li>
+      </ul>
+    </article>
+    <section class="fmore"><h3>Family memories</h3><p>Photos and memories from the family will be gathered here.</p></section>`;
+}
+
+/* ---------- manage ---------- */
+function renderManage() {
+  const c = R.counts(S.events);
+  $("#mstats").innerHTML = [
+    ["", c.total, "Total events"], ["ok", c.verified, "Verified"], ["warn", c.unverified, "Needs confirmation"],
+    ["", c.birthdays, "Birthdays"], ["", c.anniversaries, "Anniversaries"],
+  ].map(([k, n, l]) => `<div class="stat ${k}"><b>${n}</b><span>${l}</span></div>`).join("");
+  renderFamilies();
+  for (const b of document.querySelectorAll("#mfilters .chip")) b.setAttribute("aria-pressed", b.dataset.f === S.mfilter);
+  const list = R.filterEvents(S.events, { filter: S.mfilter, query: S.mq });
+  $("#mlist").innerHTML = list.length ? `<table class="stack"><thead><tr><th>Date</th><th>Name</th><th>Type</th><th>Status</th><th><span class="sr">Actions</span></th></tr></thead><tbody>${list.map((e) => {
+    const bd = e.type === "birthday", name = R.displayName(e);
+    return `<tr><td class="date">${MON3[e.month - 1]} ${e.day}</td>
+      <td><strong>${esc(name)}</strong>${R.isMemorial(e) ? ` <span class="badge mem">In remembrance</span>` : ""}${e.aliases.length ? `<div class="aka">aka ${esc(e.aliases.join(", "))}</div>` : ""}${e.relationship ? `<div class="aka">${esc(e.relationship)}</div>` : ""}<div>${commHTML(e)}</div></td>
+      <td><span class="typetag ${bd ? "bd" : "an"}">${ico(bd ? "cake" : "rings")}${bd ? "Birthday" : "Anniversary"}</span></td>
+      <td>${e.verified ? `<span class="badge ok">${ico("check")}Verified</span>` : `<span class="badge warn">${ico("alert")}Needs confirmation</span>`}</td>
+      <td><div class="acts">
+        <button class="btn ghost sm" data-verify="${esc(e.id)}">${e.verified ? "Mark unverified" : "Mark verified"}</button>
+        <button class="btn ghost sm" data-edit="${esc(e.id)}" aria-label="Edit ${esc(name)}">Edit</button>
+        <button class="btn ghost sm" data-del="${esc(e.id)}" aria-label="Delete ${esc(name)}">Delete</button>
+      </div></td></tr>`;
+  }).join("")}</tbody></table>` : `<div class="empty"><h3>No events match</h3><p>Try another search or filter.</p></div>`;
+  $("#savedInfo").textContent = S.source === "saved"
+    ? `Your edited list is saved in this browser${S.savedAt ? " (last saved " + new Date(S.savedAt).toLocaleString() + ")" : ""}. Other people and devices won't see these changes — export JSON to share them.`
+    : "Showing the original list. Any change you make is saved in this browser.";
+  $("#savedInfo").textContent += ` Seed data version ${SEED_VERSION} · ${R.seedEvents(SEED).length} bundled events.`;
+}
+
+function renderFamilies() {
+  const g = R.familyGrid(S.events);
+  const md = (e) => `${MON3[e.month - 1]} ${e.day}`;
+  const person = (e, label) => `<li><button class="linkbtn" data-edit="${esc(e.id)}">${esc(e.name)}</button><span>${label ? label + " · " : ""}${md(e)}</span></li>`;
+  const gaps = [g.missing.length ? `${g.missing.length} birthday${g.missing.length === 1 ? "" : "s"} missing` : "",
+    g.missingAnniversaries.length ? `${g.missingAnniversaries.length} anniversar${g.missingAnniversaries.length === 1 ? "y" : "ies"} missing` : ""].filter(Boolean);
+  $("#famSummary").textContent = `${g.families.length} couples · ${g.families.reduce((n, f) => n + f.kids.length, 0)} kids linked · ` + (gaps.length ? gaps.join(" · ") : "nothing missing");
+  $("#famGrid").innerHTML = g.families.map((f) => {
+    const gap = f.partners.some((p) => !p.birthday) || !f.anniversary;
+    return `<article class="fam ${gap ? "gap" : ""}">
+      <h3>${esc(f.people.join(" & "))}</h3>
+      ${f.anniversary
+        ? `<p class="ann">${ico("rings")} Anniversary · <button class="linkbtn" data-edit="${esc(f.anniversary.id)}">${R.formatDayMonth(f.anniversary.month, f.anniversary.day)}</button></p>`
+        : `<p class="ann miss">${ico("rings")} Anniversary missing <button class="btn sm" data-addann="${esc(f.people.join("|"))}">Add</button></p>`}
+      <ul>${f.partners.map((p) => p.birthday ? person(p.birthday) : `<li><span>${esc(p.name)}</span><span class="miss">Birthday missing <button class="btn sm" data-addperson="${esc(p.name)}" data-partner="${esc(f.partners.find((x) => x !== p).name)}">Add</button></span></li>`).join("")}</ul>
+      <p class="lbl">Kids</p>
+      ${f.kids.length ? `<ul>${f.kids.map((k) => person(k)).join("")}</ul>` : `<p class="aka">None linked yet. Edit a child and choose “Child of”.</p>`}
+    </article>`;
+  }).join("");
+  const loose = [...g.orphanKids, ...g.unlinked];
+  $("#famUnlinked").innerHTML = loose.length ? `<p class="lbl" style="margin-top:4px">Not linked to a family yet (${loose.length}) — tap a name to set “Child of”</p>
+    <div class="unl">${loose.map((e) => `<button class="chip" data-edit="${esc(e.id)}">${esc(e.name)} <span class="aka">${md(e)}</span></button>`).join("")}</div>` : "";
+}
+
+/* ---------- routing ---------- */
+function route() {
+  const h = location.hash.replace("#", "");
+  const manage = h === "manage", founder = h === "founder", cal = !manage && !founder;
+  if (cal) S.view = h === "year" ? "year" : "month";
+  $("#calendarView").hidden = !cal;
+  $("#manageView").hidden = !manage;
+  $("#founderView").hidden = !founder;
+  $("#hero").hidden = !cal; $("#garlandWrap").hidden = !cal;
+  if (!cal) { if (founder) document.body.dataset.look = "remembrance"; else delete document.body.dataset.look; S.look = null; $("#minibar").classList.remove("show"); }
+  if (founder) window.scrollTo(0, 0);
+  $("#tabCal").toggleAttribute("aria-current", !manage); if (!manage) $("#tabCal").setAttribute("aria-current", "page");
+  $("#tabManage").toggleAttribute("aria-current", manage); if (manage) $("#tabManage").setAttribute("aria-current", "page");
+  renderAll();
+}
+function setHash(h) {
+  if (location.hash.replace("#", "") === h) { route(); return; }
+  if (h) location.hash = h;
+  else { history.replaceState(null, "", location.pathname + location.search); route(); }
+}
+function renderAll() {
+  if (!$("#founderView").hidden) { renderFounder(); return; }
+  renderHero();
+  if ($("#manageView").hidden) renderCalendar(); else renderManage();
+}
+
+/* ---------- dialogs ---------- */
+const dlg = $("#dlg");
+function openDialog(html) {
+  dlg.innerHTML = html;
+  if (!dlg.open) dlg.showModal();
+  const f = dlg.querySelector("[autofocus]") || dlg.querySelector("input,select,textarea,button");
+  f && f.focus();
+}
+function closeDialog() { if (dlg.open) dlg.close(); }
+dlg.addEventListener("click", (e) => { if (e.target === dlg) closeDialog(); });
+function confirmBox({ title, body, ok = "Confirm", danger = false }) {
+  return new Promise((resolve) => {
+    openDialog(`<form class="dlg" method="dialog"><h2 id="dlgTitle">${esc(title)}</h2><p>${body}</p>
+      <div class="foot"><button class="btn" value="no" autofocus>Cancel</button><button class="btn ${danger ? "danger" : "primary"}" value="yes">${esc(ok)}</button></div></form>`);
+    dlg.addEventListener("close", () => resolve(dlg.returnValue === "yes"), { once: true });
+  });
+}
+
+function eventForm(ev, type, preset) {
+  const isNew = !ev;
+  const t = ev ? ev.type : type;
+  const e = ev || Object.assign({ type: t, month: S.month, day: 1, aliases: [], verified: true }, preset || {});
+  const couples = R.familyGrid(S.events).families;
+  const parentKey = (e.parents || []).join("|");
+  const bd = t === "birthday";
+  openDialog(`<form class="dlg" id="evForm" novalidate>
+    <h2 id="dlgTitle">${isNew ? (bd ? "Add birthday" : "Add wedding anniversary") : "Edit " + esc(R.displayName(e))}</h2>
+    <div class="errors" id="fErr" hidden></div>
+    ${bd
+      ? `<div class="field"><label for="fName">Name</label><input id="fName" name="name" value="${esc(e.name || "")}" autofocus required><small>Use the canonical name. Put nicknames in aliases.</small></div>`
+      : `<div class="two"><div class="field"><label for="fP1">Partner 1</label><input id="fP1" name="p1" value="${esc(e.people?.[0] || "")}" autofocus required></div>
+         <div class="field"><label for="fP2">Partner 2</label><input id="fP2" name="p2" value="${esc(e.people?.[1] || "")}" required></div></div>`}
+    <div class="two">
+      <div class="field"><label for="fMonth">Month</label><select id="fMonth" name="month">${R.MONTHS.map((m, i) => `<option value="${i + 1}" ${e.month === i + 1 ? "selected" : ""}>${m}</option>`).join("")}</select></div>
+      <div class="field"><label for="fDay">Day</label><input id="fDay" name="day" type="number" inputmode="numeric" min="1" max="31" value="${e.day}" required></div>
+    </div>
+    <div class="field"><label for="fAliases">Aliases</label><input id="fAliases" name="aliases" value="${esc((e.aliases || []).join(", "))}"><small>Comma-separated nicknames or spellings${bd ? "" : ", e.g. “Venky & Soma”"}.</small></div>
+    ${bd ? `<div class="field"><label for="fComm">Community</label><select id="fComm" name="community"><option value="">Not set</option>${Object.entries(R.COMMUNITIES).map(([k, c]) => `<option value="${k}" ${e.community === k ? "selected" : ""}>${esc(c.label)}${c.region ? " — " + esc(c.region) : ""}</option>`).join("")}</select><small>Sets the language of their greeting. Anniversaries use both partners'.</small></div>` : ""}
+    ${bd ? `<div class="field"><label for="fParents">Child of</label><select id="fParents" name="parents"><option value="">Not a child in the group</option>${couples.map((c) => { const k = c.people.join("|"); const rev = [...c.people].reverse().join("|"); return `<option value="${esc(k)}" ${parentKey === k || parentKey === rev ? "selected" : ""}>${esc(c.people.join(" & "))}</option>`; }).join("")}</select></div>` : ""}
+    <div class="field"><label for="fRel">Relationship</label><input id="fRel" name="relationship" value="${esc(e.relationship || "")}" placeholder="${bd ? "e.g. Wife of Venkat" : "Optional"}"></div>
+    <div class="field"><label for="fNote">Notes</label><textarea id="fNote" name="note">${esc(e.note || "")}</textarea></div>
+    <label class="check"><input type="checkbox" name="verified" ${e.verified ? "checked" : ""}> Date is verified</label>
+    <div id="fDup"></div>
+    <div class="foot">
+      ${isNew ? "" : `<button type="button" class="btn ghost" data-del="${esc(e.id)}" style="margin-right:auto">Delete</button>`}
+      <button type="button" class="btn" data-act="close">Cancel</button>
+      <button type="submit" class="btn primary">${isNew ? "Add" : "Save changes"}</button>
+    </div>
+  </form>`);
+  const form = $("#evForm");
+  let force = false;
+  form.addEventListener("submit", (sub) => {
+    sub.preventDefault();
+    const fd = new FormData(form);
+    const raw = Object.assign({}, e, {
+      type: t, month: fd.get("month"), day: fd.get("day"), aliases: fd.get("aliases"),
+      relationship: fd.get("relationship"), note: fd.get("note"), verified: fd.get("verified") === "on",
+    });
+    if (bd) {
+      raw.name = fd.get("name");
+      if (fd.get("community")) raw.community = fd.get("community"); else delete raw.community;
+      if (fd.get("parents")) { raw.parents = fd.get("parents").split("|"); if (!String(raw.relationship || "").trim()) raw.relationship = "Child of " + raw.parents.join(" and "); }
+      else delete raw.parents;
+    }
+    else raw.people = [fd.get("p1"), fd.get("p2")];
+    const { event, errors } = R.validateEvent(raw);
+    const errBox = $("#fErr");
+    if (errors.length) { errBox.hidden = false; errBox.innerHTML = `<strong>Please fix:</strong><ul>${errors.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>`; errBox.scrollIntoView({ block: "nearest" }); return; }
+    errBox.hidden = true;
+    const dup = R.findDuplicate(event, S.events, isNew ? undefined : e.id);
+    if (dup && !force) {
+      $("#fDup").innerHTML = `<div class="errors"><strong>This looks like an existing record:</strong> ${esc(R.displayName(dup))} (${R.formatDayMonth(dup.month, dup.day)}${dup.verified ? ", verified" : ""}).
+        <div class="row" style="margin-top:8px"><button type="button" class="btn sm" data-edit="${esc(dup.id)}">Edit that one instead</button><button type="button" class="btn sm" id="saveAnyway">Save as a separate person</button></div></div>`;
+      $("#saveAnyway").addEventListener("click", () => { force = true; form.requestSubmit(); });
+      return;
+    }
+    const before = S.events;
+    if (isNew) {
+      event.id = R.makeId(event, new Set(S.events.map((x) => x.id)));
+      S.events = R.sortEvents([...S.events, event]);
+    } else {
+      S.events = R.sortEvents(S.events.map((x) => (x.id === e.id ? event : x)));
+    }
+    commit(before); closeDialog(); renderAll();
+    toast(`${isNew ? "Added" : "Saved"} ${R.displayName(event)} · ${R.formatDayMonth(event.month, event.day)}`);
+  });
+}
+
+async function deleteEvent(id) {
+  const ev = S.events.find((e) => e.id === id);
+  if (!ev) return;
+  const ok = await confirmBox({ title: "Delete this celebration?", body: `<strong>${esc(R.displayName(ev))}</strong> — ${R.formatDayMonth(ev.month, ev.day)} will be removed from the calendar.`, ok: "Delete", danger: true });
+  if (!ok) return;
+  const before = S.events, beforeDel = S.deletedSeedIds;
+  S.events = S.events.filter((e) => e.id !== id);
+  if (SEED_IDS.has(id)) S.deletedSeedIds = [...new Set([...S.deletedSeedIds, id])];
+  persist(); renderAll();
+  toast(`Deleted ${R.displayName(ev)}`, { label: "Undo", run: () => { S.events = before; S.deletedSeedIds = beforeDel; persist(); renderAll(); } });
+}
+
+/* ---------- export / import ---------- */
+const fileName = () => `${R.STORAGE_KEY.split(":")[0]}-${new Date().toISOString().slice(0, 10)}.json`;
+async function exportDownload() {
+  const data = R.exportJSON(S.events);
+  if (S.dl) {
+    try { await S.dl.save({ filename: fileName(), data }); toast("Export ready."); }
+    catch (e) { toast("Download didn't happen. Use Copy JSON instead."); }
+    return;
+  }
+  try {
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(new Blob([data], { type: "application/json" }));
+    a.download = fileName(); document.body.append(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+  } catch (e) { showJSON(data); }
+}
+function showJSON(data) {
+  openDialog(`<div class="dlg"><h2 id="dlgTitle">Your data as JSON</h2><p>Select all and copy it somewhere safe.</p>
+    <textarea class="mono" rows="12" readonly style="width:100%;border:1.5px solid var(--line);border-radius:12px;padding:10px;background:var(--surface)">${esc(data)}</textarea>
+    <div class="foot"><button class="btn primary" data-act="close">Done</button></div></div>`);
+  const ta = dlg.querySelector("textarea"); ta.focus(); ta.select();
+}
+async function exportCopy() {
+  const data = R.exportJSON(S.events);
+  try { await navigator.clipboard.writeText(data); toast(`Copied ${S.events.length} events as JSON.`); }
+  catch (e) { showJSON(data); }
+}
+function importText(text) {
+  const { events, errors } = R.parseImport(text);
+  const errHTML = errors.length ? `<details class="errors" ${events.length ? "" : "open"}><summary>${errors.length} record${errors.length === 1 ? "" : "s"} couldn't be read</summary><ul>${errors.map((x) => `<li>${esc(x)}</li>`).join("")}</ul></details>` : "";
+  if (!events.length) {
+    openDialog(`<div class="dlg"><h2 id="dlgTitle">Nothing to import</h2>${errHTML}<div class="foot"><button class="btn primary" data-act="close">OK</button></div></div>`);
+    return;
+  }
+  const plan = R.planImport(S.events, events);
+  if (!plan.fresh.length && !plan.duplicates.length) {
+    openDialog(`<div class="dlg"><h2 id="dlgTitle">Already up to date</h2><p>All ${plan.identical.length} records in this file match what you have.</p>${errHTML}<div class="foot"><button class="btn primary" data-act="close">OK</button></div></div>`);
+    return;
+  }
+  const dupHTML = plan.duplicates.map((d, i) => `<fieldset class="dupe"><legend class="sr">Possible duplicate ${i + 1}</legend>
+      <div><strong>${esc(R.displayName(d.incoming))}</strong> · ${R.formatDayMonth(d.incoming.month, d.incoming.day)} in the file
+      <br><span class="aka">Looks like ${esc(R.displayName(d.existing))} · ${R.formatDayMonth(d.existing.month, d.existing.day)}${d.existing.verified ? " (verified)" : " (needs confirmation)"}</span></div>
+      <div class="opts">
+        <label><input type="radio" name="d${i}" value="merge" checked> Merge into existing</label>
+        <label><input type="radio" name="d${i}" value="both"> Keep both</label>
+        <label><input type="radio" name="d${i}" value="skip"> Skip</label>
+      </div></fieldset>`).join("");
+  openDialog(`<form class="dlg" id="impForm"><h2 id="dlgTitle">Review import</h2>
+    <p>${plan.fresh.length} new event${plan.fresh.length === 1 ? "" : "s"} will be added${plan.identical.length ? `; ${plan.identical.length} identical record${plan.identical.length === 1 ? " is" : "s are"} already here and will be skipped` : ""}.</p>
+    ${plan.duplicates.length ? `<p><strong>${plan.duplicates.length} possible duplicate${plan.duplicates.length === 1 ? "" : "s"}.</strong> Merging keeps the existing name and adds new nicknames and notes; a verified date in the file replaces an unconfirmed one.</p>${dupHTML}` : ""}
+    ${errHTML}
+    <div class="foot"><button type="button" class="btn" data-act="close">Cancel</button><button class="btn primary" type="submit">Import</button></div></form>`);
+  $("#impForm").addEventListener("submit", (sub) => {
+    sub.preventDefault();
+    const fd = new FormData(sub.target), decisions = {};
+    plan.duplicates.forEach((_, i) => { decisions[i] = fd.get("d" + i); });
+    const beforeList = S.events, before = S.events.length;
+    S.events = R.applyImport(S.events, plan, decisions);
+    commit(beforeList); closeDialog(); renderAll();
+    toast(`Import done: ${S.events.length - before} added, ${Object.values(decisions).filter((v) => v === "merge").length} merged.`);
+  });
+}
+function pasteImport() {
+  openDialog(`<form class="dlg" id="pasteForm"><h2 id="dlgTitle">Paste JSON</h2><p>Paste a file exported from this app.</p>
+    <div class="field"><label for="pasteTa" class="sr">JSON</label><textarea id="pasteTa" class="mono" rows="10" autofocus></textarea></div>
+    <div class="foot"><button type="button" class="btn" data-act="close">Cancel</button><button class="btn primary" type="submit">Review</button></div></form>`);
+  $("#pasteForm").addEventListener("submit", (sub) => { sub.preventDefault(); importText($("#pasteTa").value); });
+}
+
+/* ---------- events ---------- */
+$("#monthSel").innerHTML = R.MONTHS.map((m, i) => `<option value="${i + 1}">${m}</option>`).join("");
+const shiftMonth = (d) => { S.month = ((S.month - 1 + d + 12) % 12) + 1; renderCalendar(); };
+$("#prevM").addEventListener("click", () => shiftMonth(-1));
+$("#nextM").addEventListener("click", () => shiftMonth(1));
+$("#monthSel").addEventListener("change", (e) => { S.month = +e.target.value; renderCalendar(); });
+$("#todayBtn").addEventListener("click", () => { S.today = R.todayIn(R.BASE_TIME_ZONE); S.month = R.currentMonth(S.today); S.query = ""; S.filter = "all"; $("#q").value = ""; renderAll(); });
+$("#q").addEventListener("input", (e) => { S.query = e.target.value; renderCalendar(); });
+$("#filters").addEventListener("click", (e) => { const b = e.target.closest("[data-f]"); if (b) { S.filter = b.dataset.f; renderCalendar(); } });
+document.querySelector(".seg").addEventListener("click", (e) => { const b = e.target.closest("[data-v]"); if (b) setHash(b.dataset.v === "year" ? "year" : ""); });
+$("#mq").addEventListener("input", (e) => { S.mq = e.target.value; renderManage(); });
+$("#mfilters").addEventListener("click", (e) => { const b = e.target.closest("[data-f]"); if (b) { S.mfilter = b.dataset.f; renderManage(); } });
+$("#addB").addEventListener("click", () => eventForm(null, "birthday"));
+$("#addA").addEventListener("click", () => eventForm(null, "anniversary"));
+$("#expDl").addEventListener("click", exportDownload);
+$("#expCopy").addEventListener("click", exportCopy);
+$("#impFile").addEventListener("click", () => $("#fileIn").click());
+$("#impPaste").addEventListener("click", pasteImport);
+$("#fileIn").addEventListener("change", async (e) => {
+  const f = e.target.files[0]; e.target.value = "";
+  if (!f) return;
+  try { importText(await f.text()); } catch (err) { toast("That file couldn't be read."); }
+});
+$("#reloadSeed").addEventListener("click", async () => {
+  const preview = R.mergeSeed(S.events, SEED, { includeDeleted: true });
+  if (!preview.added.length) { toast(`Your list already has every event in the bundled list (version ${SEED_VERSION}).`); return; }
+  const ok = await confirmBox({ title: "Reload latest seed data?", body: `${preview.added.length} event${preview.added.length === 1 ? "" : "s"} from the bundled list ${preview.added.length === 1 ? "is" : "are"} missing from your saved list: <strong>${preview.added.map((e) => esc(R.displayName(e))).join(", ")}</strong>. They will be added back. Your edits and additions stay as they are.`, ok: "Add them" });
+  if (!ok) return;
+  S.events = preview.events; S.deletedSeedIds = []; S.migrated = null;
+  persist(); renderAll(); toast(`Added ${preview.added.length} event${preview.added.length === 1 ? "" : "s"} from the latest seed data.`);
+});
+$("#restore").addEventListener("click", async () => {
+  const ok = await confirmBox({ title: "Restore the original list?", body: `All additions, edits and deletions saved in this browser will be discarded and all ${R.seedEvents(SEED).length} original celebrations brought back. Export first if you want to keep your changes.`, ok: "Restore original", danger: true });
+  if (!ok) return;
+  S.events = R.restoreSeed(store, SEED); S.source = "seed"; S.savedAt = null; S.loadError = null; S.deletedSeedIds = []; S.editedIds = []; S.migrated = null;
+  renderAll(); toast("Original list restored.");
+});
+document.addEventListener("click", (e) => {
+  const t = e.target.closest("[data-edit],[data-del],[data-verify],[data-month],[data-act],[data-addperson],[data-addann]");
+  if (!t) return;
+  if (t.dataset.addann) { eventForm(null, "anniversary", { people: t.dataset.addann.split("|") }); return; }
+  if (t.dataset.addperson) { eventForm(null, "birthday", { name: t.dataset.addperson, relationship: "Wife of " + t.dataset.partner }); return; }
+  if (t.dataset.edit) { const ev = S.events.find((x) => x.id === t.dataset.edit); if (ev) eventForm(ev); }
+  else if (t.dataset.del) { closeDialog(); deleteEvent(t.dataset.del); }
+  else if (t.dataset.verify) {
+    const before = S.events;
+    S.events = S.events.map((x) => (x.id === t.dataset.verify ? Object.assign({}, x, { verified: !x.verified }) : x));
+    const ev = S.events.find((x) => x.id === t.dataset.verify);
+    commit(before); renderAll(); toast(`${R.displayName(ev)} marked ${ev.verified ? "verified" : "as needing confirmation"}.`);
+  }
+  else if (t.dataset.month) { S.month = +t.dataset.month; setHash(""); window.scrollTo({ top: $("#calendarView").offsetTop - 8 }); }
+  else if (t.dataset.act === "close") closeDialog();
+  else if (t.dataset.act === "clear") { S.filter = "all"; S.query = ""; $("#q").value = ""; renderCalendar(); }
+  else if (t.dataset.act === "clear-filter") { S.filter = "all"; renderCalendar(); }
+  else if (t.dataset.act === "clear-search") { S.query = ""; $("#q").value = ""; renderCalendar(); }
+});
+window.addEventListener("hashchange", route);
+// Show the slim banner whenever the big celebration section is scrolled out of view (calendar only).
+const minibar = $("#minibar");
+const heroObserver = new IntersectionObserver(([entry]) => {
+  const show = !entry.isIntersecting && !$("#hero").hidden;
+  minibar.classList.toggle("show", show);
+  minibar.tabIndex = show ? 0 : -1;
+}, { rootMargin: "-40px 0px 0px 0px" });
+heroObserver.observe($("#hero"));
+minibar.addEventListener("click", () => window.scrollTo({ top: 0, behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" }));
+// Roll "today" over at midnight if the page is left open.
+// Keep "today" current: every minute while open, and whenever the page comes back to the
+// screen (iPhone Safari pauses background tabs, and restores pages from its back/forward cache).
+function refreshToday() {
+  const n = R.todayIn(R.BASE_TIME_ZONE);
+  if (n.toDateString() !== S.today.toDateString()) {
+    const wasOnCurrentMonth = S.month === S.today.getMonth() + 1;
+    S.today = n;
+    if (wasOnCurrentMonth) S.month = R.currentMonth(n);
+    renderAll();
+  }
+}
+setInterval(refreshToday, 60000);
+document.addEventListener("visibilitychange", () => { if (!document.hidden) refreshToday(); });
+window.addEventListener("pageshow", refreshToday);
+window.addEventListener("focus", refreshToday);
+
+if (S.migrated) persist();
+route();
+
+// Optional: a hosted download capability when running inside Claude.
+if (window.claude && typeof window.claude.use === "function") {
+  window.claude.use("downloads").then((d) => { S.dl = d || null; }).catch(() => {});
+}
+}
+</script>
+</body>
+</html>

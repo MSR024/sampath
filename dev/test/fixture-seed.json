@@ -1,0 +1,722 @@
+{
+  "seedVersion": 4,
+  "birthdays": [
+    {
+      "id": "birthday-vihaan",
+      "type": "birthday",
+      "name": "Vihaan",
+      "month": 1,
+      "day": 9,
+      "aliases": [],
+      "community": "telugu",
+      "relationship": "Son of Sateesh and Thara",
+      "parents": [
+        "Sateesh",
+        "Thara"
+      ],
+      "verified": true
+    },
+    {
+      "id": "birthday-srujana",
+      "type": "birthday",
+      "name": "Srujana",
+      "month": 1,
+      "day": 12,
+      "aliases": [],
+      "community": "telugu",
+      "relationship": "Wife of Vivek; mother of Anvi and Avyansh",
+      "verified": true
+    },
+    {
+      "id": "birthday-shilpa",
+      "type": "birthday",
+      "name": "Shilpa",
+      "month": 1,
+      "day": 25,
+      "aliases": [],
+      "community": "telugu",
+      "relationship": "Wife of Kishore Koneti; mother of Veeksha and Shyam",
+      "verified": true
+    },
+    {
+      "id": "birthday-ashritha",
+      "type": "birthday",
+      "name": "Ashritha",
+      "month": 1,
+      "day": 30,
+      "aliases": [
+        "Cherry"
+      ],
+      "community": "telugu",
+      "relationship": "Daughter of Madhu and Vijetha",
+      "parents": [
+        "Madhu",
+        "Vijetha"
+      ],
+      "verified": true,
+      "note": "Some greetings continued on January 31."
+    },
+    {
+      "id": "birthday-venkat",
+      "type": "birthday",
+      "name": "Venkat",
+      "month": 2,
+      "day": 24,
+      "aliases": [
+        "Venky"
+      ],
+      "community": "telugu",
+      "relationship": "Husband of Soumya; father of Mahanya",
+      "verified": true,
+      "note": "Some greetings continued on February 25."
+    },
+    {
+      "id": "birthday-soumya",
+      "type": "birthday",
+      "name": "Soumya",
+      "month": 3,
+      "day": 2,
+      "aliases": [
+        "Soma",
+        "Lavanya"
+      ],
+      "community": "telugu",
+      "relationship": "Wife of Venkat; mother of Mahanya",
+      "verified": false,
+      "note": "Identity is confirmed, but historical birthday messages span March 1 and March 2. Confirm the exact date."
+    },
+    {
+      "id": "birthday-veeksha",
+      "type": "birthday",
+      "name": "Veeksha",
+      "month": 3,
+      "day": 11,
+      "aliases": [],
+      "community": "telugu",
+      "relationship": "Daughter of Kishore Koneti and Shilpa",
+      "parents": [
+        "Kishore Koneti",
+        "Shilpa"
+      ],
+      "verified": true
+    },
+    {
+      "id": "birthday-krishna",
+      "type": "birthday",
+      "name": "Krishna",
+      "month": 3,
+      "day": 21,
+      "aliases": [
+        "KK",
+        "Talaivarae"
+      ],
+      "community": "tamil-sourashtra",
+      "relationship": "Husband of Rekha; father of Arjun and Prajith",
+      "verified": true
+    },
+    {
+      "id": "birthday-shyam",
+      "type": "birthday",
+      "name": "Shyam",
+      "month": 4,
+      "day": 1,
+      "aliases": [],
+      "community": "telugu",
+      "relationship": "Son of Kishore Koneti and Shilpa",
+      "parents": [
+        "Kishore Koneti",
+        "Shilpa"
+      ],
+      "verified": true
+    },
+    {
+      "id": "birthday-maggie",
+      "type": "birthday",
+      "name": "Maggie",
+      "month": 4,
+      "day": 8,
+      "aliases": [],
+      "community": "telugu",
+      "relationship": "Daughter of Suresh and Saritha",
+      "parents": [
+        "Suresh",
+        "Saritha"
+      ],
+      "verified": false,
+      "note": "Only one annual message cluster was found, spanning April 7 and April 8."
+    },
+    {
+      "id": "birthday-rekha",
+      "type": "birthday",
+      "name": "Rekha",
+      "month": 4,
+      "day": 8,
+      "aliases": [],
+      "community": "tamil-sourashtra",
+      "relationship": "Wife of Krishna; mother of Arjun and Prajith",
+      "verified": true
+    },
+    {
+      "id": "birthday-hasnain",
+      "type": "birthday",
+      "name": "Hasnain",
+      "month": 4,
+      "day": 10,
+      "aliases": [
+        "Hasnu"
+      ],
+      "community": "muslim",
+      "relationship": "Son of Ali and Meenaz",
+      "parents": [
+        "Ali",
+        "Meenaz"
+      ],
+      "verified": true
+    },
+    {
+      "id": "birthday-ali",
+      "type": "birthday",
+      "name": "Ali",
+      "month": 4,
+      "day": 24,
+      "aliases": [
+        "Ali Mama"
+      ],
+      "community": "muslim",
+      "relationship": "Husband of Meenaz; father of Hasnain and Zain",
+      "verified": true
+    },
+    {
+      "id": "birthday-anvi",
+      "type": "birthday",
+      "name": "Anvi",
+      "month": 4,
+      "day": 24,
+      "aliases": [],
+      "community": "telugu",
+      "relationship": "Daughter of Vivek and Srujana",
+      "parents": [
+        "Vivek",
+        "Srujana"
+      ],
+      "verified": true
+    },
+    {
+      "id": "birthday-meenu",
+      "type": "birthday",
+      "name": "Meenu",
+      "month": 5,
+      "day": 4,
+      "aliases": [],
+      "community": "tamil",
+      "relationship": "Daughter of Subbu and Kanthi",
+      "parents": [
+        "Subbu",
+        "Kanthi"
+      ],
+      "verified": true
+    },
+    {
+      "id": "birthday-thara",
+      "type": "birthday",
+      "name": "Thara",
+      "month": 5,
+      "day": 19,
+      "aliases": [
+        "Tara"
+      ],
+      "community": "malayali",
+      "relationship": "Wife of Sateesh; mother of Apurva and Vihaan",
+      "verified": true
+    },
+    {
+      "id": "birthday-suresh",
+      "type": "birthday",
+      "name": "Suresh",
+      "month": 5,
+      "day": 27,
+      "aliases": [],
+      "community": "telugu",
+      "relationship": "Husband of Saritha; father of Misha and Maggie",
+      "verified": true
+    },
+    {
+      "id": "birthday-kishore-avengu",
+      "type": "birthday",
+      "name": "Kishore Avengu",
+      "month": 6,
+      "day": 23,
+      "aliases": [],
+      "community": "telugu",
+      "relationship": "Husband of Suneesha; father of Shaarini and SiriNeel",
+      "verified": true
+    },
+    {
+      "id": "birthday-vivek",
+      "type": "birthday",
+      "name": "Vivek",
+      "month": 6,
+      "day": 27,
+      "aliases": [],
+      "community": "telugu",
+      "relationship": "Husband of Srujana; father of Anvi and Avyansh",
+      "verified": true
+    },
+    {
+      "id": "birthday-subbu",
+      "type": "birthday",
+      "name": "Subbu",
+      "month": 7,
+      "day": 3,
+      "aliases": [],
+      "community": "tamil",
+      "relationship": "Husband of Kanthi; father of Meenu and Bala",
+      "verified": true
+    },
+    {
+      "id": "birthday-sateesh",
+      "type": "birthday",
+      "name": "Sateesh",
+      "month": 7,
+      "day": 5,
+      "aliases": [
+        "Satheesh"
+      ],
+      "community": "telugu",
+      "relationship": "Husband of Thara; father of Apurva and Vihaan",
+      "verified": true
+    },
+    {
+      "id": "birthday-yashika",
+      "type": "birthday",
+      "name": "Yashika",
+      "month": 7,
+      "day": 9,
+      "aliases": [],
+      "community": "telugu",
+      "relationship": "Daughter of Bhaskar and Lahari",
+      "parents": [
+        "Bhaskar",
+        "Lahari"
+      ],
+      "verified": false,
+      "note": "Historical greetings span July 8 through July 10. Confirm the exact date."
+    },
+    {
+      "id": "birthday-vijetha",
+      "type": "birthday",
+      "name": "Vijetha",
+      "month": 7,
+      "day": 14,
+      "aliases": [],
+      "community": "telugu",
+      "relationship": "Wife of Madhu; mother of Ashritha and Siddu",
+      "verified": true
+    },
+    {
+      "id": "birthday-madhu",
+      "type": "birthday",
+      "name": "Madhu",
+      "month": 7,
+      "day": 19,
+      "aliases": [],
+      "community": "telugu",
+      "relationship": "Husband of Vijetha; father of Ashritha and Siddu",
+      "verified": true,
+      "note": "July 19 is the strongest recurring date; some earlier greetings occurred July 18."
+    },
+    {
+      "id": "birthday-misha",
+      "type": "birthday",
+      "name": "Misha",
+      "month": 7,
+      "day": 29,
+      "aliases": [],
+      "community": "telugu",
+      "relationship": "Daughter of Suresh and Saritha",
+      "parents": [
+        "Suresh",
+        "Saritha"
+      ],
+      "verified": true
+    },
+    {
+      "id": "birthday-zain",
+      "type": "birthday",
+      "name": "Zain",
+      "month": 8,
+      "day": 16,
+      "aliases": [
+        "Zainu",
+        "Zainn"
+      ],
+      "community": "muslim",
+      "relationship": "Son of Ali and Meenaz",
+      "parents": [
+        "Ali",
+        "Meenaz"
+      ],
+      "verified": true
+    },
+    {
+      "id": "birthday-siddu",
+      "type": "birthday",
+      "name": "Siddu",
+      "month": 8,
+      "day": 17,
+      "aliases": [
+        "Sidhu"
+      ],
+      "community": "telugu",
+      "relationship": "Son of Madhu and Vijetha",
+      "parents": [
+        "Madhu",
+        "Vijetha"
+      ],
+      "verified": true,
+      "note": "August 17 is the strongest recurring date; some greetings occurred August 16."
+    },
+    {
+      "id": "birthday-arjun",
+      "type": "birthday",
+      "name": "Arjun",
+      "month": 8,
+      "day": 21,
+      "aliases": [],
+      "community": "tamil-sourashtra",
+      "relationship": "Son of Krishna and Rekha",
+      "parents": [
+        "Krishna",
+        "Rekha"
+      ],
+      "verified": true
+    },
+    {
+      "id": "birthday-shaarini",
+      "type": "birthday",
+      "name": "Shaarini",
+      "month": 9,
+      "day": 26,
+      "aliases": [
+        "Sharini"
+      ],
+      "community": "telugu",
+      "relationship": "Daughter of Kishore Avengu and Suneesha",
+      "parents": [
+        "Kishore Avengu",
+        "Suneesha"
+      ],
+      "verified": true
+    },
+    {
+      "id": "birthday-mahanya",
+      "type": "birthday",
+      "name": "Mahanya",
+      "month": 10,
+      "day": 1,
+      "aliases": [],
+      "community": "telugu",
+      "relationship": "Daughter of Venkat and Soumya",
+      "parents": [
+        "Venkat",
+        "Soumya"
+      ],
+      "verified": true
+    },
+    {
+      "id": "birthday-eshan",
+      "type": "birthday",
+      "name": "Eshan",
+      "month": 10,
+      "day": 6,
+      "aliases": [
+        "Eshaan",
+        "Chikki"
+      ],
+      "community": "telugu",
+      "relationship": "Son of Bhaskar and Lahari",
+      "parents": [
+        "Bhaskar",
+        "Lahari"
+      ],
+      "verified": true,
+      "note": "October 6 is the strongest recurring date; some greetings occurred October 5."
+    },
+    {
+      "id": "birthday-prajith",
+      "type": "birthday",
+      "name": "Prajith",
+      "month": 10,
+      "day": 8,
+      "aliases": [
+        "Prajeet"
+      ],
+      "community": "tamil-sourashtra",
+      "relationship": "Son of Krishna and Rekha",
+      "parents": [
+        "Krishna",
+        "Rekha"
+      ],
+      "verified": true
+    },
+    {
+      "id": "birthday-meenaz",
+      "type": "birthday",
+      "name": "Meenaz",
+      "month": 10,
+      "day": 11,
+      "aliases": [
+        "Menaz",
+        "Meenu Bhabhi"
+      ],
+      "community": "muslim",
+      "relationship": "Wife of Ali; mother of Hasnain and Zain",
+      "verified": true
+    },
+    {
+      "id": "birthday-bala",
+      "type": "birthday",
+      "name": "Bala",
+      "month": 10,
+      "day": 19,
+      "aliases": [
+        "Captain"
+      ],
+      "community": "tamil",
+      "relationship": "Son of Subbu and Kanthi",
+      "parents": [
+        "Subbu",
+        "Kanthi"
+      ],
+      "verified": true
+    },
+    {
+      "id": "birthday-apurva",
+      "type": "birthday",
+      "name": "Apurva",
+      "month": 11,
+      "day": 11,
+      "aliases": [
+        "Apoorva",
+        "Appu"
+      ],
+      "community": "telugu",
+      "relationship": "Daughter of Sateesh and Thara",
+      "parents": [
+        "Sateesh",
+        "Thara"
+      ],
+      "verified": true
+    },
+    {
+      "id": "birthday-bhaskar",
+      "type": "birthday",
+      "name": "Bhaskar",
+      "month": 11,
+      "day": 15,
+      "aliases": [
+        "Bachi",
+        "Baachi"
+      ],
+      "community": "telugu",
+      "relationship": "Husband of Lahari; father of Yashika and Eshan",
+      "verified": true
+    },
+    {
+      "id": "birthday-kanthi",
+      "type": "birthday",
+      "name": "Kanthi",
+      "month": 11,
+      "day": 19,
+      "aliases": [],
+      "community": "tamil",
+      "relationship": "Wife of Subbu; mother of Meenu and Bala",
+      "verified": true
+    },
+    {
+      "id": "birthday-lahari",
+      "type": "birthday",
+      "name": "Lahari",
+      "month": 12,
+      "day": 9,
+      "aliases": [
+        "Rajitha"
+      ],
+      "community": "telugu",
+      "relationship": "Wife of Bhaskar; mother of Yashika and Eshan",
+      "verified": true
+    },
+    {
+      "id": "birthday-avyansh",
+      "type": "birthday",
+      "name": "Avyansh",
+      "month": 12,
+      "day": 27,
+      "aliases": [
+        "Avyu",
+        "Avyaansh"
+      ],
+      "community": "telugu",
+      "relationship": "Son of Vivek and Srujana",
+      "parents": [
+        "Vivek",
+        "Srujana"
+      ],
+      "verified": true
+    },
+    {
+      "id": "birthday-kishore-koneti",
+      "type": "birthday",
+      "name": "Kishore Koneti",
+      "month": 12,
+      "day": 29,
+      "aliases": [
+        "Kishore Kumar",
+        "Buddy"
+      ],
+      "community": "telugu",
+      "relationship": "Husband of Shilpa; father of Veeksha and Shyam",
+      "verified": true
+    }
+  ],
+  "anniversaries": [
+    {
+      "id": "anniversary-ali-meenaz",
+      "type": "anniversary",
+      "people": [
+        "Ali",
+        "Meenaz"
+      ],
+      "month": 1,
+      "day": 5,
+      "aliases": [
+        "Ali & Meenu"
+      ],
+      "verified": true
+    },
+    {
+      "id": "anniversary-venkat-soumya",
+      "type": "anniversary",
+      "people": [
+        "Venkat",
+        "Soumya"
+      ],
+      "month": 2,
+      "day": 13,
+      "aliases": [
+        "Venky & Soma",
+        "Venkat & Lavanya"
+      ],
+      "verified": true
+    },
+    {
+      "id": "anniversary-bhaskar-lahari",
+      "type": "anniversary",
+      "people": [
+        "Bhaskar",
+        "Lahari"
+      ],
+      "month": 5,
+      "day": 29,
+      "aliases": [
+        "Bhaskar & Rajitha",
+        "Bachi & Lahari"
+      ],
+      "verified": true
+    },
+    {
+      "id": "anniversary-kishore-koneti-shilpa",
+      "type": "anniversary",
+      "people": [
+        "Kishore Koneti",
+        "Shilpa"
+      ],
+      "month": 6,
+      "day": 7,
+      "aliases": [
+        "Buddy & Shilpa",
+        "Kishore Kumar & Shilpa"
+      ],
+      "verified": true
+    },
+    {
+      "id": "anniversary-subbu-kanthi",
+      "type": "anniversary",
+      "people": [
+        "Subbu",
+        "Kanthi"
+      ],
+      "month": 11,
+      "day": 2,
+      "aliases": [],
+      "verified": false,
+      "note": "Only one annual anniversary cluster was found. Confirm the date."
+    },
+    {
+      "id": "anniversary-krishna-rekha",
+      "type": "anniversary",
+      "people": [
+        "Krishna",
+        "Rekha"
+      ],
+      "month": 11,
+      "day": 18,
+      "aliases": [
+        "KK & Rekha"
+      ],
+      "verified": true
+    },
+    {
+      "id": "anniversary-vivek-srujana",
+      "type": "anniversary",
+      "people": [
+        "Vivek",
+        "Srujana"
+      ],
+      "month": 11,
+      "day": 18,
+      "aliases": [],
+      "verified": true
+    },
+    {
+      "id": "anniversary-kishore-avengu-suneesha",
+      "type": "anniversary",
+      "people": [
+        "Kishore Avengu",
+        "Suneesha"
+      ],
+      "month": 11,
+      "day": 25,
+      "aliases": [],
+      "verified": true
+    },
+    {
+      "id": "anniversary-madhu-vijetha",
+      "type": "anniversary",
+      "people": [
+        "Madhu",
+        "Vijetha"
+      ],
+      "month": 12,
+      "day": 5,
+      "aliases": [],
+      "verified": false,
+      "note": "Only one annual anniversary cluster was found. Confirm the date."
+    },
+    {
+      "id": "anniversary-sateesh-thara",
+      "type": "anniversary",
+      "people": [
+        "Sateesh",
+        "Thara"
+      ],
+      "month": 12,
+      "day": 15,
+      "aliases": [
+        "Sateesh & Tara"
+      ],
+      "verified": true,
+      "note": "Date was confirmed directly by Sateesh. It was absent from the WhatsApp wishes."
+    }
+  ]
+}
