@@ -1,5 +1,5 @@
 {
-  "seedVersion": 9,
+  "seedVersion": 10,
   "birthdays": [
     {
       "id": "birthday-roshini",
@@ -222,7 +222,12 @@
       ],
       "community": "telugu",
       "verified": true,
-      "note": "Greetings occur on May 13 and 14; May 14 is the stronger recent date."
+      "note": "Greetings occur on May 13 and 14; May 14 is the stronger recent date.",
+      "parents": [
+        "Sathyam",
+        "Sarita"
+      ],
+      "relationship": "Child of Sathyam and Sarita"
     },
     {
       "id": "birthday-thara",

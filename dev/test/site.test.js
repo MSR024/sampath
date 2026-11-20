@@ -120,7 +120,7 @@ test("kids linked to their parents take the father's family name", () => {
   assert.deepEqual(kids("Santosh", "Saritha"), ["Lucky"]);
   assert.deepEqual(kids("Srikanth", "Kavitha"), ["Cherry", "Trishool"]);
   assert.deepEqual(kids("Sravan", "Ashwini"), ["Mintu"]);
-  assert.deepEqual(kids("Sathyam", "Sarita"), ["Honey"]);
+  assert.deepEqual(kids("Sathyam", "Sarita"), ["Hasini", "Honey"]);
   assert.deepEqual(kids("Ramana", "Sandhya"), ["Samanvith"]);
   assert.deepEqual(kids("Karthik", "Bindu"), ["Sresta"]);
   assert.deepEqual(kids("Shyam", "Sowjanya"), ["Varnika"]);
