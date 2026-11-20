@@ -335,8 +335,8 @@ body{-webkit-tap-highlight-color:transparent;-webkit-text-size-adjust:100%}
 @keyframes rise{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 [hidden]{display:none!important}
-.readonly nav.tabs,.readonly .editbtn,.readonly #manageView{display:none!important}
-@media (max-width:600px){.readonly .today-date{display:block;font-size:13px;white-space:nowrap}}
+.readonly .editbtn,.readonly #addPanel,.readonly #mlist .acts,.readonly [data-addann],.readonly [data-addperson]{display:none!important}
+.readonly .linkbtn{text-decoration:none;cursor:default}
 .readonly .card{grid-template-columns:auto minmax(0,1fr) auto}
 
 @media (max-width:600px){
@@ -504,27 +504,15 @@ body{-webkit-tap-highlight-color:transparent;-webkit-text-size-adjust:100%}
 </main>
 
 <main id="manageView" class="wrap" hidden>
-  <div class="section-head"><h2>Manage events</h2><p>Add, correct or remove celebrations. Changes are saved in this browser.</p></div>
+  <div class="section-head"><h2>Manage events</h2><p id="manageIntro">Add, correct or remove celebrations. Changes are saved in this browser.</p></div>
   <div class="stats" id="mstats"></div>
-  <div class="grid2">
+  <div class="grid2" id="addPanel">
     <div class="panel">
       <h3>Add a celebration</h3>
       <div class="row">
         <button class="btn bdb" id="addB"><svg class="i"><use href="#i-cake"/></svg>Add birthday</button>
         <button class="btn anb" id="addA"><svg class="i"><use href="#i-rings"/></svg>Add wedding anniversary</button>
       </div>
-    </div>
-    <div class="panel">
-      <h3>Backup and restore</h3>
-      <div class="row">
-        <button class="btn sm" id="expDl"><svg class="i"><use href="#i-down"/></svg>Export JSON</button>
-        <button class="btn sm" id="expCopy"><svg class="i"><use href="#i-copy"/></svg>Copy JSON</button>
-        <button class="btn sm" id="impFile"><svg class="i"><use href="#i-up"/></svg>Import file</button>
-        <button class="btn sm" id="impPaste">Paste JSON</button>
-        <button class="btn sm" id="reloadSeed"><svg class="i"><use href="#i-reset"/></svg>Reload latest seed data</button>
-        <button class="btn sm ghost" id="restore">Restore original list</button>
-      </div>
-      <input type="file" id="fileIn" accept="application/json,.json" hidden>
     </div>
   </div>
   <section class="families" aria-labelledby="famTitle">
@@ -574,6 +562,7 @@ try { store = window.localStorage; store.getItem("probe"); } catch (e) { store =
 // No Manage page, no edit buttons, and any edits an old visit saved in this browser are ignored.
 const EDITABLE = R.SITE.publicEditing !== false;
 if (!EDITABLE) { store = null; document.documentElement.classList.add("readonly"); }
+if (!EDITABLE) $("#manageIntro").textContent = "The published list: families, and anything still to confirm. View only.";
 const loaded = R.loadEvents(store, SEED);
 const S = {
   events: loaded.events, source: loaded.source, savedAt: loaded.savedAt, loadError: loaded.error,
@@ -948,6 +937,7 @@ function renderManage() {
   $("#savedInfo").textContent = S.source === "saved"
     ? `Your edited list is saved in this browser${S.savedAt ? " (last saved " + new Date(S.savedAt).toLocaleString() + ")" : ""}. Other people and devices won't see these changes — export JSON to share them.`
     : "Showing the original list. Any change you make is saved in this browser.";
+  if (!EDITABLE) $("#savedInfo").textContent = "View only. Changes are published by the site admin.";
   $("#savedInfo").textContent += ` Seed data version ${SEED_VERSION} · ${R.seedEvents(SEED).length} bundled events.`;
 }
 
@@ -967,18 +957,18 @@ function renderFamilies() {
         : `<p class="ann miss">${ico("rings")} Anniversary missing <button class="btn sm" data-addann="${esc(f.people.join("|"))}">Add</button></p>`}
       <ul>${f.partners.map((p) => p.birthday ? person(p.birthday) : `<li><span>${esc(p.name)}</span><span class="miss">Birthday missing <button class="btn sm" data-addperson="${esc(p.name)}" data-partner="${esc(f.partners.find((x) => x !== p).name)}">Add</button></span></li>`).join("")}</ul>
       <p class="lbl">Kids</p>
-      ${f.kids.length ? `<ul>${f.kids.map((k) => person(k)).join("")}</ul>` : `<p class="aka">None linked yet. Edit a child and choose “Child of”.</p>`}
+      ${f.kids.length ? `<ul>${f.kids.map((k) => person(k)).join("")}</ul>` : `<p class="aka">None linked yet.${EDITABLE ? " Edit a child and choose “Child of”." : ""}</p>`}
     </article>`;
   }).join("");
   const loose = [...g.orphanKids, ...g.unlinked];
-  $("#famUnlinked").innerHTML = loose.length ? `<p class="lbl" style="margin-top:4px">Not linked to a family yet (${loose.length}) — tap a name to set “Child of”</p>
+  $("#famUnlinked").innerHTML = loose.length ? `<p class="lbl" style="margin-top:4px">Not linked to a family yet (${loose.length})${EDITABLE ? " — tap a name to set “Child of”" : ""}</p>
     <div class="unl">${loose.map((e) => `<button class="chip" data-edit="${esc(e.id)}">${esc(e.name)} <span class="aka">${md(e)}</span></button>`).join("")}</div>` : "";
 }
 
 /* ---------- routing ---------- */
 function route() {
   const h = location.hash.replace("#", "");
-  const manage = h === "manage" && EDITABLE, cal = !manage;
+  const manage = h === "manage", cal = !manage;
   if (cal) S.view = h === "year" ? "year" : "month";
   $("#calendarView").hidden = !cal;
   $("#manageView").hidden = !manage;
@@ -1182,16 +1172,16 @@ $("#mq").addEventListener("input", (e) => { S.mq = e.target.value; renderManage(
 $("#mfilters").addEventListener("click", (e) => { const b = e.target.closest("[data-f]"); if (b) { S.mfilter = b.dataset.f; renderManage(); } });
 $("#addB").addEventListener("click", () => eventForm(null, "birthday"));
 $("#addA").addEventListener("click", () => eventForm(null, "anniversary"));
-$("#expDl").addEventListener("click", exportDownload);
-$("#expCopy").addEventListener("click", exportCopy);
-$("#impFile").addEventListener("click", () => $("#fileIn").click());
-$("#impPaste").addEventListener("click", pasteImport);
-$("#fileIn").addEventListener("change", async (e) => {
+$("#expDl")?.addEventListener("click", exportDownload);
+$("#expCopy")?.addEventListener("click", exportCopy);
+$("#impFile")?.addEventListener("click", () => $("#fileIn").click());
+$("#impPaste")?.addEventListener("click", pasteImport);
+$("#fileIn")?.addEventListener("change", async (e) => {
   const f = e.target.files[0]; e.target.value = "";
   if (!f) return;
   try { importText(await f.text()); } catch (err) { toast("That file couldn't be read."); }
 });
-$("#reloadSeed").addEventListener("click", async () => {
+$("#reloadSeed")?.addEventListener("click", async () => {
   const preview = R.mergeSeed(S.events, SEED, { includeDeleted: true });
   if (!preview.added.length) { toast(`Your list already has every event in the bundled list (version ${SEED_VERSION}).`); return; }
   const ok = await confirmBox({ title: "Reload latest seed data?", body: `${preview.added.length} event${preview.added.length === 1 ? "" : "s"} from the bundled list ${preview.added.length === 1 ? "is" : "are"} missing from your saved list: <strong>${preview.added.map((e) => esc(R.displayName(e))).join(", ")}</strong>. They will be added back. Your edits and additions stay as they are.`, ok: "Add them" });
@@ -1199,7 +1189,7 @@ $("#reloadSeed").addEventListener("click", async () => {
   S.events = preview.events; S.deletedSeedIds = []; S.migrated = null;
   persist(); renderAll(); toast(`Added ${preview.added.length} event${preview.added.length === 1 ? "" : "s"} from the latest seed data.`);
 });
-$("#restore").addEventListener("click", async () => {
+$("#restore")?.addEventListener("click", async () => {
   const ok = await confirmBox({ title: "Restore the original list?", body: `All additions, edits and deletions saved in this browser will be discarded and all ${R.seedEvents(SEED).length} original celebrations brought back. Export first if you want to keep your changes.`, ok: "Restore original", danger: true });
   if (!ok) return;
   S.events = R.restoreSeed(store, SEED); S.source = "seed"; S.savedAt = null; S.loadError = null; S.deletedSeedIds = []; S.editedIds = []; S.migrated = null;
@@ -1208,6 +1198,7 @@ $("#restore").addEventListener("click", async () => {
 document.addEventListener("click", (e) => {
   const t = e.target.closest("[data-edit],[data-del],[data-verify],[data-month],[data-act],[data-addperson],[data-addann]");
   if (!t) return;
+  if (!EDITABLE && (t.dataset.edit || t.dataset.del || t.dataset.verify || t.dataset.addann || t.dataset.addperson)) return;
   if (t.dataset.addann) { eventForm(null, "anniversary", { people: t.dataset.addann.split("|") }); return; }
   if (t.dataset.addperson) { eventForm(null, "birthday", { name: t.dataset.addperson, relationship: "Wife of " + t.dataset.partner }); return; }
   if (t.dataset.edit) { const ev = S.events.find((x) => x.id === t.dataset.edit); if (ev) eventForm(ev); }

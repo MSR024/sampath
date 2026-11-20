@@ -65,7 +65,7 @@ Telangana throughout: paddy-field green and cotton cream with a Pochampally ikat
 
 ## Who can edit
 
-Public editing is **off** (`"publicEditing": false` in `dev/site.json`): there is no Manage page or edit button on the site, and anything an older visit saved in a browser is ignored, so everyone sees exactly the published list. Sateesh updates the data through Claude (seed.json → build → push). Set it to `true` to bring the Manage page back.
+Public editing is **off** (`"publicEditing": false` in `dev/site.json`). The **Manage** tab stays, but view-only: counts, the Families panel and the full list with what still needs confirming. There are no add, edit, delete or verify buttons and no backup/restore, and anything an older visit saved in a browser is ignored, so everyone sees exactly the published list. Sateesh updates the data through Claude (seed.json → build → push). Set it to `true` to bring editing back.
 
 ## How the data works
 
