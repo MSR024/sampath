@@ -1,5 +1,5 @@
 {
-  "seedVersion": 1,
+  "seedVersion": 2,
   "birthdays": [
     {
       "id": "birthday-roshini",
@@ -13,7 +13,12 @@
         "Smile"
       ],
       "community": "telugu",
-      "verified": true
+      "verified": true,
+      "parents": [
+        "Sampath",
+        "Sridevi"
+      ],
+      "relationship": "Daughter of Sampath and Sridevi"
     },
     {
       "id": "birthday-vihaan",
@@ -441,7 +446,8 @@
         "Sreedevi"
       ],
       "community": "telugu",
-      "verified": true
+      "verified": true,
+      "relationship": "Wife of Sampath; mother of Roshini"
     },
     {
       "id": "birthday-karthik",
@@ -554,7 +560,7 @@
         "Sampath Anna"
       ],
       "community": "telugu",
-      "relationship": "Founder of the family WhatsApp group",
+      "relationship": "Founder of the family WhatsApp group; husband of Sridevi; father of Roshini",
       "verified": true
     },
     {

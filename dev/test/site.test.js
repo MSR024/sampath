@@ -88,6 +88,14 @@ test("Sateesh & Thara: kids linked, greeting in both Telugu and Malayalam", () =
   assert.deepEqual(R.greetingsFor(ann, all()).map((x) => x.lang), ["te", "ml"]);
 });
 
+test("Sampath Anna's family: Sridevi and their daughter Roshini", () => {
+  const g = R.familyGrid(all());
+  const fam = g.families.find((f) => [...f.people].sort().join(" & ") === "Sampath & Sridevi");
+  assert.ok(fam, "family exists");
+  assert.deepEqual(fam.kids.map((k) => k.name), ["Roshini"]);
+  assert.deepEqual(fam.partners.map((p) => p.birthday && p.birthday.id).sort(), ["birthday-sampath", "birthday-sridevi"]);
+});
+
 /* ---------- Founder's birthday ---------- */
 test("Sampath Anna's birthday is featured: own title, Telugu greeting, no age", () => {
   const s = byName("Sampath");
