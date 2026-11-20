@@ -60,14 +60,14 @@ test("pet names and loose spellings find the right people", () => {
   assert.ok(q("Sony").includes("Hasini"));
   assert.ok(q("Minnu").includes("Sresta"));
   assert.ok(q("Appu").includes("Apurva"));
-  assert.ok(q("Gundu").includes("Satish"));
-  assert.ok(q("Gundu").includes("Satish & Harika"), "a partner's pet name finds the couple");
-  assert.ok(q("Satish Reddy").includes("Satish"), "old name still finds him");
+  assert.ok(q("Gundu").includes("Gundu"));
+  assert.ok(q("Satish").includes("Gundu & Harika"), "his other name finds the couple");
+  assert.ok(q("Satish Reddy").includes("Gundu"), "old name still finds him");
   assert.ok(q("Sowji").includes("Shyam & Sowjanya"));
   assert.ok(q("Satya Kiran").includes("Ramana & Sandhya"));
   assert.ok(q("Tara").includes("Thara"));
   const sat = q("Satish");
-  assert.ok(sat.includes("Satish") && sat.includes("Sateesh"), "loose spelling finds both");
+  assert.ok(sat.includes("Gundu") && sat.includes("Sateesh"), "loose spelling finds both");
 });
 
 test("similar names are never merged as duplicates", () => {
@@ -76,7 +76,7 @@ test("similar names are never merged as duplicates", () => {
   assert.equal(dup({ type: "birthday", name: "Chikki" }).id, "birthday-chikki");
   assert.equal(dup({ type: "birthday", name: "Likki" }).id, "birthday-likky");
   assert.equal(dup({ type: "birthday", name: "Sarita" }), null, "Sarita (Sathyam) is not Saritha (Santosh)");
-  assert.equal(dup({ type: "birthday", name: "Satish" }).id, "birthday-satish-reddy", "Appidi Satish");
+  assert.equal(dup({ type: "birthday", name: "Satish" }).id, "birthday-satish-reddy", "Appidi Gundu");
   assert.notEqual(dup({ type: "birthday", name: "Sathish" }).id, "birthday-satish-reddy");
 });
 
@@ -110,9 +110,9 @@ test("family name shows once: a person's own, or for a couple the first partner'
   for (const [id, f] of [["birthday-thara", "Moola"], ["birthday-harika", "Appidi"], ["birthday-sowjanya", "Appidi"], ["birthday-sandhya", "Kosana"],
     ["birthday-saritha", "Mula"], ["birthday-apurva", "Moola"], ["birthday-vihaan", "Moola"], ["birthday-roshini", "Mula"], ["birthday-sridevi", "Mula"]])
     assert.equal(R.familyNameOf(get(id), ev), f, id);
-  assert.equal(R.displayName(get("anniversary-satish-reddy-harika")), "Satish & Harika");
+  assert.equal(R.displayName(get("anniversary-satish-reddy-harika")), "Gundu & Harika");
   const found = R.filterEvents(ev, { query: "appidi" }).map(R.displayName);
-  for (const n of ["Harika", "Sowjanya", "Satish", "Satish & Harika", "Venkanna & Sunitha", "Sandeep & Swetha", "Shyam & Sowjanya"]) assert.ok(found.includes(n), n);
+  for (const n of ["Harika", "Sowjanya", "Gundu", "Gundu & Harika", "Venkanna & Sunitha", "Sandeep & Swetha", "Shyam & Sowjanya"]) assert.ok(found.includes(n), n);
   assert.equal(R.validateEvent(Object.assign({}, get("birthday-sateesh"), { familyName: "  " })).event.familyName, undefined);
 });
 
@@ -126,7 +126,7 @@ test("kids linked to their parents take the father's family name", () => {
   assert.deepEqual(kids("Ramana", "Sandhya"), ["Samanvith"]);
   assert.deepEqual(kids("Karthik", "Bindu"), ["Minshu", "Sresta"]);
   assert.deepEqual(kids("Shyam", "Sowjanya"), ["Charvi", "Varnika"]);
-  assert.deepEqual(kids("Satish", "Harika"), ["Ananya", "Likila"]);
+  assert.deepEqual(kids("Gundu", "Harika"), ["Ananya", "Likila"]);
   assert.deepEqual(kids("Venkanna", "Sunitha"), ["Vaishnavi", "Vardhan"]);
   assert.deepEqual(kids("Sandeep", "Swetha"), ["Roshan"]);
   assert.deepEqual(kids("Linganna", "Srilatha"), ["Anu", "Ashu"]);

@@ -1,5 +1,5 @@
 {
-  "seedVersion": 15,
+  "seedVersion": 16,
   "birthdays": [
     {
       "id": "birthday-roshini",
@@ -337,10 +337,10 @@
       "community": "telugu",
       "verified": true,
       "parents": [
-        "Satish",
+        "Gundu",
         "Harika"
       ],
-      "relationship": "Child of Satish and Harika",
+      "relationship": "Child of Gundu and Harika",
       "note": "Twin of Likila (Likky)."
     },
     {
@@ -356,10 +356,10 @@
       "community": "telugu",
       "verified": true,
       "parents": [
-        "Satish",
+        "Gundu",
         "Harika"
       ],
-      "relationship": "Child of Satish and Harika",
+      "relationship": "Child of Gundu and Harika",
       "note": "Twin of Ananya (Chikki)."
     },
     {
@@ -370,7 +370,7 @@
       "day": 1,
       "aliases": [],
       "community": "telugu",
-      "relationship": "Wife of Satish",
+      "relationship": "Wife of Gundu; mother of Ananya and Likila",
       "verified": false,
       "note": "Greetings occur on August 1 and 2; August 1 is used provisionally."
     },
@@ -468,16 +468,16 @@
     {
       "id": "birthday-satish-reddy",
       "type": "birthday",
-      "name": "Satish",
+      "name": "Gundu",
       "month": 9,
       "day": 7,
       "aliases": [
-        "Gundu",
+        "Satish",
         "Satish Reddy",
         "Sathish Reddy"
       ],
       "community": "telugu",
-      "relationship": "Husband of Harika",
+      "relationship": "Husband of Harika; father of Ananya and Likila",
       "verified": true,
       "familyName": "Appidi"
     },
@@ -847,13 +847,13 @@
       "id": "anniversary-satish-reddy-harika",
       "type": "anniversary",
       "people": [
-        "Satish",
+        "Gundu",
         "Harika"
       ],
       "month": 11,
       "day": 24,
       "aliases": [
-        "Gundu & Harika",
+        "Satish & Harika",
         "Satish Reddy & Harika",
         "Sathish Reddy & Harika"
       ],
