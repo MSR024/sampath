@@ -60,13 +60,14 @@ test("pet names and loose spellings find the right people", () => {
   assert.ok(q("Sony").includes("Hasini"));
   assert.ok(q("Minnu").includes("Sresta"));
   assert.ok(q("Appu").includes("Apurva"));
-  assert.ok(q("Gundu").includes("Satish Reddy"));
-  assert.ok(q("Gundu").includes("Satish Reddy & Harika"), "a partner's pet name finds the couple");
+  assert.ok(q("Gundu").includes("Satish"));
+  assert.ok(q("Gundu").includes("Satish & Harika"), "a partner's pet name finds the couple");
+  assert.ok(q("Satish Reddy").includes("Satish"), "old name still finds him");
   assert.ok(q("Sowji").includes("Shyam & Sowjanya"));
   assert.ok(q("Satya Kiran").includes("Ramana & Sandhya"));
   assert.ok(q("Tara").includes("Thara"));
   const sat = q("Satish");
-  assert.ok(sat.includes("Satish Reddy") && sat.includes("Sateesh"), "loose spelling finds both");
+  assert.ok(sat.includes("Satish") && sat.includes("Sateesh"), "loose spelling finds both");
 });
 
 test("similar names are never merged as duplicates", () => {
@@ -75,7 +76,7 @@ test("similar names are never merged as duplicates", () => {
   assert.equal(dup({ type: "birthday", name: "Chikki" }).id, "birthday-chikki");
   assert.equal(dup({ type: "birthday", name: "Likki" }).id, "birthday-likky");
   assert.equal(dup({ type: "birthday", name: "Sarita" }), null, "Sarita (Sathyam) is not Saritha (Santosh)");
-  assert.equal(dup({ type: "birthday", name: "Satish" }), null, "Satish is not Sateesh or Satish Reddy");
+  assert.equal(dup({ type: "birthday", name: "Satish" }).id, "birthday-satish-reddy", "Appidi Satish");
   assert.notEqual(dup({ type: "birthday", name: "Sathish" }).id, "birthday-satish-reddy");
 });
 
@@ -97,15 +98,19 @@ test("Sampath Anna's family: Sridevi and their daughter Roshini", () => {
 });
 
 test("family name shows once: a person's own, or for a couple the first partner's", () => {
-  const ev = all().map((e) => e.id === "birthday-sateesh" ? Object.assign({}, e, { familyName: "Moola" })
-    : e.id === "birthday-thara" ? Object.assign({}, e, { familyName: "Other" }) : e);
-  const get = (id) => ev.find((e) => e.id === id);
+  const ev = all(), get = (id) => ev.find((e) => e.id === id);
   assert.equal(R.familyNameOf(get("birthday-sateesh"), ev), "Moola");
-  assert.equal(R.familyNameOf(get("anniversary-sateesh-thara"), ev), "Moola", "first partner wins, not repeated");
-  assert.equal(R.familyNameOf(Object.assign({}, get("anniversary-sateesh-thara"), { familyName: "Set" }), ev), "Set");
-  assert.equal(R.familyNameOf(get("birthday-vihaan"), ev), "", "nothing invented when not given");
-  const found = R.filterEvents(ev, { query: "moola" }).map(R.displayName);
-  assert.ok(found.includes("Sateesh") && found.includes("Sateesh & Thara"));
+  assert.equal(R.familyNameOf(get("birthday-sampath"), ev), "Mula");
+  assert.equal(R.familyNameOf(get("anniversary-sateesh-thara"), ev), "Moola", "taken once from the husband");
+  assert.equal(R.familyNameOf(get("anniversary-venkanna-sunitha"), ev), "Appidi", "couple without birthdays");
+  assert.equal(R.familyNameOf(get("anniversary-karthik-bindu"), ev), "", "nothing invented when not given");
+  // wives take the husband's, kids the father's
+  for (const [id, f] of [["birthday-thara", "Moola"], ["birthday-harika", "Appidi"], ["birthday-sowjanya", "Appidi"], ["birthday-sandhya", "Kosana"],
+    ["birthday-saritha", "Mula"], ["birthday-apurva", "Moola"], ["birthday-vihaan", "Moola"], ["birthday-roshini", "Mula"], ["birthday-sridevi", "Mula"]])
+    assert.equal(R.familyNameOf(get(id), ev), f, id);
+  assert.equal(R.displayName(get("anniversary-satish-reddy-harika")), "Satish & Harika");
+  const found = R.filterEvents(ev, { query: "appidi" }).map(R.displayName);
+  for (const n of ["Harika", "Sowjanya", "Satish", "Satish & Harika", "Venkanna & Sunitha", "Sandeep & Swetha", "Shyam & Sowjanya"]) assert.ok(found.includes(n), n);
   assert.equal(R.validateEvent(Object.assign({}, get("birthday-sateesh"), { familyName: "  " })).event.familyName, undefined);
 });
 

@@ -145,6 +145,7 @@ body[data-look] .calpage .mo::before,body[data-look] .calpage .mo::after{backgro
 .pill.solid{background:var(--ink);color:var(--bg)}
 .pill.soft{background:rgb(255 255 255/.5);color:var(--band-ink)}
 body:not([data-look]) .pill.soft{background:rgb(255 255 255/.14)}
+body:not([data-look]) .minibar .mb-hb{color:#f2c14e}
 body:not([data-look]) .pill.solid{background:#efb21f;color:#2b2116}
 :root:not([data-theme=light]) .pill.soft{background:light-dark(rgb(255 255 255/.5),rgb(255 255 255/.1))}
 .then{margin-top:12px;font-size:15px;opacity:.9}
@@ -804,7 +805,7 @@ function cardHTML(ev) {
     <div class="ico" aria-hidden="true">${ico(bd ? "cake" : "rings")}</div>
     <div>
       <p class="kind">${feat ? esc(feat.dayTitle) : bd ? "Birthday" : "Wedding anniversary"} · ${R.formatDayMonth(ev.month, ev.day)}</p>
-      <h3>${hl(name)}${(() => { const f = R.familyNameOf(ev, S.events); return f ? ` <span class="fname">${hl(f)}</span>` : ""; })()}${feat && feat.badge ? `<span class="badge feat">${esc(feat.badge)}</span>` : ""}</h3>
+      <h3>${(() => { const f = R.familyNameOf(ev, S.events); return f ? `<span class="fname">${hl(f)}</span> ` : ""; })()}${hl(name)}${feat && feat.badge ? `<span class="badge feat">${esc(feat.badge)}</span>` : ""}</h3>
       ${(() => { const m = R.matchedAlias(ev, S.query, S.events); return m ? `<p class="aka">Found by “<mark>${esc(m)}</mark>”</p>` : ""; })()}
       ${greetHTML(ev)}
     </div>
@@ -1014,7 +1015,7 @@ function eventForm(ev, type, preset) {
       <div class="field"><label for="fMonth">Month</label><select id="fMonth" name="month">${R.MONTHS.map((m, i) => `<option value="${i + 1}" ${e.month === i + 1 ? "selected" : ""}>${m}</option>`).join("")}</select></div>
       <div class="field"><label for="fDay">Day</label><input id="fDay" name="day" type="number" inputmode="numeric" min="1" max="31" value="${e.day}" required></div>
     </div>
-    <div class="field"><label for="fFam">Family name</label><input id="fFam" name="familyName" value="${esc(e.familyName || "")}"><small>${bd ? "Shown after the name in the month list." : "Optional. Normally taken from the first partner's birthday."}</small></div>
+    <div class="field"><label for="fFam">Family name</label><input id="fFam" name="familyName" value="${esc(e.familyName || "")}"><small>${bd ? "Shown before the name in the month list (Telugu order). Wives and children take the husband's or father's automatically." : "Optional. Normally taken from the husband's birthday."}</small></div>
     <div class="field"><label for="fAliases">Aliases</label><input id="fAliases" name="aliases" value="${esc((e.aliases || []).join(", "))}"><small>Comma-separated nicknames or spellings${bd ? "" : ", e.g. “Venky & Soma”"}.</small></div>
     ${bd ? `<div class="field"><label for="fComm">Community</label><select id="fComm" name="community"><option value="">Not set</option>${Object.entries(R.COMMUNITIES).map(([k, c]) => `<option value="${k}" ${e.community === k ? "selected" : ""}>${esc(c.label)}${c.region ? " — " + esc(c.region) : ""}</option>`).join("")}</select><small>Sets the language of their greeting. Anniversaries use both partners'.</small></div>` : ""}
     ${bd ? `<div class="field"><label for="fParents">Child of</label><select id="fParents" name="parents"><option value="">Not a child in the group</option>${couples.map((c) => { const k = c.people.join("|"); const rev = [...c.people].reverse().join("|"); return `<option value="${esc(k)}" ${parentKey === k || parentKey === rev ? "selected" : ""}>${esc(c.people.join(" & "))}</option>`; }).join("")}</select></div>` : ""}

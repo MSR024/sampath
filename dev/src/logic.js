@@ -63,16 +63,22 @@
     const m = featuredFor(ev);
     return (m && m.displayName) || ev.name;
   }
-  // Family name (surname) shown once after the name: a birthday's own, or for a couple the
-  // anniversary's own, else the first partner's, else the second's.
+  // Family name (surname) shown once before the name, Telugu style. Stored on the husband/father; a wife takes
+  // her husband's (she is the second partner of an anniversary), a child takes the father's
+  // (first of "parents"), and a couple shows it once (anniversary's own, else the husband's).
   function familyNameOf(ev, events) {
     if (ev.familyName) return ev.familyName;
-    if (ev.type !== "anniversary" || !events) return "";
+    if (!events) return "";
     const idx = buildAliasIndex(events);
-    for (const p of ev.people) {
-      const canon = canonicalPerson(p, idx);
-      const person = events.find((e) => e.type === "birthday" && norm(e.name) === canon);
-      if (person && person.familyName) return person.familyName;
+    const person = (name) => { const c = canonicalPerson(name, idx); return events.find((e) => e.type === "birthday" && norm(e.name) === c); };
+    const own = (name) => { const p = person(name); return (p && p.familyName) || ""; };
+    if (ev.type === "anniversary") return own(ev.people[0]) || own(ev.people[1]);
+    if (Array.isArray(ev.parents) && ev.parents.length) { const f = own(ev.parents[0]); if (f) return f; }
+    const me = canonicalPerson(ev.name, idx);
+    for (const a of events) {
+      if (a.type !== "anniversary" || canonicalPerson(a.people[1], idx) !== me) continue;
+      const f = a.familyName || own(a.people[0]);
+      if (f) return f;
     }
     return "";
   }
@@ -251,7 +257,8 @@
     return sortEvents(events.filter((ev) =>
       matchesType(ev, o.filter || "all") &&
       (o.month == null || ev.month === o.month) &&
-      (!q || matchesQuery(ev.type === "anniversary" ? Object.assign({}, ev, { _communities: communitiesOf(ev, events), _familyName: familyNameOf(ev, events) }) : ev, q, aliasIndex))));
+      (!q || matchesQuery(Object.assign({}, ev, { _familyName: familyNameOf(ev, events) },
+        ev.type === "anniversary" ? { _communities: communitiesOf(ev, events) } : {}), q, aliasIndex))));
   }
   // Which alias matched (to show "matched Buddy"), or null when the canonical name matched.
   function matchedAlias(ev, query, events) {

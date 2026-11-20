@@ -1,5 +1,5 @@
 {
-  "seedVersion": 2,
+  "seedVersion": 3,
   "birthdays": [
     {
       "id": "birthday-roshini",
@@ -63,7 +63,8 @@
       ],
       "community": "telugu",
       "relationship": "Husband of Saritha",
-      "verified": true
+      "verified": true,
+      "familyName": "Mula"
     },
     {
       "id": "birthday-srikanth",
@@ -225,7 +226,8 @@
       "community": "telugu",
       "relationship": "Husband of Thara; father of Apurva and Vihaan",
       "verified": true,
-      "note": "July 5. Matches the Royal Dr Gang site."
+      "note": "July 5. Matches the Royal Dr Gang site.",
+      "familyName": "Moola"
     },
     {
       "id": "birthday-charvi",
@@ -299,7 +301,7 @@
       "day": 1,
       "aliases": [],
       "community": "telugu",
-      "relationship": "Wife of Satish Reddy",
+      "relationship": "Wife of Satish",
       "verified": false,
       "note": "Greetings occur on August 1 and 2; August 1 is used provisionally."
     },
@@ -365,7 +367,8 @@
       "community": "telugu",
       "relationship": "Husband of Sowjanya",
       "verified": true,
-      "note": "Greetings occur on August 24 and 25; August 25 is the stronger date."
+      "note": "Greetings occur on August 24 and 25; August 25 is the stronger date.",
+      "familyName": "Appidi"
     },
     {
       "id": "birthday-sowjanya",
@@ -386,16 +389,18 @@
     {
       "id": "birthday-satish-reddy",
       "type": "birthday",
-      "name": "Satish Reddy",
+      "name": "Satish",
       "month": 9,
       "day": 7,
       "aliases": [
         "Gundu",
+        "Satish Reddy",
         "Sathish Reddy"
       ],
       "community": "telugu",
       "relationship": "Husband of Harika",
-      "verified": true
+      "verified": true,
+      "familyName": "Appidi"
     },
     {
       "id": "birthday-sravan",
@@ -447,7 +452,8 @@
       ],
       "community": "telugu",
       "verified": true,
-      "relationship": "Wife of Sampath; mother of Roshini"
+      "relationship": "Wife of Sampath; mother of Roshini",
+      "familyName": "Mula"
     },
     {
       "id": "birthday-karthik",
@@ -502,7 +508,8 @@
       ],
       "community": "telugu",
       "relationship": "Husband of Sandhya",
-      "verified": true
+      "verified": true,
+      "familyName": "Kosana"
     },
     {
       "id": "birthday-apurva",
@@ -547,7 +554,8 @@
       ],
       "community": "telugu",
       "relationship": "Husband of Swetha",
-      "verified": true
+      "verified": true,
+      "familyName": "Appidi"
     },
     {
       "id": "birthday-sampath",
@@ -561,7 +569,8 @@
       ],
       "community": "telugu",
       "relationship": "Founder of the family WhatsApp group; husband of Sridevi; father of Roshini",
-      "verified": true
+      "verified": true,
+      "familyName": "Mula"
     },
     {
       "id": "birthday-anu",
@@ -711,7 +720,8 @@
       "aliases": [
         "Venkanna & Sunita"
       ],
-      "verified": true
+      "verified": true,
+      "familyName": "Appidi"
     },
     {
       "id": "anniversary-linganna-saritha",
@@ -730,13 +740,14 @@
       "id": "anniversary-satish-reddy-harika",
       "type": "anniversary",
       "people": [
-        "Satish Reddy",
+        "Satish",
         "Harika"
       ],
       "month": 11,
       "day": 24,
       "aliases": [
         "Gundu & Harika",
+        "Satish Reddy & Harika",
         "Sathish Reddy & Harika"
       ],
       "verified": true
