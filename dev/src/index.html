@@ -906,7 +906,7 @@ function renderCalendar() {
   const L = R.SITE.launchDate && new Date(R.SITE.launchDate + "T00:00:00");
   const lf = $("#launch");
   lf.hidden = !L;
-  if (L) lf.innerHTML = `<svg aria-hidden="true"><use href="#i-flame"/></svg>${S.today >= L ? "Launched" : "Launching"} ${L.getDate()} ${R.MONTHS[L.getMonth()]} ${L.getFullYear()}, on ${esc(R.SITE.launchNote || "")}`;
+  if (L) lf.innerHTML = `<svg aria-hidden="true"><use href="#i-flame"/></svg>${esc(R.SITE.name)}, Launched on ${L.getDate()} ${R.MONTHS[L.getMonth()]} ${L.getFullYear()}, on ${esc(R.SITE.launchNote || "")}`;
 }
 
 /* ---------- manage ---------- */

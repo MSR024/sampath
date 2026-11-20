@@ -61,7 +61,7 @@ Telangana throughout: paddy-field green and cotton cream with a Pochampally ikat
 
 ## Sampath Anna's birthday (Dec 19) and the launch
 
-`personMetadata` in `seed.json` marks Sampath Anna, the founder, as featured (keyed by `birthday-sampath`). On Dec 19 the top reads "Sampath Anna's Birthday" with its own line, and his card is highlighted with a Founder badge all year. No age is ever shown. The site launches on his birthday: `launchDate` in `dev/site.json` drives the footer line ("Launching…" before, "Launched…" after).
+`personMetadata` in `seed.json` marks Sampath Anna, the founder, as featured (keyed by `birthday-sampath`). On Dec 19 the top reads "Sampath Anna's Birthday" with its own line, and his card is highlighted with a Founder badge all year. No age is ever shown. The site launches on his birthday: `launchDate` in `dev/site.json` drives the footer line ("Sampath.Family, Launched on 19 December 2026, on Sampath Anna’s birthday").
 
 ## How the data works
 
