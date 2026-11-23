@@ -12,8 +12,8 @@ const names = (list) => list.map(R.displayName);
 const q = (s) => names(R.filterEvents(all(), { query: s }));
 const byName = (n) => all().find((e) => e.type === "birthday" && e.name === n);
 
-test("seed loads 44 birthdays and 12 anniversaries, all valid, ids unique", () => {
-  assert.equal(seed.birthdays.length, 44);
+test("seed loads 47 birthdays and 12 anniversaries, all valid, ids unique", () => {
+  assert.equal(seed.birthdays.length, 47);
   assert.equal(seed.anniversaries.length, 12);
   const ids = new Set();
   for (const e of all()) {
@@ -27,8 +27,8 @@ test("seed loads 44 birthdays and 12 anniversaries, all valid, ids unique", () =
 
 test("all 12 monthly totals match the seed", () => {
   const expected = { // [birthdays, anniversaries]
-    1: [4, 1], 2: [2, 1], 3: [3, 3], 4: [4, 0], 5: [3, 2], 6: [0, 1],
-    7: [6, 0], 8: [7, 1], 9: [2, 0], 10: [6, 0], 11: [3, 2], 12: [4, 1],
+    1: [5, 1], 2: [3, 1], 3: [3, 3], 4: [4, 0], 5: [3, 2], 6: [0, 1],
+    7: [6, 0], 8: [7, 1], 9: [2, 0], 10: [6, 0], 11: [4, 2], 12: [4, 1],
   };
   for (const m of R.monthSummary(all())) {
     assert.deepEqual([m.birthdays.length, m.anniversaries.length], expected[m.month], m.name);
@@ -142,6 +142,15 @@ test("kids linked to their parents take the father's family name", () => {
   assert.equal(R.familyNameOf(ev.find((e) => e.id === "anniversary-sathyam-sarita"), ev), "Manda");
   assert.ok(R.filterEvents(ev, { query: "Satyam" }).map(R.displayName).includes("Sathyam & Sarita"));
   assert.equal(R.familyNameOf(ev.find((e) => e.id === "birthday-cherry"), ev), "", "Srikanth's family name not given yet");
+});
+
+test("Narahari family: Madhavi with Sahith and Sathvick", () => {
+  const ev = all(), get = (id) => ev.find((e) => e.id === id);
+  for (const id of ["birthday-madhavi", "birthday-sahith", "birthday-sathvick"]) assert.equal(R.familyNameOf(get(id), ev), "Narahari", id);
+  assert.deepEqual([get("birthday-madhavi").month, get("birthday-madhavi").day], [11, 20]);
+  const fam = R.familyGrid(ev).families.find((f) => f.people.includes("Madhavi"));
+  assert.deepEqual(fam.kids.map((k) => k.name), ["Sahith", "Sathvick"]);
+  assert.ok(q("Narahari").includes("Madhavi") && q("Sathvik").includes("Sathvick"));
 });
 
 /* ---------- Founder's birthday ---------- */

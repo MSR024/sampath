@@ -1,5 +1,5 @@
 {
-  "seedVersion": 16,
+  "seedVersion": 17,
   "birthdays": [
     {
       "id": "birthday-roshini",
@@ -19,6 +19,24 @@
         "Sridevi"
       ],
       "relationship": "Daughter of Sampath and Sridevi"
+    },
+    {
+      "type": "birthday",
+      "community": "telugu",
+      "familyName": "Narahari",
+      "verified": true,
+      "id": "birthday-sahith",
+      "name": "Sahith",
+      "month": 1,
+      "day": 5,
+      "aliases": [
+        "Sahit"
+      ],
+      "parents": [
+        "SatyaPrakash Reddy",
+        "Madhavi"
+      ],
+      "relationship": "Son of SatyaPrakash Reddy and Madhavi"
     },
     {
       "id": "birthday-vihaan",
@@ -65,6 +83,25 @@
       "relationship": "Husband of Saritha; father of Lucky and Mikky",
       "verified": true,
       "familyName": "Mula"
+    },
+    {
+      "type": "birthday",
+      "community": "telugu",
+      "familyName": "Narahari",
+      "verified": true,
+      "id": "birthday-sathvick",
+      "name": "Sathvick",
+      "month": 2,
+      "day": 1,
+      "aliases": [
+        "Sathvik",
+        "Satvik"
+      ],
+      "parents": [
+        "SatyaPrakash Reddy",
+        "Madhavi"
+      ],
+      "relationship": "Son of SatyaPrakash Reddy and Madhavi"
     },
     {
       "id": "birthday-srikanth",
@@ -633,6 +670,20 @@
         "Sunitha"
       ],
       "relationship": "Child of Venkanna and Sunitha"
+    },
+    {
+      "type": "birthday",
+      "community": "telugu",
+      "familyName": "Narahari",
+      "verified": true,
+      "id": "birthday-madhavi",
+      "name": "Madhavi",
+      "month": 11,
+      "day": 20,
+      "aliases": [
+        "Madhavi Narahari"
+      ],
+      "relationship": "Wife of the late Narahari SatyaPrakash Reddy; mother of Sahith and Sathvick"
     },
     {
       "id": "birthday-sandeep",
