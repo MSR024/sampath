@@ -1,25 +1,6 @@
 {
-  "seedVersion": 17,
+  "seedVersion": 18,
   "birthdays": [
-    {
-      "id": "birthday-roshini",
-      "type": "birthday",
-      "name": "Roshini",
-      "month": 1,
-      "day": 5,
-      "aliases": [
-        "Smiley",
-        "Smily",
-        "Smile"
-      ],
-      "community": "telugu",
-      "verified": true,
-      "parents": [
-        "Sampath",
-        "Sridevi"
-      ],
-      "relationship": "Daughter of Sampath and Sridevi"
-    },
     {
       "type": "birthday",
       "community": "telugu",
@@ -37,6 +18,26 @@
         "Madhavi"
       ],
       "relationship": "Son of SatyaPrakash Reddy and Madhavi"
+    },
+    {
+      "id": "birthday-roshini",
+      "type": "birthday",
+      "name": "Roshini",
+      "month": 1,
+      "day": 6,
+      "aliases": [
+        "Smiley",
+        "Smily",
+        "Smile"
+      ],
+      "community": "telugu",
+      "verified": false,
+      "parents": [
+        "Sampath",
+        "Sridevi"
+      ],
+      "relationship": "Daughter of Sampath and Sridevi",
+      "note": "Sateesh thinks January 6; the WhatsApp export showed January 5. Confirm."
     },
     {
       "id": "birthday-vihaan",
