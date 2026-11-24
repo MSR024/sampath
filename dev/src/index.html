@@ -131,6 +131,16 @@ body[data-look]{--hb:light-dark(#a1124e,#ff9ec6);--cal:var(--an-mark)}
 body[data-look=telangana]{--band:#efb21f;--band-ink:#2b2116;--hb:#a3241b;--cal:#2f6b2f;--logo-accent:#a3241b}
 body[data-look=telangana] .hero,body[data-look=telangana] .minibar{background-image:radial-gradient(circle,rgb(255 255 255/.32) 1.4px,transparent 1.9px);background-size:24px 24px;background-repeat:repeat;background-position:0 0}
 body[data-look=telangana] .hero{padding-bottom:40px}
+/* Telugu wedding day (pelli): kumkum red and gold, talambralu, pattu-saree zari border */
+body[data-look=pelli]{--band:#7d1414;--band-ink:#fff3d6;--hb:#ffd166;--cal:#b8860b;--logo-accent:#ffd166}
+body[data-look=pelli] .hero,body[data-look=pelli] .minibar{background-image:radial-gradient(ellipse 2.2px 1.3px,rgb(255 209 102/.28) 98%,transparent);background-size:58px 44px;background-position:0 0;background-repeat:repeat}
+body[data-look=pelli] .hero{padding-bottom:46px}
+body[data-look=pelli] .hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:22px;z-index:1;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='22'%3E%3Crect width='24' height='22' fill='%235c0d0d'/%3E%3Crect y='2' width='24' height='2' fill='%23d4a017'/%3E%3Crect y='19' width='24' height='1.5' fill='%23d4a017'/%3E%3Cpath d='M0 18L6 8 12 18ZM12 18L18 8 24 18Z' fill='%23d4a017'/%3E%3Cpath d='M3 18L6 13 9 18ZM15 18L18 13 21 18Z' fill='%235c0d0d'/%3E%3Ccircle cx='6' cy='6' r='1.2' fill='%23f4d27a'/%3E%3Ccircle cx='18' cy='6' r='1.2' fill='%23f4d27a'/%3E%3C/svg%3E") repeat-x;background-size:24px 22px}
+body[data-look=pelli] .pill.soft{background:rgb(255 255 255/.14)}
+.talambralu{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.talambralu i{position:absolute;top:-10px;width:5px;height:3px;border-radius:50%;background:#f4c430;box-shadow:0 0 2px rgb(255 200 60/.6);animation:shower linear infinite;opacity:.9}
+@keyframes shower{from{transform:translateY(-10px) rotate(0)}to{transform:translateY(360px) rotate(540deg)}}
 body[data-look=kerala],body[data-look=tamil],body[data-look=sourashtra],body[data-look=muslim]{--logo-accent:var(--hb)}
 body[data-look=tamil]{--band:#7a1230;--band-ink:#fff1d6;--hb:#ffcf66;--cal:#c8961c}
 body[data-look=tamil] .hero,body[data-look=tamil] .minibar{background-image:radial-gradient(circle,rgb(255 248 234/.32) 1.5px,transparent 2px);background-size:26px 26px}
@@ -364,6 +374,8 @@ body{-webkit-tap-highlight-color:transparent;-webkit-text-size-adjust:100%}
   body[data-look] .rangoli{opacity:.3}
   body[data-look=kerala] .rangoli{opacity:.16}
   body[data-look=telangana] .rangoli{opacity:.32}
+  body[data-look=pelli] .rangoli{opacity:.4;width:190px;right:-40px}
+  body[data-look=pelli] .hero{padding-bottom:36px}
   .hero{padding-bottom:40px}
   body[data-look=telangana] .hero{padding-bottom:26px}
   body[data-look=kerala] .hero{padding-bottom:38px} /* keep the kasavu border clear of the greeting */
@@ -450,6 +462,7 @@ body{-webkit-tap-highlight-color:transparent;-webkit-text-size-adjust:100%}
   <symbol id="i-star8" viewBox="-10 -10 20 20"><path d="M0-9 2.6-6.3 6.4-6.4 6.3-2.6 9 0 6.3 2.6 6.4 6.4 2.6 6.3 0 9-2.6 6.3-6.4 6.4-6.3 2.6-9 0-6.3-2.6-6.4-6.4-2.6-6.3Z" fill="#d4af37"/></symbol>
   <symbol id="i-flame" viewBox="0 0 10 14"><path d="M5 0C8 4 9 7.5 9 9.6A4 4 0 0 1 1 9.6C1 7.5 2 4 5 0Z" fill="#d9480f" stroke="none"/><path d="M5 5.6C6.4 7.4 6.6 8.7 6.6 9.7A1.6 1.6 0 0 1 3.4 9.7C3.4 8.7 3.6 7.4 5 5.6Z" fill="#ffd27a" stroke="none"/></symbol>
   <symbol id="i-tangedu" viewBox="-10 -10 20 20"><g fill="#f4c430"><ellipse rx="3.4" ry="6" transform="translate(0 -4)"/><ellipse rx="3.4" ry="6" transform="rotate(72) translate(0 -4)"/><ellipse rx="3.4" ry="6" transform="rotate(144) translate(0 -4)"/><ellipse rx="3.4" ry="6" transform="rotate(216) translate(0 -4)"/><ellipse rx="3.4" ry="6" transform="rotate(288) translate(0 -4)"/></g><circle r="2.6" fill="#c98a00"/></symbol>
+  <symbol id="i-rose" viewBox="-10 -10 20 20"><circle r="8.5" fill="#b3122e"/><path d="M0-6a6 6 0 1 1-5 3M0-3a3 3 0 1 1-2.6 1.6" fill="none" stroke="#e8455c" stroke-width="1.4"/><circle r="1.6" fill="#7d0a1d"/></symbol>
   <symbol id="i-mango" viewBox="0 0 12 26"><path d="M6 0C11 6 11 17 6 26 1 17 1 6 6 0Z" fill="#2f7d3c"/><path d="M6 2v22" stroke="#a6d18f" stroke-width=".8"/></symbol>
 </svg>
 
@@ -627,6 +640,9 @@ function drawGarland() {
     line = "#3f7a3a";
     for (let x = 0; x < W; x += 14) s += `<use href="#i-jasmine" x="${x}" y="7" width="16" height="10"/>`;
     for (let x = 30; x < W; x += 64) s += `<use href="#i-strand" x="${x}" y="13" width="7" height="22"/>`;
+  } else if (look === "pelli") {
+    line = "#2f7d3c";
+    for (let i = 0; i < n; i++) { const x = (i + 0.5) * (W / n); s += i % 3 === 0 ? `<use href="#i-rose" x="${x - 9}" y="3" width="18" height="18"/>` : i % 3 === 1 ? `<use href="#i-mango" x="${x - 6}" y="8" width="12" height="24"/>` : `<use href="#i-jasmine" x="${x - 8}" y="7" width="16" height="10"/>`; }
   } else if (look === "kerala") {
     line = "#b8902a";
     for (let i = 0; i < n; i++) { const x = (i + 0.5) * (W / n); s += i % 2 ? `<use href="#i-jasmine" x="${x - 8}" y="7" width="16" height="10"/>` : `<use href="#i-flower" x="${x - 9}" y="3" width="18" height="18"/>`; }
@@ -674,8 +690,46 @@ function drawMotif(look) {
     return;
   }
   if (look === "telangana") { drawBathukamma(); return; }
+  if (look === "pelli") { drawMandapam(); return; }
   if (!look) { drawThoranam(); return; }
   drawRangoli();
+}
+// Pelli mandapam: banana-tree pillars, gold arch with red canopy and mango-leaf thoranam,
+// jasmine strings, and a kalasham with coconut at the centre, talambralu scattered around.
+// Talambralu: a gentle shower of turmeric rice over the top space on a wedding day.
+function showerTalambralu(on) {
+  let box = $("#hero .talambralu");
+  if (!on || matchMedia("(prefers-reduced-motion: reduce)").matches) { box && box.remove(); return; }
+  if (box) return;
+  box = document.createElement("div"); box.className = "talambralu"; box.setAttribute("aria-hidden", "true");
+  for (let k = 0; k < 16; k++) {
+    const i = document.createElement("i");
+    i.style.left = (4 + Math.random() * 92).toFixed(1) + "%";
+    i.style.animationDuration = (6 + Math.random() * 6).toFixed(1) + "s";
+    i.style.animationDelay = (-Math.random() * 10).toFixed(1) + "s";
+    box.append(i);
+  }
+  $("#hero").prepend(box);
+}
+function drawMandapam() {
+  const leaf = (x, y, rot, len) => `<path d="M0 0C${len * .3} -6 ${len * .7} -6 ${len} 0 ${len * .7} 4 ${len * .3} 4 0 0Z" fill="#3f8a2b" transform="translate(${x} ${y}) rotate(${rot})"/><path d="M0 0H${len}" stroke="#9fd07a" stroke-width=".8" transform="translate(${x} ${y}) rotate(${rot})"/>`;
+  const banana = (x, flip) => `<rect x="${x - 4}" y="-34" width="8" height="106" rx="3" fill="#5c9a33"/><path d="M${x - 4} -34v106" stroke="#3f7d26" stroke-width="1.5"/>
+    ${leaf(x, -32, flip ? -150 : -30, 40)}${leaf(x, -28, flip ? -115 : -65, 36)}${leaf(x, -22, flip ? 160 : 20, 34)}${leaf(x, -10, flip ? 185 : -5, 30)}`;
+  let thor = ""; for (let x = -62; x <= 62; x += 10) thor += `<path d="M${x} -40l-3 9 3 4 3-4Z" fill="#2f7d3c"/>`;
+  let strings = ""; for (const x of [-58, -40, 40, 58]) for (let k = 0; k < 6; k++) strings += `<circle cx="${x}" cy="${-34 + k * 7}" r="2" fill="#fffdf2"/>`;
+  let grains = ""; [[-30, 60], [28, 64], [-14, 70], [40, 50], [-46, 48], [12, 56], [-2, 66], [52, 66]].forEach(([x, y], i) => grains += `<ellipse cx="${x}" cy="${y}" rx="2.4" ry="1.3" fill="#f4c430" transform="rotate(${i * 40} ${x} ${y})"/>`);
+  $("#rangoli").innerHTML = `
+    <path d="M-92 72H92V82H-92Z" fill="#c9971c"/><path d="M-80 82H80V90H-80Z" fill="#a87a12"/>
+    ${banana(-80, false)}${banana(80, true)}
+    <path d="M-74 -40C-60 -66 -30 -80 0 -86 30 -80 60 -66 74 -40Z" fill="#b3122e"/>
+    <path d="M-74 -40C-60 -66 -30 -80 0 -86 30 -80 60 -66 74 -40" fill="none" stroke="#d4a017" stroke-width="5" stroke-linecap="round"/>
+    <path d="M-74 -40Q-62 -32 -50 -40Q-38 -32 -26 -40Q-14 -32 -2 -40Q10 -32 22 -40Q34 -32 46 -40Q58 -32 74 -40" fill="none" stroke="#d4a017" stroke-width="2.5"/>
+    <circle cx="0" cy="-92" r="5" fill="#d4a017"/>${thor}${strings}
+    <path d="M-16 50C-24 38 -20 26 0 24 20 26 24 38 16 50 10 60 -10 60 -16 50Z" fill="#d4a017"/>
+    <path d="M-19 38H19" stroke="#b3122e" stroke-width="4"/><path d="M-9 24H9V18H-9Z" fill="#c9971c"/>
+    ${leaf(-2, 18, -150, 22)}${leaf(2, 18, -30, 22)}${leaf(0, 16, -110, 20)}${leaf(0, 16, -70, 20)}
+    <circle cx="0" cy="8" r="10" fill="#8a5a2b"/><path d="M-6 2q6-6 12 0M-4 -1q4-5 8 0" stroke="#5e3b18" stroke-width="1.4" fill="none"/>
+    <circle cx="0" cy="40" r="2.5" fill="#fff1c2"/>${grains}`;
 }
 // Bathukamma: tiers of tangedu, gunugu, marigold and leaves on a brass plate, Gauramma on top.
 function drawBathukamma() {
@@ -734,8 +788,9 @@ function renderHero() {
     : new Date(S.today.getFullYear(), S.today.getMonth(), S.today.getDate() + next.days);
   // On the day, dress the top space in the celebrant's regional theme (Telangana for Telugu families).
   const LOOKS = { telugu: "telangana", tamil: "tamil", "tamil-sourashtra": "sourashtra", malayali: "kerala", muslim: "muslim" };
-  const look = next.days === 0 ? LOOKS[R.communitiesOf(first, S.events)[0]] || "" : "";
-  if (look !== S.look) { S.look = look; if (look) document.body.dataset.look = look; else delete document.body.dataset.look; drawMotif(look); drawGarland(); }
+  let look = next.days === 0 ? LOOKS[R.communitiesOf(first, S.events)[0]] || "" : "";
+  if (look === "telangana" && first.type === "anniversary") look = "pelli"; // Telugu wedding day
+  if (look !== S.look) { S.look = look; if (look) document.body.dataset.look = look; else delete document.body.dataset.look; drawMotif(look); drawGarland(); showerTalambralu(look === "pelli"); }
   // The founder's birthday gets its own title and line ("Sampath Anna's Birthday").
   const feat = events.length === 1 ? R.featuredFor(first) : null;
   const calHTML = `<div class="calpage ${events.every((e) => e.type === "birthday") ? "bd" : ""}" aria-hidden="true">

@@ -57,7 +57,7 @@ The calendar day follows **India time (IST)** for every visitor, because most of
 
 ## Look
 
-Telangana throughout: paddy-field green and cotton cream with a Pochampally ikat strip, the Kakatiya Kala Thoranam and a mango-leaf, banti and tangedu thoranam. On a Telugu celebrant's day the band turns turmeric with a Bathukamma. Other communities keep their own looks (for example Kerala kasavu on Thara's birthday). The logo is **Sampath.Family**, its dot a small deepam flame.
+Telangana throughout: paddy-field green and cotton cream with a Pochampally ikat strip, the Kakatiya Kala Thoranam and a mango-leaf, banti and tangedu thoranam. On a Telugu birthday the band turns turmeric with a Bathukamma; on a Telugu wedding anniversary it becomes a pelli look: kumkum red and gold, a pelli mandapam with banana-tree pillars and a kalasham, a gentle talambralu shower, a jasmine-and-rose garland and a pattu-saree zari border. Other communities keep their own looks (for example Kerala kasavu on Thara's birthday). The logo is **Sampath.Family**, its dot a small deepam flame.
 
 ## Sampath Anna's birthday (Dec 19) and the launch
 
