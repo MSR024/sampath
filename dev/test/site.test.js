@@ -181,6 +181,10 @@ test("public editing is off: the family sees only the published list", () => {
   assert.equal(site.publicEditing, false);
 });
 
+test("footer remembers Sampath Anna", () => {
+  assert.match(site.footerNote, /Sampath Anna, you will always remain with us/);
+});
+
 test("launch is set for Sampath Anna's birthday, Dec 19 2026", () => {
   assert.equal(site.launchDate, "2026-12-19");
 });

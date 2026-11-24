@@ -906,10 +906,10 @@ function renderCalendar() {
   if (!S.storageOk) bn.push("This browser isn't saving changes (private mode or storage blocked). Export a backup from Manage events.");
   $("#banner").innerHTML = bn.map((t) => `<div class="banner">${ico("alert")}<span>${esc(t)}</span></div>`).join("");
   $("#content").innerHTML = S.view === "year" ? renderYear() : renderMonth();
-  const L = R.SITE.launchDate && new Date(R.SITE.launchDate + "T00:00:00");
-  const lf = $("#launch");
-  lf.hidden = !L;
-  if (L) lf.innerHTML = `<svg aria-hidden="true"><use href="#i-flame"/></svg>${esc(R.SITE.name)}, Launched on ${L.getDate()} ${R.MONTHS[L.getMonth()]} ${L.getFullYear()}, on ${esc(R.SITE.launchNote || "")}`;
+  // Footer: a quiet line for Sampath Anna (site.json "footerNote").
+  const lf = $("#launch"), note = R.SITE.footerNote;
+  lf.hidden = !note;
+  if (note) lf.innerHTML = `<svg aria-hidden="true"><use href="#i-flame"/></svg>${esc(note)}`;
 }
 
 /* ---------- manage ---------- */
