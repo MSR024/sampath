@@ -17,5 +17,10 @@
   "launchDate": "2026-12-19",
   "launchNote": "Sampath Anna’s birthday",
   "publicEditing": false,
-  "footerNote": "www.Sampath.Family · Sampath Anna, you will always remain with us."
+  "footerNote": "www.Sampath.Family · Sampath Anna, you will always remain with us.",
+  "holdOver": {
+    "eventId": "anniversary-satish-reddy-harika",
+    "through": "2026-11-25",
+    "why": "Launch day ran late, so Gundu & Harika's anniversary stays on top one more day"
+  }
 }

@@ -185,6 +185,15 @@ test("footer remembers Sampath Anna", () => {
   assert.match(site.footerNote, /Sampath Anna, you will always remain with us/);
 });
 
+test("held-over celebration: Gundu & Harika stay on top through Nov 25, then it ends by itself", () => {
+  const ev = all(), cfg = site.holdOver;
+  const on = (iso) => R.heldOver(ev, R.todayIn(R.BASE_TIME_ZONE, new Date(iso)), cfg);
+  assert.deepEqual(on("2026-11-25T06:00:00Z").events.map(R.displayName), ["Gundu & Harika"]); // Nov 25 IST
+  assert.equal(on("2026-11-25T19:00:00Z"), null); // Nov 26 IST
+  assert.equal(on("2027-11-25T06:00:00Z"), null, "never next year");
+  assert.equal(R.heldOver(ev, new Date(2026, 10, 23), cfg), null, "not before the day itself");
+});
+
 test("launch is set for Sampath Anna's birthday, Dec 19 2026", () => {
   assert.equal(site.launchDate, "2026-12-19");
 });

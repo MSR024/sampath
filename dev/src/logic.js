@@ -171,6 +171,19 @@
     }
     return { days: best, events: sortEvents(list) };
   }
+  // One-off: keep a recent celebration on top for a few extra days (site.json "holdOver":
+  // { eventId, through: "YYYY-MM-DD" }). Ends by itself after "through" (in the base time zone),
+  // and only applies if the event happened within the last 7 days.
+  function heldOver(events, today, cfg) {
+    if (!cfg || !cfg.eventId || !cfg.through) return null;
+    const [y, m, d] = String(cfg.through).split("-").map(Number);
+    const t = startOfDay(today || new Date());
+    if (!(y && m && d) || t > new Date(y, m - 1, d)) return null;
+    const ev = events.find((e) => e.id === cfg.eventId);
+    if (!ev) return null;
+    const ago = (t - occurrenceIn(ev, t.getFullYear())) / 86400000;
+    return ago >= 0 && ago <= 7 ? { days: 0, events: [ev], heldOver: true } : null;
+  }
   // Soonest date strictly after today (used when today already has celebrations).
   function nextAfterToday(events, today) {
     const future = events.filter((e) => daysUntil(e, today) > 0);
@@ -599,7 +612,7 @@
     phon, COMMUNITIES, communitiesOf, greetingsFor, wishText,
     STORAGE_KEY, SCHEMA_VERSION, MONTHS, DAYS_IN_MONTH, norm,
     displayName, familyNameOf, formatDayMonth, compareEvents, sortEvents, groupByDate, eventsInMonth, monthSummary,
-    BASE_TIME_ZONE, todayIn, currentMonth, daysUntil, relativeLabel, nextCelebration, nextAfterToday, upcoming,
+    BASE_TIME_ZONE, todayIn, currentMonth, daysUntil, relativeLabel, nextCelebration, nextAfterToday, upcoming, heldOver,
     buildAliasIndex, matchesQuery, filterEvents, matchedAlias,
     validateEvent, makeId, isDuplicate, findDuplicate, mergeEvents,
     exportData, exportJSON, parseImport, planImport, applyImport,

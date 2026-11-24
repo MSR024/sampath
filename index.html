@@ -542,7 +542,7 @@ body{-webkit-tap-highlight-color:transparent;-webkit-text-size-adjust:100%}
 <dialog id="dlg" aria-labelledby="dlgTitle"></dialog>
 <div class="toasts" id="toasts" role="status" aria-live="polite"></div>
 
-<script>window.RGC_SITE = {"name":"Sampath.Family","shortName":"Sampath.Family","brand":"Sampath.Family","domain":"www.sampath.family","description":"Sampath.Family — birthdays and wedding anniversaries of our family, near and far. See who's celebrating today and this month.","ogDescription":"Who's celebrating today and this month — birthdays and anniversaries of the Sampath family.","ogLine":"Our family, near and far","fromUs":"From all of us in the family","timeZone":"Asia/Kolkata","timeZoneLabel":"India time (IST)","storageKey":"family-celebrations:v1","themeColor":"#24502c","brandA":"Sampath","brandB":"Family","ogDomain":"Sampath.Family","launchDate":"2026-12-19","launchNote":"Sampath Anna’s birthday","publicEditing":false,"footerNote":"www.Sampath.Family · Sampath Anna, you will always remain with us."};</script>
+<script>window.RGC_SITE = {"name":"Sampath.Family","shortName":"Sampath.Family","brand":"Sampath.Family","domain":"www.sampath.family","description":"Sampath.Family — birthdays and wedding anniversaries of our family, near and far. See who's celebrating today and this month.","ogDescription":"Who's celebrating today and this month — birthdays and anniversaries of the Sampath family.","ogLine":"Our family, near and far","fromUs":"From all of us in the family","timeZone":"Asia/Kolkata","timeZoneLabel":"India time (IST)","storageKey":"family-celebrations:v1","themeColor":"#24502c","brandA":"Sampath","brandB":"Family","ogDomain":"Sampath.Family","launchDate":"2026-12-19","launchNote":"Sampath Anna’s birthday","publicEditing":false,"footerNote":"www.Sampath.Family · Sampath Anna, you will always remain with us.","holdOver":{"eventId":"anniversary-satish-reddy-harika","through":"2026-11-25","why":"Launch day ran late, so Gundu & Harika's anniversary stays on top one more day"}};</script>
 <script>/* Family celebrations site — pure logic (no DOM). Works in the browser (window.RGC) and in Node (module.exports). */
 (function (root) {
   "use strict";
@@ -715,6 +715,19 @@ body{-webkit-tap-highlight-color:transparent;-webkit-text-size-adjust:100%}
       else if (d === best) list.push(ev);
     }
     return { days: best, events: sortEvents(list) };
+  }
+  // One-off: keep a recent celebration on top for a few extra days (site.json "holdOver":
+  // { eventId, through: "YYYY-MM-DD" }). Ends by itself after "through" (in the base time zone),
+  // and only applies if the event happened within the last 7 days.
+  function heldOver(events, today, cfg) {
+    if (!cfg || !cfg.eventId || !cfg.through) return null;
+    const [y, m, d] = String(cfg.through).split("-").map(Number);
+    const t = startOfDay(today || new Date());
+    if (!(y && m && d) || t > new Date(y, m - 1, d)) return null;
+    const ev = events.find((e) => e.id === cfg.eventId);
+    if (!ev) return null;
+    const ago = (t - occurrenceIn(ev, t.getFullYear())) / 86400000;
+    return ago >= 0 && ago <= 7 ? { days: 0, events: [ev], heldOver: true } : null;
   }
   // Soonest date strictly after today (used when today already has celebrations).
   function nextAfterToday(events, today) {
@@ -1144,7 +1157,7 @@ body{-webkit-tap-highlight-color:transparent;-webkit-text-size-adjust:100%}
     phon, COMMUNITIES, communitiesOf, greetingsFor, wishText,
     STORAGE_KEY, SCHEMA_VERSION, MONTHS, DAYS_IN_MONTH, norm,
     displayName, familyNameOf, formatDayMonth, compareEvents, sortEvents, groupByDate, eventsInMonth, monthSummary,
-    BASE_TIME_ZONE, todayIn, currentMonth, daysUntil, relativeLabel, nextCelebration, nextAfterToday, upcoming,
+    BASE_TIME_ZONE, todayIn, currentMonth, daysUntil, relativeLabel, nextCelebration, nextAfterToday, upcoming, heldOver,
     buildAliasIndex, matchesQuery, filterEvents, matchedAlias,
     validateEvent, makeId, isDuplicate, findDuplicate, mergeEvents,
     exportData, exportJSON, parseImport, planImport, applyImport,
@@ -1335,11 +1348,14 @@ function renderHero() {
   const narrow = matchMedia("(max-width:600px)").matches;
   $("#todayDate").textContent = S.today.toLocaleDateString(undefined, narrow ? { weekday: "short", month: "short", day: "numeric" } : { weekday: "long", month: "long", day: "numeric", year: "numeric" });
   $("#todayDate").title = `Celebrations follow ${R.SITE.timeZoneLabel || R.BASE_TIME_ZONE}, wherever you are.`;
-  const next = R.nextCelebration(S.events, S.today);
+  const live = R.nextCelebration(S.events, S.today);
+  // A real celebration today always wins over a held-over one.
+  const next = (live && live.days === 0 ? null : R.heldOver(S.events, S.today, R.SITE.holdOver)) || live;
   const box = $("#heroInner");
   if (!next) { box.innerHTML = `<div class="hero-text"><p class="eyebrow">No celebrations yet</p><h2>Add the first birthday or anniversary</h2><a class="btn primary" href="#manage">Manage events</a></div>`; return; }
   const events = next.events, first = events[0];
-  const date = new Date(S.today.getFullYear(), S.today.getMonth(), S.today.getDate() + next.days);
+  const date = next.heldOver ? new Date(S.today.getFullYear(), first.month - 1, first.day)
+    : new Date(S.today.getFullYear(), S.today.getMonth(), S.today.getDate() + next.days);
   // On the day, dress the top space in the celebrant's regional theme (Telangana for Telugu families).
   const LOOKS = { telugu: "telangana", tamil: "tamil", "tamil-sourashtra": "sourashtra", malayali: "kerala", muslim: "muslim" };
   const look = next.days === 0 ? LOOKS[R.communitiesOf(first, S.events)[0]] || "" : "";

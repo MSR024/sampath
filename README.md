@@ -63,6 +63,10 @@ Telangana throughout: paddy-field green and cotton cream with a Pochampally ikat
 
 `personMetadata` in `seed.json` marks Sampath Anna, the founder, as featured (keyed by `birthday-sampath`). On Dec 19 the top reads "Sampath Anna's Birthday" with its own line, and his card is highlighted with a Founder badge all year. No age is ever shown. The footer line, in his memory, comes from `footerNote` in `dev/site.json`: "www.Sampath.Family · Sampath Anna, you will always remain with us."
 
+## Holding a celebration over
+
+`holdOver` in `dev/site.json` ({ eventId, through }) keeps a recent celebration on top for extra days; it ends by itself after the "through" date (India time). Used once for Gundu & Harika at launch (through 25 Nov 2026).
+
 ## Who can edit
 
 Public editing is **off** (`"publicEditing": false` in `dev/site.json`). The **Manage** tab stays, but view-only: counts, the Families panel and the full list with what still needs confirming. There are no add, edit, delete or verify buttons and no backup/restore, and anything an older visit saved in a browser is ignored, so everyone sees exactly the published list. Sateesh updates the data through Claude (seed.json → build → push). Set it to `true` to bring editing back.
