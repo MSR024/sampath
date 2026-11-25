@@ -1,5 +1,5 @@
 {
-  "seedVersion": 20,
+  "seedVersion": 21,
   "birthdays": [
     {
       "type": "birthday",
@@ -593,6 +593,21 @@
       "verified": true,
       "note": "Greetings occur on October 13 and 14; October 14 is the stronger date.",
       "familyName": "Muppidi"
+    },
+    {
+      "id": "birthday-sarita",
+      "type": "birthday",
+      "name": "Sarita",
+      "month": 10,
+      "day": 25,
+      "aliases": [
+        "Sarita Chellalu",
+        "Saritha Chellalu"
+      ],
+      "community": "telugu",
+      "relationship": "Wife of Sathyam; mother of Honey and Hasini",
+      "verified": false,
+      "note": "Wishes came on October 25 and 26; date not yet confirmed. Not Santosh's wife Saritha."
     },
     {
       "id": "birthday-kavitha",

@@ -12,8 +12,8 @@ const names = (list) => list.map(R.displayName);
 const q = (s) => names(R.filterEvents(all(), { query: s }));
 const byName = (n) => all().find((e) => e.type === "birthday" && e.name === n);
 
-test("seed loads 47 birthdays and 12 anniversaries, all valid, ids unique", () => {
-  assert.equal(seed.birthdays.length, 47);
+test("seed loads 48 birthdays and 12 anniversaries, all valid, ids unique", () => {
+  assert.equal(seed.birthdays.length, 48);
   assert.equal(seed.anniversaries.length, 12);
   const ids = new Set();
   for (const e of all()) {
@@ -28,7 +28,7 @@ test("seed loads 47 birthdays and 12 anniversaries, all valid, ids unique", () =
 test("all 12 monthly totals match the seed", () => {
   const expected = { // [birthdays, anniversaries]
     1: [5, 1], 2: [3, 1], 3: [3, 3], 4: [4, 0], 5: [3, 2], 6: [0, 1],
-    7: [6, 0], 8: [7, 1], 9: [2, 0], 10: [5, 0], 11: [4, 2], 12: [5, 1],
+    7: [6, 0], 8: [7, 1], 9: [2, 0], 10: [6, 0], 11: [4, 2], 12: [5, 1],
   };
   for (const m of R.monthSummary(all())) {
     assert.deepEqual([m.birthdays.length, m.anniversaries.length], expected[m.month], m.name);
@@ -75,7 +75,8 @@ test("similar names are never merged as duplicates", () => {
   const dup = (e) => R.findDuplicate(Object.assign({ month: 1, day: 1, aliases: [] }, e), ev);
   assert.equal(dup({ type: "birthday", name: "Chikki" }).id, "birthday-chikki");
   assert.equal(dup({ type: "birthday", name: "Likki" }).id, "birthday-likky");
-  assert.equal(dup({ type: "birthday", name: "Sarita" }), null, "Sarita (Sathyam) is not Saritha (Santosh)");
+  assert.equal(dup({ type: "birthday", name: "Sarita" }).id, "birthday-sarita", "Sarita (Sathyam) is not Saritha (Santosh)");
+  assert.equal(dup({ type: "birthday", name: "Saritha" }).id, "birthday-saritha");
   assert.equal(dup({ type: "birthday", name: "Satish" }).id, "birthday-satish-reddy", "Appidi Gundu");
   assert.notEqual(dup({ type: "birthday", name: "Sathish" }).id, "birthday-satish-reddy");
 });
@@ -140,6 +141,8 @@ test("kids linked to their parents take the father's family name", () => {
   assert.ok(q("Chikki").includes("Ananya") && q("Likky").includes("Likila"), "pet names still find the twins");
   assert.equal(R.familyNameOf(ev.find((e) => e.id === "birthday-honey"), ev), "Manda", "father has no birthday record: couple's name");
   assert.equal(R.familyNameOf(ev.find((e) => e.id === "anniversary-sathyam-sarita"), ev), "Manda");
+  assert.equal(R.familyNameOf(ev.find((e) => e.id === "birthday-sarita"), ev), "Manda", "wife takes the couple's name");
+  assert.ok(q("Chellalu").includes("Sarita") && !q("Chellalu").includes("Saritha"));
   assert.ok(R.filterEvents(ev, { query: "Satyam" }).map(R.displayName).includes("Sathyam & Sarita"));
   assert.equal(R.familyNameOf(ev.find((e) => e.id === "birthday-cherry"), ev), "", "Srikanth's family name not given yet");
 });
