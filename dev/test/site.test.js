@@ -28,7 +28,7 @@ test("seed loads 47 birthdays and 12 anniversaries, all valid, ids unique", () =
 test("all 12 monthly totals match the seed", () => {
   const expected = { // [birthdays, anniversaries]
     1: [5, 1], 2: [3, 1], 3: [3, 3], 4: [4, 0], 5: [3, 2], 6: [0, 1],
-    7: [6, 0], 8: [7, 1], 9: [2, 0], 10: [6, 0], 11: [4, 2], 12: [4, 1],
+    7: [6, 0], 8: [7, 1], 9: [2, 0], 10: [5, 0], 11: [4, 2], 12: [5, 1],
   };
   for (const m of R.monthSummary(all())) {
     assert.deepEqual([m.birthdays.length, m.anniversaries.length], expected[m.month], m.name);

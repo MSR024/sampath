@@ -1,5 +1,5 @@
 {
-  "seedVersion": 18,
+  "seedVersion": 19,
   "birthdays": [
     {
       "type": "birthday",
@@ -196,24 +196,6 @@
       "relationship": "Child of Srikanth and Kavitha"
     },
     {
-      "id": "birthday-lucky",
-      "type": "birthday",
-      "name": "Lucky",
-      "month": 4,
-      "day": 13,
-      "aliases": [
-        "Lukky",
-        "Luckey"
-      ],
-      "community": "telugu",
-      "verified": true,
-      "parents": [
-        "Santosh",
-        "Saritha"
-      ],
-      "relationship": "Child of Santosh and Saritha"
-    },
-    {
       "id": "birthday-sresta",
       "type": "birthday",
       "name": "Sresta",
@@ -230,6 +212,25 @@
         "Bindu"
       ],
       "relationship": "Child of Karthik and Bindu"
+    },
+    {
+      "id": "birthday-lucky",
+      "type": "birthday",
+      "name": "Lucky",
+      "month": 4,
+      "day": 14,
+      "aliases": [
+        "Lukky",
+        "Luckey"
+      ],
+      "community": "telugu",
+      "verified": true,
+      "parents": [
+        "Santosh",
+        "Saritha"
+      ],
+      "relationship": "Child of Santosh and Saritha",
+      "note": "Corrected to April 14 by Sateesh (export showed April 13)."
     },
     {
       "id": "birthday-varnika",
@@ -594,20 +595,6 @@
       "familyName": "Muppidi"
     },
     {
-      "id": "birthday-saritha",
-      "type": "birthday",
-      "name": "Saritha",
-      "month": 10,
-      "day": 25,
-      "aliases": [
-        "Sarita Chellalu"
-      ],
-      "community": "telugu",
-      "relationship": "Wife of Santosh; mother of Lucky and Mikky",
-      "verified": false,
-      "note": "Greetings occur on October 25 and 26; October 25 is used provisionally."
-    },
-    {
       "id": "birthday-kavitha",
       "type": "birthday",
       "name": "Kavitha",
@@ -699,6 +686,20 @@
       "relationship": "Husband of Swetha; father of Roshan",
       "verified": true,
       "familyName": "Appidi"
+    },
+    {
+      "id": "birthday-saritha",
+      "type": "birthday",
+      "name": "Saritha",
+      "month": 12,
+      "day": 8,
+      "aliases": [
+        "Sarita Chellalu"
+      ],
+      "community": "telugu",
+      "relationship": "Wife of Santosh; mother of Lucky and Mikky",
+      "verified": true,
+      "note": "Corrected to December 8 by Sateesh (export showed October 25/26). Likely the unnamed 'Vadina/Akkaya' wishes on Dec 8."
     },
     {
       "id": "birthday-sampath",
