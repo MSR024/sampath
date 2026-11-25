@@ -1,5 +1,5 @@
 {
-  "seedVersion": 19,
+  "seedVersion": 20,
   "birthdays": [
     {
       "type": "birthday",
@@ -693,13 +693,11 @@
       "name": "Saritha",
       "month": 12,
       "day": 8,
-      "aliases": [
-        "Sarita Chellalu"
-      ],
+      "aliases": [],
       "community": "telugu",
       "relationship": "Wife of Santosh; mother of Lucky and Mikky",
       "verified": true,
-      "note": "Corrected to December 8 by Sateesh (export showed October 25/26). Likely the unnamed 'Vadina/Akkaya' wishes on Dec 8."
+      "note": "December 8 from Sateesh. Not the 'Sarita Chellalu' of the Oct 25/26 wishes, who is a different Saritha. Likely the unnamed 'Vadina/Akkaya' wishes on Dec 8."
     },
     {
       "id": "birthday-sampath",
